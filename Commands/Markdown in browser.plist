@@ -5,7 +5,9 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>cat &lt;&lt;EOF
+	<string>export TEMPFILE=`mktemp "/tmp/XXXX"`
+
+cat &gt;&gt; $TEMPFILE &lt;&lt;EOF
 &lt;html&gt;
 &lt;head&gt;
 	&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
@@ -30,22 +32,25 @@
 &lt;div class="contents"&gt;
 EOF
 
-"$TM_BUNDLE_PATH/markdown"
+"$TM_BUNDLE_PATH/markdown" &lt; $TM_FILEPATH &gt;&gt; $TEMPFILE
 
-cat &lt;&lt;EOF
+cat &gt;&gt; $TEMPFILE &lt;&lt;EOF
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-EOF</string>
+EOF
+
+mv $TEMPFILE $TEMPFILE.html
+open $TEMPFILE.html</string>
 	<key>input</key>
-	<string>document</string>
+	<string>none</string>
 	<key>keyEquivalent</key>
-	<string>^m</string>
+	<string>^M</string>
 	<key>name</key>
-	<string>Markdown preview</string>
+	<string>Markdown in browser</string>
 	<key>output</key>
-	<string>showAsHTML</string>
+	<string>showAsTooltip</string>
 	<key>uuid</key>
-	<string>B52DEA16-8480-11D9-BE59-000D93B3A10E</string>
+	<string>58434A58-85E8-11D9-9CD0-000D93B3A10E</string>
 </dict>
 </plist>
