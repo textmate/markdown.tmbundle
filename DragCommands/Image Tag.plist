@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>command</key>
+	<string>img=$TM_DROPPED_FILE
+alt=`echo $img | perl -pe 's/^(.*\/)?(.*?)(\..*)?$/$2/g' | tr '_-' ' '`
+echo -n "![\${1:$alt}]($TM_DROPPED_FILE)"</string>
+	<key>documentExtensions</key>
+	<array>
+		<string>html</string>
+		<string>htm</string>
+		<string>rhtml</string>
+		<string>shtml</string>
+		<string>phtml</string>
+		<string>php</string>
+		<string>php3</string>
+		<string>php4</string>
+		<string>php5</string>
+		<string>inc</string>
+	</array>
+	<key>draggedFileExtensions</key>
+	<array>
+		<string>png</string>
+		<string>PNG</string>
+		<string>jpeg</string>
+		<string>JPEG</string>
+		<string>jpg</string>
+		<string>JPG</string>
+		<string>gif</string>
+		<string>GIF</string>
+	</array>
+	<key>name</key>
+	<string>Insert &lt;img&gt; tag</string>
+	<key>output</key>
+	<string>insertAsSnippet</string>
+	<key>uuid</key>
+	<string>DA18D8BE-792F-11D9-A212-000D93B3A10E</string>
+</dict>
+</plist>
