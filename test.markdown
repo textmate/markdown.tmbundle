@@ -1,6 +1,8 @@
 Markdown: Syntax
 ================
 
+ * __this is a test__ 
+
 <ul id="ProjectSubmenu">
     <li><a href="/projects/markdown/" title="Markdown Project Page">Main</a></li>
     <li><a href="/projects/markdown/basics" title="Markdown Basics">Basics</a></li>
