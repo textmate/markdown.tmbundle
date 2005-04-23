@@ -1,0 +1,63 @@
+{
+    backgroundColor = "#ffffff"; 
+    fileTypes = (markdown,txt); 
+    foldingStartMarker = "(<(?i:(head|table|div|style|script|ul|ol|form|dl))\\>.*?>|\\{)"; 
+    foldingStopMarker = "(</(?i:(head|table|div|style|script|ul|ol|form|dl))>|\\})"; 
+    foregroundColor = "#333333"; 
+    highlightPairs = (("(", ")"), ("[", "]"), ("{", "}"), ("\"", "\"")); 
+    increaseIndentPattern = "<(head|title|table|tr|td|ul|ol|dl|div)\\>[^>]*>\\s*$"; 
+    name = Markdown; 
+    scopeName = "text.html.markdown";
+    patterns = (
+//        { begin = "<";
+//          end = ">";
+//          patterns = ( { include = "HTML (Basic)"; } );
+//        },
+        { include = "HTML (Basic)"; },
+        {backgroundColor = "#eeeeee"; match = "`([^\\\\`]|\\\\.)*?`"; name = "keyword"; }, 
+        {backgroundColor = "#eeeeee"; match = "``.*?``"; name = "string.double"; }, 
+        { 
+            match = "^\\s*>.*";  
+            name = "markup.quote.markdown";  
+        },
+        {
+            match = "(([*\\-+=] ){2,}[*\\-+])|([*\\-+=]{3,})"; 
+            name = "markup.heading.1";
+        }, 
+        {
+            match = "^\\s*[\\#]{1,6}\\s+.*"; 
+            name = "markup.heading.2";
+        }, 
+        {backgroundColor = "#ff3333"; match = " {2,}$"; name = "Line break"; }, 
+        {fontStyle = (italic); match = "([^\\\\][*])[^`]*?([^\\\\][*])"; name = "markup.style.ital"; }, 
+        {fontStyle = (italic); match = "([^\\\\][_])[^`]*?([^\\\\][_])"; name = "markup.style.ital"; }, 
+        {
+            fontStyle = (bold); 
+            foregroundColor = "#000000"; 
+            match = "([^\\\\][*]{2})[^`]*?([^\\\\][*]{2})"; 
+            name = "markup.style.strong"; 
+        }, 
+        {
+            match = "([^\\\\][_]{2})[^`]*?([^\\\\][_]{2})"; 
+            name = "markup.style.strong"; 
+        }, 
+        {
+            match = "\\[(.*?)\\] *\\(.*?\\)"; 
+            name = "markup.link.markdown"; 
+        }, 
+        { 
+            match = "\\[(.*?)\\] *\\[.*?\\]";  
+            name = "markup.link.markdown";  
+        }, 
+        { 
+            match = "^\\s*[\\*\\+\\-]\\s+.*";  
+            name = "markup.list.unnumbered";  
+        }, 
+        { 
+            match = "^\\s*[0-9]\\.\\s+.*";  
+            name = "markup.list.numbered";  
+        },         
+    ); 
+    smartTypingPairs = (("(", ")"), ("[", "]"), ("{", "}"), ("\"", "\""), ("<", ">"), ("`", "`")); 
+    uuid = "0A1D9874-B448-11D9-BD50-000D93B6E43C"; 
+}

@@ -6,7 +6,7 @@
     foregroundColor = "#333333"; 
     highlightPairs = (("(", ")"), ("[", "]"), ("{", "}"), ("\"", "\"")); 
     increaseIndentPattern = "<(head|title|table|tr|td|ul|ol|dl|div)\\>[^>]*>\\s*$"; 
-    name = Markdown; 
+    name = OldMarkdown; 
     scopeName = "text.html.markdown";
     patterns = (
         {
