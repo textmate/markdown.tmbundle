@@ -1,6 +1,6 @@
 {
     backgroundColor = "#ffffff"; 
-    fileTypes = (markdown); 
+//  fileTypes = (markdown); 
     foldingStartMarker = "(<(?i:(head|table|div|style|script|ul|ol|form|dl))\\>.*?>|\\{)"; 
     foldingStopMarker = "(</(?i:(head|table|div|style|script|ul|ol|form|dl))>|\\})"; 
     foregroundColor = "#333333"; 
