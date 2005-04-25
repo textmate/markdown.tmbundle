@@ -45,6 +45,8 @@ EOF</string>
 	<string>Markdown preview</string>
 	<key>output</key>
 	<string>showAsHTML</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
 	<key>uuid</key>
 	<string>B52DEA16-8480-11D9-BE59-000D93B3A10E</string>
 </dict>

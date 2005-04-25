@@ -50,6 +50,8 @@ open $TEMPFILE.html</string>
 	<string>Markdown in browser</string>
 	<key>output</key>
 	<string>showAsTooltip</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
 	<key>uuid</key>
 	<string>58434A58-85E8-11D9-9CD0-000D93B3A10E</string>
 </dict>
