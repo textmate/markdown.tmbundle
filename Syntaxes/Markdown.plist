@@ -13,7 +13,7 @@
 //          end = ">";
 //          patterns = ( { include = "HTML (Basic)"; } );
 //        },
-        { include = "HTML (Basic)"; },
+        { include = "text.html.basic"; },
         {backgroundColor = "#eeeeee"; match = "`([^\\\\`]|\\\\.)*?`"; name = "keyword"; }, 
         {backgroundColor = "#eeeeee"; match = "``.*?``"; name = "string.double"; }, 
         { 
