@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>(${1:description})[${2:HREF}]
+	<string>[${1:description}](${2:HREF})
 $0</string>
 	<key>name</key>
 	<string>Link</string>
