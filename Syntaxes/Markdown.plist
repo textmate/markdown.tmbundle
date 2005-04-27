@@ -1,21 +1,15 @@
 {
-    backgroundColor = "#ffffff"; 
     fileTypes = (markdown,txt); 
     foldingStartMarker = "(<(?i:(head|table|div|style|script|ul|ol|form|dl))\\>.*?>|\\{)"; 
     foldingStopMarker = "(</(?i:(head|table|div|style|script|ul|ol|form|dl))>|\\})"; 
-    foregroundColor = "#333333"; 
-    highlightPairs = (("(", ")"), ("[", "]"), ("{", "}"), ("\"", "\"")); 
-    increaseIndentPattern = "<(head|title|table|tr|td|ul|ol|dl|div)\\>[^>]*>\\s*$"; 
+    firstLineMatch = "markdown";
     name = Markdown; 
     scopeName = "text.html.markdown";
     patterns = (
-//        { begin = "<";
-//          end = ">";
-//          patterns = ( { include = "HTML (Basic)"; } );
-//        },
+        // Since html is valid in Markdown include the html patterns
         { include = "text.html.basic"; },
-        {backgroundColor = "#eeeeee"; match = "`([^\\\\`]|\\\\.)*?`"; name = "keyword"; }, 
-        {backgroundColor = "#eeeeee"; match = "``.*?``"; name = "string.double"; }, 
+        { match = "`([^\\\\`]|\\\\.)*?`"; name = "keyword"; }, 
+        { match = "``.*?``"; name = "string.double"; }, 
         { 
             match = "^\\s*>.*";  
             name = "markup.quote.markdown";  
@@ -28,12 +22,10 @@
             match = "^\\s*[\\#]{1,6}\\s+.*"; 
             name = "markup.heading.2";
         }, 
-        {backgroundColor = "#ff3333"; match = " {2,}$"; name = "Line break"; }, 
-        {fontStyle = (italic); match = "([^\\\\][*])[^`]*?([^\\\\][*])"; name = "markup.style.ital"; }, 
-        {fontStyle = (italic); match = "([^\\\\][_])[^`]*?([^\\\\][_])"; name = "markup.style.ital"; }, 
+        {  match = " {2,}$"; name = "Line break"; }, 
+        {  match = "([^\\\\][*])[^`]*?([^\\\\][*])"; name = "markup.style.ital"; }, 
+        {  match = "([^\\\\][_])[^`]*?([^\\\\][_])"; name = "markup.style.ital"; }, 
         {
-            fontStyle = (bold); 
-            foregroundColor = "#000000"; 
             match = "([^\\\\][*]{2})[^`]*?([^\\\\][*]{2})"; 
             name = "markup.style.strong"; 
         }, 
@@ -58,6 +50,5 @@
             name = "markup.list.numbered";  
         },         
     ); 
-    smartTypingPairs = (("(", ")"), ("[", "]"), ("{", "}"), ("\"", "\""), ("<", ">"), ("`", "`")); 
     uuid = "0A1D9874-B448-11D9-BD50-000D93B6E43C"; 
 }
