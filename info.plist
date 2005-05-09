@@ -3,14 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>markdown</string>
+	<string>Markdown</string>
 	<key>ordering</key>
 	<array>
 		<string>B52DEA16-8480-11D9-BE59-000D93B3A10E</string>
 		<string>58434A58-85E8-11D9-9CD0-000D93B3A10E</string>
 		<string>DA157B9A-792F-11D9-A212-000D93B3A10E</string>
 		<string>DA18D8BE-792F-11D9-A212-000D93B3A10E</string>
-		<string>DA236025-792F-11D9-A212-000D93B3A10E</string>
+		<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
+		<string>0A1D9874-B448-11D9-BD50-000D93B6E43C</string>
 	</array>
 	<key>uuid</key>
 	<string>D99E8C0C-792F-11D9-A212-000D93B3A10E</string>
