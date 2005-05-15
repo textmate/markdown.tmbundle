@@ -1,6 +1,6 @@
 {
     fileTypes = (markdown); 
-    foldingStartMarker = "(<(?i:(head|table|div|style|script|ul|ol|form|dl))\\>.*?>|\\{)"; 
+    foldingStartMarker = "(<(?i:(head|table|div|style|script|ul|ol|form|dl))\\b.*?>|\\{)"; 
     foldingStopMarker = "(</(?i:(head|table|div|style|script|ul|ol|form|dl))>|\\})"; 
     firstLineMatch = "markdown";
     name = Markdown; 
