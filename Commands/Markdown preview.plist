@@ -40,7 +40,7 @@ EOF</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>
-	<string>^m</string>
+	<string>^~@p</string>
 	<key>name</key>
 	<string>Markdown preview</string>
 	<key>output</key>
