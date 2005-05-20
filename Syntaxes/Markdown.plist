@@ -1,54 +1,53 @@
 {
-    fileTypes = (markdown); 
-    foldingStartMarker = "(<(?i:(head|table|div|style|script|ul|ol|form|dl))\\b.*?>|\\{)"; 
-    foldingStopMarker = "(</(?i:(head|table|div|style|script|ul|ol|form|dl))>|\\})"; 
+    name = Markdown;
+    fileTypes = (markdown);
     firstLineMatch = "markdown";
-    name = Markdown; 
     scopeName = "text.html.markdown";
     patterns = (
         // Since html is valid in Markdown include the html patterns
-        { include = "text.html.basic"; },
-        { match = "`([^\\\\`]|\\\\.)*?`"; name = "keyword"; }, 
-        { match = "``.*?``"; name = "string.double"; }, 
-        { 
-            match = "^\\s*>.*";  
-            name = "markup.quote.markdown";  
+        {   include = "text.html.basic"; },
+        {   name = "keyword.other.markdown";
+            match = "`([^\\\\`]|\\\\.)*?`";
         },
-        {
-            match = "(([*\\-+=] ){2,}[*\\-+])|([*\\-+=]{3,})"; 
-            name = "markup.heading.1";
-        }, 
-        {
-            match = "^\\s*[\\#]{1,6}\\s+.*"; 
-            name = "markup.heading.2";
-        }, 
-        {  match = " {2,}$"; name = "Line break"; }, 
-        {  match = "([^\\\\][*])[^`]*?([^\\\\][*])"; name = "markup.style.ital"; }, 
-        {  match = "([^\\\\][_])[^`]*?([^\\\\][_])"; name = "markup.style.ital"; }, 
-        {
-            match = "([^\\\\][*]{2})[^`]*?([^\\\\][*]{2})"; 
-            name = "markup.style.strong"; 
-        }, 
-        {
-            match = "([^\\\\][_]{2})[^`]*?([^\\\\][_]{2})"; 
-            name = "markup.style.strong"; 
-        }, 
-        {
-            match = "\\[(.*?)\\] *\\(.*?\\)"; 
-            name = "markup.link.markdown"; 
-        }, 
-        { 
-            match = "\\[(.*?)\\] *\\[.*?\\]";  
-            name = "markup.link.markdown";  
-        }, 
-        { 
-            match = "^\\s*[\\*\\+\\-]\\s+.*";  
-            name = "markup.list.unnumbered";  
-        }, 
-        { 
-            match = "^\\s*[0-9]\\.\\s+.*";  
-            name = "markup.list.numbered";  
-        },         
-    ); 
-    uuid = "0A1D9874-B448-11D9-BD50-000D93B6E43C"; 
+        {   name = "string.double-quoted.markdown";
+            match = "``.*?``";
+        },
+        {   name = "markup.quote.markdown";
+            match = "^\\s*>.*";
+        },
+        {   name = "markup.heading.1.markdown";
+            match = "(([*\\-+=] ){2,}[*\\-+])|([*\\-+=]{3,})";
+        },
+        {   name = "markup.heading.2.markdown";
+            match = "^\\s*[\\#]{1,6}\\s+.*";
+        },
+        {   name = "dummy.line-break";
+            match = " {2,}$";
+        },
+        {   name = "markup.italic.markdown";
+            match = "([^\\\\][*])[^`]*?([^\\\\][*])";
+        },
+        {   name = "markup.italic.markdown";
+            match = "([^\\\\][_])[^`]*?([^\\\\][_])";
+        },
+        {   name = "markup.bold.markdown";
+            match = "([^\\\\][*]{2})[^`]*?([^\\\\][*]{2})";
+        },
+        {   name = "markup.bold.markdown";
+            match = "([^\\\\][_]{2})[^`]*?([^\\\\][_]{2})";
+        },
+        {   name = "markup.underline.link.markdown";
+            match = "\\[(.*?)\\] *\\(.*?\\)";
+        },
+        {   name = "markup.underline.link.markdown";
+            match = "\\[(.*?)\\] *\\[.*?\\]";
+        },
+        {   name = "markup.list.unnumbered";
+            match = "^\\s*[\\*\\+\\-]\\s+.*";
+        },
+        {   name = "markup.list.numbered";
+            match = "^\\s*[0-9]\\.\\s+.*";
+        },
+    );
+    uuid = "0A1D9874-B448-11D9-BD50-000D93B6E43C";
 }
