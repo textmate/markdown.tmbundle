@@ -5,17 +5,10 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>cat &lt;&lt;EOF
-&lt;html&gt;
-&lt;head&gt;
-	&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
-	&lt;title&gt;Markdown preview&lt;/title&gt;
-	&lt;style type="text/css"&gt;
+	<string>. "$TM_SUPPORT_PATH/lib/html.sh"
+htmlHeader '&lt;style type="text/css"&gt;
 	body {	
 		background-color: #eee;
-		font-family: "Lucida Grande", Verdana, sans-serif;
-		font-size: 11px;
-		line-height: 1.6em;
 	}
 	.contents {	
 		background: white;
@@ -24,19 +17,11 @@
 		border: 1px #888 solid;
 		padding: 0 1em;
 	}
-	&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div class="contents"&gt;
-EOF
-
-"$TM_BUNDLE_PATH/markdown"
-
-cat &lt;&lt;EOF
-&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-EOF</string>
+	&lt;/style&gt;'
+echo '&lt;div class="contents"&gt;'
+"$TM_SUPPORT_PATH/bin/Markdown.pl"
+echo '&lt;/div&gt;'
+htmlFooter</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>

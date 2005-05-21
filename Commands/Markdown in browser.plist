@@ -5,19 +5,12 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>export TEMPFILE=`mktemp "/tmp/XXXX"`
-
-cat &gt;&gt; $TEMPFILE &lt;&lt;EOF
-&lt;html&gt;
-&lt;head&gt;
-	&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
-	&lt;title&gt;Markdown preview&lt;/title&gt;
-	&lt;style type="text/css"&gt;
+	<string>TEMPFILE=`mktemp "/tmp/markdown_XXXXXX"`
+{
+. "$TM_SUPPORT_PATH/lib/html.sh"
+htmlHeader '&lt;style type="text/css"&gt;
 	body {	
 		background-color: #eee;
-		font-family: "Lucida Grande", Verdana, sans-serif;
-		font-size: 11px;
-		line-height: 1.6em;
 	}
 	.contents {	
 		background: white;
@@ -26,24 +19,15 @@ cat &gt;&gt; $TEMPFILE &lt;&lt;EOF
 		border: 1px #888 solid;
 		padding: 0 1em;
 	}
-	&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div class="contents"&gt;
-EOF
-
-"$TM_BUNDLE_PATH/markdown" &lt; $TM_FILEPATH &gt;&gt; $TEMPFILE
-
-cat &gt;&gt; $TEMPFILE &lt;&lt;EOF
-&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-EOF
-
-mv $TEMPFILE $TEMPFILE.html
-open $TEMPFILE.html</string>
+	&lt;/style&gt;'
+echo '&lt;div class="contents"&gt;'
+"$TM_SUPPORT_PATH/bin/Markdown.pl"
+echo '&lt;/div&gt;'
+htmlFooter; } &gt;"$TEMPFILE.html"
+rm "$TEMPFILE"
+open "$TEMPFILE.html"</string>
 	<key>input</key>
-	<string>none</string>
+	<string>document</string>
 	<key>keyEquivalent</key>
 	<string>^M</string>
 	<key>name</key>
