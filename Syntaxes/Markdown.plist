@@ -6,48 +6,64 @@
     patterns = (
         // Since html is valid in Markdown include the html patterns
         {   include = "text.html.basic"; },
+
+        // Inline formatting
         {   name = "keyword.other.markdown";
             match = "`([^\\\\`]|\\\\.)*?`";
         },
-        {   name = "string.double-quoted.markdown";
+        {   name = "keyword.other.markdown";
             match = "``.*?``";
         },
-        {   name = "markup.quote.markdown";
-            match = "^\\s*>.*";
+        
+        {   name = "markup.italic.markdown";
+            match = "[*]([^\\\\*]|\\\\.)*?[*]";
         },
-        {   name = "markup.heading.1.markdown";
-            match = "(([*\\-+=] ){2,}[*\\-+])|([*\\-+=]{3,})";
+        {   name = "markup.italic.markdown";
+            match = "[_]([^\\\\_]|\\\\.)*?[_]";
         },
-        {   name = "markup.heading.2.markdown";
-            match = "^\\s*[\\#]{1,6}\\s+.*";
+        {   name = "markup.bold.markdown";
+            match = "[_]{2}([^\\\\_]|\\\\.)*?[_]{2}";
+        },
+        {   name = "markup.bold.markdown";
+            match = "[*]{2}([^\\\\*]|\\\\.)*?[*]{2}";
         },
         {   name = "dummy.line-break";
             match = " {2,}$";
         },
-        {   name = "markup.italic.markdown";
-            match = "([^\\\\][*])[^`]*?([^\\\\][*])";
-        },
-        {   name = "markup.italic.markdown";
-            match = "([^\\\\][_])[^`]*?([^\\\\][_])";
-        },
-        {   name = "markup.bold.markdown";
-            match = "([^\\\\][*]{2})[^`]*?([^\\\\][*]{2})";
-        },
-        {   name = "markup.bold.markdown";
-            match = "([^\\\\][_]{2})[^`]*?([^\\\\][_]{2})";
-        },
+
+
         {   name = "markup.underline.link.markdown";
             match = "\\[(.*?)\\] *\\(.*?\\)";
         },
         {   name = "markup.underline.link.markdown";
             match = "\\[(.*?)\\] *\\[.*?\\]";
         },
+        {   name = "markup.underline.link.markdown";
+            match = "<(mailto|https?)://.*?>";
+        },
+
+        // Headings
+        {   name = "markup.heading.1.markdown";
+            match = "(([*\\-+=] ){2,}[*\\-+])|([*\\-+=]{3,})";
+        },
+        {   name = "markup.heading.2.markdown";
+            match = "^\\s*[\\#]{1,6}\\s+.*";
+        },
+
+
+        // Block formatting
         {   name = "markup.list.unnumbered";
-            match = "^\\s*[\\*\\+\\-]\\s+.*";
+            begin = "^\\s*[*+-]\\s+.*";
+            end = "^$";
         },
         {   name = "markup.list.numbered";
             match = "^\\s*[0-9]\\.\\s+.*";
         },
+        
+        {   name = "markup.quote.markdown";
+            match = "^\\s*>.*";
+        },
+        
     );
     uuid = "0A1D9874-B448-11D9-BD50-000D93B6E43C";
 }
