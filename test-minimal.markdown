@@ -27,18 +27,17 @@ heading 2
 Horizontal lines
 =================
 
-* * * *
+***
+
+* * *
 
 ___
 
-______
+__ __ __
 
 - - - 
 
---------------------
-
-
-
+----------------
 
 Block formatting
 ================
@@ -46,7 +45,7 @@ Block formatting
 Lists
 ----------------
 
- * This is a list!
+ * This *is a list!*
  * This is another list item.
    But this one spans *two* lines. 
  * Another list item with __inline__ formatting

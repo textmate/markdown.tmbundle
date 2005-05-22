@@ -1,0 +1,17 @@
+{
+    scopeName = "text.html.markdown.inline"; 
+    name = "Inline Markdown"; 
+    patterns = (
+        {match = "`([^\\\\`]|\\\\.)*?`"; name = "keyword.other.markdown"; }, 
+        {match = "``.*?``"; name = "keyword.other.markdown"; }, 
+        {match = "[*]([^\\\\*]|\\\\.)*?[*]"; name = "markup.italic.markdown"; }, 
+        {match = "[_]([^\\\\_]|\\\\.)*?[_]"; name = "markup.italic.markdown"; }, 
+        {match = "[_]{2}([^\\\\_]|\\\\.)*?[_]{2}"; name = "markup.bold.markdown"; }, 
+        {match = "[*]{2}([^\\\\*]|\\\\.)*?[*]{2}"; name = "markup.bold.markdown"; }, 
+        {match = " {2,}$"; name = "dummy.line-break"; }, 
+        {match = "\\[(.*?)\\] *\\(.*?\\)"; name = "markup.underline.link.markdown"; }, 
+        {match = "\\[(.*?)\\] *\\[.*?\\]"; name = "markup.underline.link.markdown"; }, 
+        {match = "<(mailto|https?)://.*?>"; name = "markup.underline.link.markdown"; }
+    ); 
+    uuid = "D2C492B0-7025-464A-B21E-2381098581D3"; 
+}

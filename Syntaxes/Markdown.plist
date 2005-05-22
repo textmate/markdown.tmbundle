@@ -1,52 +1,17 @@
 {
-    name = Markdown;
+    name = "Markdown";
     fileTypes = (markdown);
     firstLineMatch = "markdown";
     scopeName = "text.html.markdown";
     patterns = (
-        // Since html is valid in Markdown include the html patterns
-        {   include = "text.html.basic"; },
-
-        // Inline formatting
-        {   name = "keyword.other.markdown";
-            match = "`([^\\\\`]|\\\\.)*?`";
-        },
-        {   name = "keyword.other.markdown";
-            match = "``.*?``";
-        },
-        
-        {   name = "markup.italic.markdown";
-            match = "[*]([^\\\\*]|\\\\.)*?[*]";
-        },
-        {   name = "markup.italic.markdown";
-            match = "[_]([^\\\\_]|\\\\.)*?[_]";
-        },
-        {   name = "markup.bold.markdown";
-            match = "[_]{2}([^\\\\_]|\\\\.)*?[_]{2}";
-        },
-        {   name = "markup.bold.markdown";
-            match = "[*]{2}([^\\\\*]|\\\\.)*?[*]{2}";
-        },
-        {   name = "dummy.line-break";
-            match = " {2,}$";
-        },
-
-
-        {   name = "markup.underline.link.markdown";
-            match = "\\[(.*?)\\] *\\(.*?\\)";
-        },
-        {   name = "markup.underline.link.markdown";
-            match = "\\[(.*?)\\] *\\[.*?\\]";
-        },
-        {   name = "markup.underline.link.markdown";
-            match = "<(mailto|https?)://.*?>";
-        },
-
         // Horizontal rules
         // Currently ignoring - because of conflict with headings
         {   name = "markup.hr.markdown";
-            match = "^([*_]\s*){3,}$";
+            match = "^([*_]\\s*){3,}$";                    
         },
+
+        // Inline formatting
+        { include = "text.html.markdown.inline"; },
 
         // Headings
         {   name = "markup.heading.1.markdown";
@@ -61,17 +26,38 @@
 
         // Block formatting
         {   name = "markup.list.unnumbered";
-            begin = "^\\s*[*+-]\\s+.*";
+            begin = "^\\s*[*+-]";
             end = "^$";
+            patterns = (
+                { include = "text.html.markdown.inline"; }
+            );
         },
+
         {   name = "markup.list.numbered";
-            match = "^\\s*[0-9]\\.\\s+.*";
+            begin = "^\\s*[0-9]+\\.";
+            end = "^$";
+            patterns = (
+                { include = "text.html.markdown.inline"; }
+            );
         },
         
         {   name = "markup.quote.markdown";
-            match = "^\\s*>.*";
+            begin = "^\\s*>";
+            end = "^$";
+            patterns = (
+                { include = "text.html.markdown.inline"; }
+            );
+        },
+        {   name = "markup.raw.markdown";
+            begin = "( {4,}|\t)";
+            end = "^$";
+            patterns = (
+                { include = "text.html.markdown.inline"; }
+            );
         },
         
+        // Since html is valid in Markdown include the html patterns
+        {   include = "text.html.basic"; },
     );
     uuid = "0A1D9874-B448-11D9-BD50-000D93B6E43C";
 }
