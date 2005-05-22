@@ -42,14 +42,22 @@
             match = "<(mailto|https?)://.*?>";
         },
 
-        // Headings
-        {   name = "markup.heading.1.markdown";
-            match = "(([*\\-+=] ){2,}[*\\-+])|([*\\-+=]{3,})";
-        },
-        {   name = "markup.heading.2.markdown";
-            match = "^\\s*[\\#]{1,6}\\s+.*";
+        // Horizontal rules
+        // Currently ignoring - because of conflict with headings
+        {   name = "markup.hr.markdown";
+            match = "^([*_]\s*){3,}$";
         },
 
+        // Headings
+        {   name = "markup.heading.1.markdown";
+            match = "^={3,}$";
+        },
+        {   name = "markup.heading.2.markdown";
+            match = "^-{3,}$";
+        },
+        {   name = "markup.heading.markdown";
+            match = "^#{1,9}";
+        },
 
         // Block formatting
         {   name = "markup.list.unnumbered";
