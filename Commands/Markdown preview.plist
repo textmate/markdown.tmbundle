@@ -6,6 +6,12 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>. "$TM_SUPPORT_PATH/lib/html.sh"
+
+if [[ -z $TM_FILENAME ]]
+  then title="Markdown as HTML"
+  else title="$TM_FILENAME as HTML"
+fi
+
 htmlHeader '&lt;style type="text/css"&gt;
 	body {	
 		background-color: #eee;
@@ -17,7 +23,8 @@ htmlHeader '&lt;style type="text/css"&gt;
 		border: 1px #888 solid;
 		padding: 0 1em;
 	}
-	&lt;/style&gt;'
+	&lt;/style&gt;
+	&lt;title&gt;'"$title"'&lt;/title&gt;'
 echo '&lt;div class="contents"&gt;'
 "$TM_SUPPORT_PATH/bin/Markdown.pl"
 echo '&lt;/div&gt;'
