@@ -20,9 +20,9 @@ htmlHeader '&lt;style type="text/css"&gt;
 		padding: 0 1em;
 	}
 	&lt;/style&gt;'
-echo '&lt;div class="contents"&gt;'
-"$TM_SUPPORT_PATH/bin/Markdown.pl"
-echo '&lt;/div&gt;'
+brginTag div 'contents'
+	"$TM_SUPPORT_PATH/bin/Markdown.pl"
+endTag
 htmlFooter; } &gt;"$TEMPFILE.html"
 rm "$TEMPFILE"
 open "$TEMPFILE.html"</string>
