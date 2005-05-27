@@ -3,6 +3,7 @@
     fileTypes = (markdown);
     firstLineMatch = "markdown";
     scopeName = "text.html.markdown";
+    keyEquivalent = "~^M";
     patterns = (
         // Horizontal rules
         // Currently ignoring - because of conflict with headings
