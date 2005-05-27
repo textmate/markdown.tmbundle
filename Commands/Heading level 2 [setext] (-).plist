@@ -9,7 +9,7 @@
 	<key>capturePattern</key>
 	<string>^([^:]*):([^:]*):(.*)$</string>
 	<key>command</key>
-	<string>tail -n -2|head -n 1|sed 's/./-/g'|tail -c +"$TM_COLUMN_NUMBER"</string>
+	<string>head -n $(($TM_LINE_NUMBER -1))|tail -n 1|sed 's/./-/g'|tail -c +"$TM_COLUMN_NUMBER"</string>
 	<key>fileCaptureRegister</key>
 	<string>1</string>
 	<key>input</key>
