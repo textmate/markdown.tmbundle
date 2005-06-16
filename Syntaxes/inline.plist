@@ -1,17 +1,63 @@
-{
-    scopeName = "text.html.markdown.inline"; 
-    name = "Inline Markdown"; 
-    patterns = (
-        {match = "`([^\\\\`]|\\\\.)*?`"; name = "keyword.other.markdown"; }, 
-        {match = "``.*?``"; name = "keyword.other.markdown"; }, 
-        {match = "[*]([^\\\\*]|\\\\.)*?[*]"; name = "markup.italic.markdown"; }, 
-        {match = "[_]([^\\\\_]|\\\\.)*?[_]"; name = "markup.italic.markdown"; }, 
-        {match = "[_]{2}([^\\\\_]|\\\\.)*?[_]{2}"; name = "markup.bold.markdown"; }, 
-        {match = "[*]{2}([^\\\\*]|\\\\.)*?[*]{2}"; name = "markup.bold.markdown"; }, 
-        {match = " {2,}$"; name = "dummy.line-break"; }, 
-        {match = "\\[(.*?)\\] *\\(.*?\\)"; name = "markup.underline.link.markdown"; }, 
-        {match = "\\[(.*?)\\] *\\[.*?\\]"; name = "markup.underline.link.markdown"; }, 
-        {match = "<(mailto|https?)://.*?>"; name = "markup.underline.link.markdown"; }
-    ); 
-    uuid = "D2C492B0-7025-464A-B21E-2381098581D3"; 
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Inline Markdown</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>match</key>
+			<string>`([^\\`]|\\.)*?`</string>
+			<key>name</key>
+			<string>keyword.other.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>``.*?``</string>
+			<key>name</key>
+			<string>keyword.other.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>([*]{2}|[_]{2})(?=\S)(.*?[^\s\\])(\1)</string>
+			<key>name</key>
+			<string>markup.bold.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>([*_])(?=\S)(.*?[^\s\\])(\1)</string>
+			<key>name</key>
+			<string>markup.italic.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string> {2,}$</string>
+			<key>name</key>
+			<string>dummy.line-break</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\[(.*?)\] *\(.*?\)</string>
+			<key>name</key>
+			<string>markup.underline.link.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\[(.*?)\] *\[.*?\]</string>
+			<key>name</key>
+			<string>markup.underline.link.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>&lt;(mailto|https?)://.*?&gt;</string>
+			<key>name</key>
+			<string>markup.underline.link.markdown</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.html.markdown.inline</string>
+	<key>uuid</key>
+	<string>D2C492B0-7025-464A-B21E-2381098581D3</string>
+</dict>
+</plist>

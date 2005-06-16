@@ -1,64 +1,119 @@
-{
-    name = "Markdown";
-    fileTypes = (markdown);
-    firstLineMatch = "markdown";
-    scopeName = "text.html.markdown";
-    keyEquivalent = "~^M";
-    patterns = (
-        // Horizontal rules
-        // Currently ignoring - because of conflict with headings
-        {   name = "markup.hr.markdown";
-            match = "^([*_]\\s*){3,}$";                    
-        },
-
-        // Inline formatting
-        { include = "text.html.markdown.inline"; },
-
-        // Headings
-        {   name = "markup.heading.1.markdown";
-            match = "^={3,}$";
-        },
-        {   name = "markup.heading.2.markdown";
-            match = "^-{3,}$";
-        },
-        {   name = "markup.heading.markdown";
-            match = "^#{1,9}";
-        },
-
-        // Block formatting
-        {   name = "markup.list.unnumbered";
-            begin = "^\\s*[*+-]";
-            end = "^$";
-            patterns = (
-                { include = "text.html.markdown.inline"; }
-            );
-        },
-
-        {   name = "markup.list.numbered";
-            begin = "^\\s*[0-9]+\\.";
-            end = "^$";
-            patterns = (
-                { include = "text.html.markdown.inline"; }
-            );
-        },
-        
-        {   name = "markup.quote.markdown";
-            begin = "^\\s*>";
-            end = "^$";
-            patterns = (
-                { include = "text.html.markdown.inline"; }
-            );
-        },
-        {   name = "markup.raw.markdown";
-            begin = "( {4,}|\t)";
-            end = "^$";
-            patterns = (
-                { include = "text.html.markdown.inline"; }
-            );
-        },
-        
-        // Since html is valid in Markdown include the html patterns
-        {   include = "text.html.basic"; },
-    );
-    uuid = "0A1D9874-B448-11D9-BD50-000D93B6E43C";
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>markdown</string>
+	</array>
+	<key>firstLineMatch</key>
+	<string>markdown</string>
+	<key>keyEquivalent</key>
+	<string>~^M</string>
+	<key>name</key>
+	<string>Markdown</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string>Horizontal rules. Currently ignoring - because of conflict with headings</string>
+			<key>match</key>
+			<string>^([*_]\s*){3,}$</string>
+			<key>name</key>
+			<string>markup.hr.markdown</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>text.html.markdown.inline</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^={3,}$</string>
+			<key>name</key>
+			<string>markup.heading.1.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^-{3,}$</string>
+			<key>name</key>
+			<string>markup.heading.2.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^#{1,9}</string>
+			<key>name</key>
+			<string>markup.heading.markdown</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s{0,3}[*+-][\t\s]+</string>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>markup.list.unnumbered</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>text.html.markdown.inline</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*[0-9]+\.</string>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>markup.list.numbered</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>text.html.markdown.inline</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*&gt;</string>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>markup.quote.markdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>text.html.markdown.inline</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>( {4,}|	)</string>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>markup.raw.markdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>text.html.markdown.inline</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Since html is valid in Markdown include the html patterns</string>
+			<key>include</key>
+			<string>text.html.basic</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.html.markdown</string>
+	<key>uuid</key>
+	<string>0A1D9874-B448-11D9-BD50-000D93B6E43C</string>
+</dict>
+</plist>
