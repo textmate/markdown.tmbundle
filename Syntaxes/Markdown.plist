@@ -93,16 +93,9 @@
 			<key>begin</key>
 			<string>( {4,}|	)</string>
 			<key>end</key>
-			<string>^$</string>
+			<string>$</string>
 			<key>name</key>
 			<string>markup.raw.markdown</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>text.html.markdown.inline</string>
-				</dict>
-			</array>
 		</dict>
 		<dict>
 			<key>comment</key>
