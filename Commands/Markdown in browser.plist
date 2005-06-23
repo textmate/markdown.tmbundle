@@ -5,11 +5,16 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>TEMPFILE=`mktemp "/tmp/markdown_XXXXXX"`
+	<string>if [[ -z $TM_FILENAME ]]
+  then title="Markdown Preview"
+  else title="$TM_FILENAME"
+fi
+
+TEMPFILE=`mktemp "/tmp/markdown_XXXXXX"`
 {
 . "$TM_SUPPORT_PATH/lib/html.sh"
-htmlHeader '&lt;style type="text/css"&gt;
-	body {	
+htmlHeader "$title" '&lt;style type="text/css"&gt;
+	body {
 		background-color: #eee;
 	}
 	.contents {	
