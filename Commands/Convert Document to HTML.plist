@@ -8,7 +8,10 @@
 	<string># This command works well when you use the TextMate service from a web-log editor like Ecto or 
 # MarsEdit.  You can write in markdown and then convert back to html before save and close.
 
-"$TM_SUPPORT_PATH/bin/Markdown.pl"
+# Additionally it converts \ into the numeric entity,
+# since WordPress has a tendency to swallow these.
+
+"$TM_SUPPORT_PATH/bin/Markdown.pl" | sed 's/\\/\&amp;#x5C;/g'
 </string>
 	<key>input</key>
 	<string>document</string>
