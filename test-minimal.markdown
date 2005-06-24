@@ -2,14 +2,25 @@ Inline styles
 ===============
 
 *italic*
-_italic \_ _
+
+_italic\__
+
+_italic \__
+
 *italic__*
 
+_all _ italic _
+
+_not italic \_ _
+
 __bold__
+
 **bold\***
 
 `raw more`
+
 ``dobule ` raw``
+
 `raw \` more`
 
 Headings
