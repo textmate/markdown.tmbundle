@@ -20,15 +20,27 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>([*]{2}|[_]{2})(?=\S)(.*?[^\s\\])(\1)</string>
+			<string>[*]([^\\*]|\\.)*?[*]</string>
+			<key>name</key>
+			<string>markup.italic.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>[_]([^\\_]|\\.)*?[_]</string>
+			<key>name</key>
+			<string>markup.italic.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>[_]{2}([^\\_]|\\.)*?[_]{2}</string>
 			<key>name</key>
 			<string>markup.bold.markdown</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>([*_])(?=\S)(.*?[^\s\\])(\1)</string>
+			<string>[*]{2}([^\\*]|\\.)*?[*]{2}</string>
 			<key>name</key>
-			<string>markup.italic.markdown</string>
+			<string>markup.bold.markdown</string>
 		</dict>
 		<dict>
 			<key>match</key>

@@ -46,7 +46,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s{0,3}[*+-][\t\s]+</string>
+			<string>^\s{0,3}[*+-]\s+</string>
 			<key>end</key>
 			<string>^$</string>
 			<key>name</key>
@@ -91,7 +91,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>( {4,}|	)</string>
+			<string> {4,}|\t</string>
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
