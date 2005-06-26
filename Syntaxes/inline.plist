@@ -8,6 +8,12 @@
 	<array>
 		<dict>
 			<key>match</key>
+			<string>\\[-`*_#+.!(){}\[\]\\]</string>
+			<key>name</key>
+			<string>constant.character.escape.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
 			<string>`([^\\`]|\\.)*?`</string>
 			<key>name</key>
 			<string>keyword.other.markdown</string>
@@ -20,25 +26,13 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>[*]([^\\*]|\\.)*?[*]</string>
+			<string>([*_]).*?(\1)</string>
 			<key>name</key>
 			<string>markup.italic.markdown</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>[_]([^\\_]|\\.)*?[_]</string>
-			<key>name</key>
-			<string>markup.italic.markdown</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>[_]{2}([^\\_]|\\.)*?[_]{2}</string>
-			<key>name</key>
-			<string>markup.bold.markdown</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>[*]{2}([^\\*]|\\.)*?[*]{2}</string>
+			<string>([*_]{2}).*?(\1)</string>
 			<key>name</key>
 			<string>markup.bold.markdown</string>
 		</dict>

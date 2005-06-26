@@ -1,7 +1,9 @@
 Inline styles
 ===============
 
-*italic*
+_italic_
+
+_italic one_ not italic _italic two_
 
 _italic\__
 
@@ -9,9 +11,30 @@ _italic \__
 
 *italic__*
 
-_all _ italic _
+_all _ italic_
 
-_not italic \_ _
+_italic
+end italic_
+
+\\\\_italic\\_
+
+\\\\_italic\\\_\\\\_
+
+\\\\_italic\\_
+
+\_ not italic _
+
+_not italic _
+
+\\\\_not italic\_
+
+_not italic \_
+
+\\\_not italic\\_
+
+_not italic
+
+not end italic_
 
 __bold__
 
@@ -50,6 +73,7 @@ __ __ __
 
 ----------------
 
+
 Block formatting
 ================
 
@@ -85,3 +109,6 @@ This quote continues on.  Line breaking is OK in markdown
 > Lah-di-dah
 > I should really match headings in here too:
 > ## This is a heading in a block quote
+
+Things that don't work currently
+================================
