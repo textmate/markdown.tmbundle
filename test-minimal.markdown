@@ -9,6 +9,8 @@ _italic\__
 
 _italic \__
 
+stuff * not italic*
+
 *italic__*
 
 _all _ italic_
@@ -85,6 +87,7 @@ Lists
    But this one spans *two* lines. 
  * Another list item with __inline__ formatting
  * This one is tricky  
+ * *This is a list*
 
    Because this should still be a list item.
 
