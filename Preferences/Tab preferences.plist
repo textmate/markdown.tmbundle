@@ -3,11 +3,38 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Tab preferences</string>
+	<string>Miscellaneous</string>
 	<key>scope</key>
 	<string>text.html.markdown</string>
 	<key>settings</key>
 	<dict>
+		<key>smartTypingPairs</key>
+		<array>
+			<array>
+				<string>"</string>
+				<string>"</string>
+			</array>
+			<array>
+				<string>(</string>
+				<string>)</string>
+			</array>
+			<array>
+				<string>{</string>
+				<string>}</string>
+			</array>
+			<array>
+				<string>[</string>
+				<string>]</string>
+			</array>
+			<array>
+				<string>“</string>
+				<string>”</string>
+			</array>
+			<array>
+				<string>`</string>
+				<string>`</string>
+			</array>
+		</array>
 		<key>softTabs</key>
 		<string>1</string>
 		<key>tabSize</key>
