@@ -16,13 +16,13 @@
 			<key>match</key>
 			<string>`([^\\`]|\\.)*?`</string>
 			<key>name</key>
-			<string>keyword.other.markdown</string>
+			<string>markup.raw.inline.markdown</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>``.*?``</string>
 			<key>name</key>
-			<string>keyword.other.markdown</string>
+			<string>markup.raw.inline.markdown</string>
 		</dict>
 		<dict>
 			<key>match</key>

@@ -23,10 +23,6 @@
 			<string>markup.hr.markdown</string>
 		</dict>
 		<dict>
-			<key>comment</key>
-			<string>text.html.markdown.inline</string>
-		</dict>
-		<dict>
 			<key>match</key>
 			<string>^={3,}$</string>
 			<key>name</key>
@@ -95,7 +91,7 @@
 			<key>end</key>
 			<string>^$</string>
 			<key>name</key>
-			<string>markup.raw.markdown</string>
+			<string>markup.raw.block.markdown</string>
 		</dict>
 		<dict>
 			<key>begin</key>
