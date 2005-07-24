@@ -51,7 +51,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>text.html.markdown.inline</string>
+					<string>#inline</string>
 				</dict>
 			</array>
 		</dict>
@@ -66,7 +66,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>text.html.markdown.inline</string>
+					<string>#inline</string>
 				</dict>
 			</array>
 		</dict>
@@ -81,7 +81,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>text.html.markdown.inline</string>
+					<string>#inline</string>
 				</dict>
 			</array>
 		</dict>
@@ -104,7 +104,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>text.html.markdown.inline</string>
+					<string>#inline</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -119,6 +119,89 @@
 			<string>text.html.basic</string>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>inline</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\[-`*_#+.!(){}\[\]\\]</string>
+					<key>name</key>
+					<string>constant.character.escape.markdown</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Markdown will convert this for us. We match it so that the HTML grammar won't mark it up as invalid.</string>
+					<key>match</key>
+					<string>&amp;(?!([a-zA-Z]+|#[0-9]+|#x[0-9a-fA-F]+);)</string>
+					<key>name</key>
+					<string>meta.other.valid-ampersand.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>`([^\\`]|\\.)*?`</string>
+					<key>name</key>
+					<string>markup.raw.inline.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>``.*?``</string>
+					<key>name</key>
+					<string>markup.raw.inline.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[*]([^\\* ]|\\.| [*] | )*(?&lt;! )[*]</string>
+					<key>name</key>
+					<string>markup.italic.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[_]([^\\_ ]|\\.| .[^\\])*[_]</string>
+					<key>name</key>
+					<string>markup.italic.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[_]{2}([^\\_]|\\.)*[_]{2}</string>
+					<key>name</key>
+					<string>markup.bold.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[*]{2}([^\\*]|\\.)*[*]{2}</string>
+					<key>name</key>
+					<string>markup.bold.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string> {2,}$</string>
+					<key>name</key>
+					<string>dummy.line-break</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\[(.*?)\] *\(.*?\)</string>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\[(.*?)\] *\[.*?\]</string>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>&lt;(mailto|https?)://.*?&gt;</string>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>text.html.markdown</string>
 	<key>uuid</key>
