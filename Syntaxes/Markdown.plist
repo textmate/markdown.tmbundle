@@ -153,13 +153,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>[*]([^\\* ]|\\.| [*] | )*(?&lt;! )[*]</string>
+					<string>[*]{2}([^\\*]|\\.)*[*]{2}</string>
 					<key>name</key>
-					<string>markup.italic.markdown</string>
+					<string>markup.bold.markdown</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>[_]([^\\_ ]|\\.| .[^\\])*[_]</string>
+					<string>[*]([^\\* ]|\\.| [*] | )*(?&lt;! )[*]</string>
 					<key>name</key>
 					<string>markup.italic.markdown</string>
 				</dict>
@@ -171,9 +171,9 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>[*]{2}([^\\*]|\\.)*[*]{2}</string>
+					<string>[_]([^\\_ ]|\\.| .[^\\])*[_]</string>
 					<key>name</key>
-					<string>markup.bold.markdown</string>
+					<string>markup.italic.markdown</string>
 				</dict>
 				<dict>
 					<key>match</key>
