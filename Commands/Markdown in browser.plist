@@ -7,7 +7,7 @@
 	<key>command</key>
 	<string>if [[ -z $TM_FILENAME ]]
   then title="Markdown Preview"
-  else title="$TM_FILENAME"
+  else title="${TM_FILENAME%.*}"
 fi
 
 TEMPFILE=`mktemp "/tmp/markdown_XXXXXX"`
@@ -36,7 +36,7 @@ open "$TEMPFILE.html"</string>
 	<key>keyEquivalent</key>
 	<string>^M</string>
 	<key>name</key>
-	<string>Markdown in browser</string>
+	<string>Preview in Browser</string>
 	<key>output</key>
 	<string>showAsTooltip</string>
 	<key>scope</key>
