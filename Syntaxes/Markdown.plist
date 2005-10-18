@@ -52,7 +52,7 @@
 			<key>begin</key>
 			<string>^\s{0,3}[*+-]\s+</string>
 			<key>end</key>
-			<string>^$</string>
+			<string>^\s*$</string>
 			<key>name</key>
 			<string>markup.list.unnumbered</string>
 			<key>patterns</key>
@@ -67,7 +67,7 @@
 			<key>begin</key>
 			<string>^\s*[0-9]+\.</string>
 			<key>end</key>
-			<string>^$</string>
+			<string>^\s*$</string>
 			<key>name</key>
 			<string>markup.list.numbered</string>
 			<key>patterns</key>
@@ -82,7 +82,7 @@
 			<key>begin</key>
 			<string>^\s*&gt;</string>
 			<key>end</key>
-			<string>^$</string>
+			<string>^\s*$</string>
 			<key>name</key>
 			<string>markup.quote.markdown</string>
 			<key>patterns</key>
@@ -97,7 +97,7 @@
 			<key>begin</key>
 			<string> {4,}|\t</string>
 			<key>end</key>
-			<string>^$</string>
+			<string>^\s*$</string>
 			<key>name</key>
 			<string>markup.raw.block.markdown</string>
 		</dict>
@@ -105,7 +105,7 @@
 			<key>begin</key>
 			<string>^(?=\S)</string>
 			<key>end</key>
-			<string>^$</string>
+			<string>^\s*$</string>
 			<key>name</key>
 			<string>markup.paragraph.markdown</string>
 			<key>patterns</key>
