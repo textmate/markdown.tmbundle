@@ -9,7 +9,7 @@
 
 if [[ -z $TM_FILENAME ]]
   then title="Markdown as HTML"
-  else title="${TM_FILENAME%.*} as HTML"
+  else title="${TM_FILENAME%.*}"
 fi
 
 htmlHeader "$title" '&lt;style type="text/css"&gt;
