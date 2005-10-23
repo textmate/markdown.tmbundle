@@ -18,7 +18,7 @@ Markdown.pl|perl -pe '
 	}
 
 	# make empty lines in &lt;pre&gt; a nbsp (WordPress doubles these)
-	if($in_pre &amp;&amp; /^$/)	{ $_ = "&amp;nbsp;\n"; }
+	if($in_pre &amp;&amp; /^$/)	{ $_ = "&lt;br&gt;"; }
 	elsif(/&lt;pre&gt;/)		{ $in_pre = 1; }
 	elsif(/&lt;\/pre&gt;/)		{ $in_pre = 0; }
 
