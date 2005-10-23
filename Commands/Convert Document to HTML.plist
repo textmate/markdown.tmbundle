@@ -5,13 +5,25 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string># This command works well when you use the TextMate service from a web-log editor like Ecto or 
-# MarsEdit.  You can write in markdown and then convert back to html before save and close.
+	<string># This command works well when you use the TextMate service from a 
+# web-log editor like Ecto or MarsEdit.  You can write in markdown
+# and then convert back to html before save and close.
 
-# Additionally it converts \ into the numeric entity,
-# since WordPress has a tendency to swallow these.
+Markdown.pl|perl -pe '
+	# add id="title" argument to headers
+	if(($tag, $title) = /&lt;(h[1-6])&gt;(.*?)&lt;\/\1&gt;/) {
+		$_ = $title; y|- /|_|; s|[^a-zA-Z0-9_]||g;
+		$_ = "&lt;$tag id=\"" . (lc $_) . "\"&gt;$title&lt;/$tag&gt;\n";
+	}
 
-"$TM_SUPPORT_PATH/bin/Markdown.pl" | sed 's/\\/\&amp;#x5C;/g'
+#	# make empty lines in &lt;pre&gt; a nbsp (WordPress doubles these)
+#	if($in_pre &amp;&amp; /^$/)	{ $_ = "&amp;nbsp;\n"; }
+#	elsif(/&lt;pre&gt;/)		{ $in_pre = 1; }
+#	elsif(/&lt;\/pre&gt;/)		{ $in_pre = 0; }
+
+	# convert \ to numeric entity (WordPress swallows these)
+	s/\\/\&amp;#x5C;/g;
+'
 </string>
 	<key>input</key>
 	<string>document</string>
