@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Disable spell checking for raw</string>
+	<string>Spell Checking: Disable for Raw</string>
 	<key>scope</key>
 	<string>text.html.markdown markup.raw</string>
 	<key>settings</key>

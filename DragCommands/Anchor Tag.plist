@@ -31,7 +31,7 @@ echo -n "[\${1:$title}]($TM_DROPPED_FILE)"</string>
 		<string>php5</string>
 	</array>
 	<key>name</key>
-	<string>Insert &lt;a&gt; tag</string>
+	<string>Insert Anchor Tag</string>
 	<key>output</key>
 	<string>insertAsSnippet</string>
 	<key>scope</key>
