@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Miscellaneous</string>
+	<string>Typing Pairs: Disable _ for Raw</string>
 	<key>scope</key>
-	<string>text.html.markdown</string>
+	<string>text.html.markdown markup.raw</string>
 	<key>settings</key>
 	<dict>
 		<key>smartTypingPairs</key>
@@ -37,6 +37,6 @@
 		</array>
 	</dict>
 	<key>uuid</key>
-	<string>15E0B3D5-8523-40EF-B767-5AF153FFD11E</string>
+	<string>146B2643-D903-49A8-9586-BE9C509D65B1</string>
 </dict>
 </plist>
