@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Miscellaneous</string>
+	<string>Typing Pairs: Defaults</string>
 	<key>scope</key>
 	<string>text.html.markdown</string>
 	<key>settings</key>
