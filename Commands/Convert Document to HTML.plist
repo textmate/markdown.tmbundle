@@ -26,14 +26,16 @@ Markdown.pl|perl -pe '
 	s/\\/\&amp;#x5C;/g;
 '
 </string>
-	<key>input</key>
+	<key>fallbackInput</key>
 	<string>document</string>
+	<key>input</key>
+	<string>selection</string>
 	<key>keyEquivalent</key>
 	<string>^H</string>
 	<key>name</key>
-	<string>Convert Document to HTML</string>
+	<string>Convert Document / Selection to HTML</string>
 	<key>output</key>
-	<string>replaceDocument</string>
+	<string>replaceSelectedText</string>
 	<key>scope</key>
 	<string>text.html.markdown</string>
 	<key>uuid</key>
