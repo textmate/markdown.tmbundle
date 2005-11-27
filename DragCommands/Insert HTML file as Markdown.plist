@@ -3,8 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>command</key>
-	<string>title=`echo $TM_DROPPED_FILE | perl -pe 's/^(.*\/)?(.*?)(\..*)?$/$2/g'`
-echo -n "[\${1:$title}]($TM_DROPPED_FILE)"</string>
+	<string>echo $TM_DROPPED_FILE | python "$TM_BUNDLE_SUPPORT/bin/html2text.py"</string>
 	<key>documentExtensions</key>
 	<array>
 		<string>html</string>
@@ -22,16 +21,9 @@ echo -n "[\${1:$title}]($TM_DROPPED_FILE)"</string>
 	<array>
 		<string>html</string>
 		<string>htm</string>
-		<string>rhtml</string>
-		<string>shtml</string>
-		<string>phtml</string>
-		<string>php</string>
-		<string>php3</string>
-		<string>php4</string>
-		<string>php5</string>
 	</array>
 	<key>name</key>
-	<string>Insert Anchor Tag</string>
+	<string>Insert HTML file as Markdown</string>
 	<key>output</key>
 	<string>insertAsSnippet</string>
 	<key>scope</key>
