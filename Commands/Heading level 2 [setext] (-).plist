@@ -11,7 +11,7 @@
 	<key>command</key>
 	<string>if [[ $TM_COLUMN_NUMBER == 1 ]]
    then head -n $(($TM_LINE_NUMBER -1))|tail -n 1|sed 's/./-/g'|tail -c +"$TM_COLUMN_NUMBER"
-   else printf '\-\t'
+   else printf -- '-\t'
 fi</string>
 	<key>fileCaptureRegister</key>
 	<string>1</string>
