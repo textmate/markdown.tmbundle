@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Typing Pairs: Disable _ for Raw</string>
+	<string>Typing Pairs: Disable _ for Raw and Links</string>
 	<key>scope</key>
 	<string>text.html.markdown markup.raw, markup.underline.link.markdown</string>
 	<key>settings</key>

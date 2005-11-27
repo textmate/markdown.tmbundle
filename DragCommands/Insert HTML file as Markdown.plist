@@ -23,7 +23,7 @@
 		<string>htm</string>
 	</array>
 	<key>name</key>
-	<string>Insert HTML file as Markdown</string>
+	<string>Insert HTML File as Markdown</string>
 	<key>output</key>
 	<string>insertAsSnippet</string>
 	<key>scope</key>

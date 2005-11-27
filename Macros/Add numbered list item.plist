@@ -89,7 +89,7 @@
 	<key>keyEquivalent</key>
 	<string></string>
 	<key>name</key>
-	<string>Add numbered list item</string>
+	<string>Add Numbered List Item</string>
 	<key>scope</key>
 	<string>text.html.markdown markup.list.numbered</string>
 	<key>scopeType</key>

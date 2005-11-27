@@ -24,7 +24,7 @@
 	<key>keyEquivalent</key>
 	<string></string>
 	<key>name</key>
-	<string>Add unnumbered list item</string>
+	<string>Add Unnumbered List Item</string>
 	<key>scope</key>
 	<string>text.html.markdown markup.list.unnumbered</string>
 	<key>scopeType</key>

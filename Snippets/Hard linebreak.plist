@@ -8,7 +8,7 @@
 	<key>keyEquivalent</key>
 	<string>^</string>
 	<key>name</key>
-	<string>Hard linebreak</string>
+	<string>Hard Linebreak</string>
 	<key>scope</key>
 	<string>text.html.markdown</string>
 	<key>uuid</key>
