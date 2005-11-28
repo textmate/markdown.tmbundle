@@ -207,6 +207,12 @@
 					<key>name</key>
 					<string>markup.underline.link.markdown</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>^\[.+\]: (.+)$</string>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
 			</array>
 		</dict>
 	</dict>
