@@ -4,7 +4,7 @@
 <dict>
 	<key>content</key>
 	<string>
-`perl &lt;&lt;&lt;$TM_CURRENT_LINE -pe 's/.*?(\d+).*/$1+1/'|bc`. </string>
+`perl &lt;&lt;&lt;$TM_CURRENT_LINE -pe 's/.*?(\d+).*/$1+1/e'`. </string>
 	<key>keyEquivalent</key>
 	<string>#</string>
 	<key>name</key>
