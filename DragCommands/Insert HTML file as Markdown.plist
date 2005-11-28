@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>command</key>
-	<string>echo $TM_DROPPED_FILE | python "$TM_BUNDLE_SUPPORT/bin/html2text.py"</string>
+	<string>python "$TM_BUNDLE_SUPPORT/bin/html2text.py" &lt;"$TM_DROPPED_FILE"|perl -pe 's/\\/\\\\/g; s/`/\\`/g; s/\$/\\\$/g'</string>
 	<key>documentExtensions</key>
 	<array>
 		<string>html</string>
