@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>[${1:description}](${2:HREF})
-</string>
+	<string>
+* </string>
+	<key>keyEquivalent</key>
+	<string>#</string>
 	<key>name</key>
-	<string>Link (link)</string>
+	<string>Add Unnumbered List Item</string>
 	<key>scope</key>
-	<string>text.html.markdown</string>
-	<key>tabTrigger</key>
-	<string>link</string>
+	<string>text.html.markdown markup.list.unnumbered</string>
 	<key>uuid</key>
-	<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
+	<string>19556021-F2F8-40CA-9DB7-401F102D8B01</string>
 </dict>
 </plist>
