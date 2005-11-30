@@ -13,7 +13,7 @@ Markdown.pl|perl -pe '
 	# make &lt;h1&gt;Header&lt;/h1&gt; into &lt;h1 id="header"&gt;Header&lt;/h1&gt;
 	# so that we can link to blog_post#header
 	if(($tag, $title) = /&lt;(h[1-6])&gt;(.*?)&lt;\/\1&gt;/) {
-		$_ = $title; y|- /|_|; s|[^a-zA-Z0-9_]||g;
+		$_ = $title; y|- /|_|; s|_{2,}|_|g; s|[^a-zA-Z0-9_]||g;
 		$_ = "&lt;$tag id=\"" . (lc $_) . "\"&gt;$title&lt;/$tag&gt;\n";
 	}
 
