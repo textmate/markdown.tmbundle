@@ -24,9 +24,15 @@ htmlHeader "$title" '&lt;style type="text/css"&gt;
 		padding: 0 1em;
 	}
 	&lt;/style&gt;'
+
+if [[ -f ${TM_FILEPATH} ]]; then
+	echo "&lt;base href='tm-file://${TM_FILEPATH// /%20}'&gt;"
+fi
+
 beginTag div 'contents'
 	"$TM_SUPPORT_PATH/bin/Markdown.pl"
 endTag
+
 htmlFooter</string>
 	<key>input</key>
 	<string>document</string>
