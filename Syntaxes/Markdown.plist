@@ -191,13 +191,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\[(.*?)\] *\(.*?\)</string>
+					<string>\[[^]]*\] *\(.*?\)</string>
 					<key>name</key>
 					<string>markup.underline.link.markdown</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\[(.*?)\] *\[.*?\]</string>
+					<string>\[[^]]*\] *\[.*?\]</string>
 					<key>name</key>
 					<string>markup.underline.link.markdown</string>
 				</dict>
