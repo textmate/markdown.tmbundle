@@ -13,16 +13,16 @@ Markdown.pl|perl -pe '
 	# make &lt;h1&gt;Header&lt;/h1&gt; into &lt;h1 id="header"&gt;Header&lt;/h1&gt;
 	# so that we can link to blog_post#header
 	if(($tag, $title) = /&lt;(h[1-6])&gt;(.*?)&lt;\/\1&gt;/) {
-		$_ = $title; y|- /|_|; s|_{2,}|_|g; s|[^a-zA-Z0-9_]||g;
+		$_ = $title; s|&lt;[^&gt;]+&gt;||g; y|- /|_|; s|__+|_|g; s|[^a-zA-Z0-9_]||g;
 		$_ = "&lt;$tag id=\"" . (lc $_) . "\"&gt;$title&lt;/$tag&gt;\n";
 	}
 
-	# make empty lines in &lt;pre&gt; a nbsp (WordPress doubles these)
+	# make empty lines in &lt;pre&gt; a &lt;br&gt; (WordPress 1.2 doubles these)
 	if($in_pre &amp;&amp; /^$/)	{ $_ = "&lt;br&gt;"; }
 	elsif(/&lt;pre&gt;/)		{ $in_pre = 1; }
 	elsif(/&lt;\/pre&gt;/)		{ $in_pre = 0; }
 
-	# convert \ to numeric entity (WordPress swallows these)
+	# convert \ to numeric entity (WordPress 1.2 swallows these)
 	s/\\/\&amp;#x5C;/g;
 '
 </string>
