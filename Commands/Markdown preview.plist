@@ -29,11 +29,27 @@ if [[ -f ${TM_FILEPATH} ]]; then
 	echo "&lt;base href='tm-file://${TM_FILEPATH// /%20}'&gt;"
 fi
 
+tmp=$(mktemp /tmp/markdown_heading.XXXXXX)
 beginTag div 'contents'
-	"$TM_SUPPORT_PATH/bin/Markdown.pl"
+	tee &gt;(head -n$TM_LINE_NUMBER|grep '^#'|tail &gt;"$tmp" -n1)\
+	|"$TM_SUPPORT_PATH/bin/Markdown.pl"|perl -pe '
+	# make &lt;h1&gt;Header&lt;/h1&gt; into &lt;h1 id="header"&gt;Header&lt;/h1&gt;
+	# so that we can link to it
+	if(($tag, $title) = /&lt;(h[1-6])&gt;(.*?)&lt;\/\1&gt;/) {
+		$_ = $title; s|&lt;[^&gt;]+&gt;||g; y|- /|_|; s|__+|_|g; s|[^a-zA-Z0-9_]||g;
+		$_ = "&lt;$tag id=\"" . (lc $_) . "\"&gt;$title&lt;/$tag&gt;\n";
+	}'
 endTag
 
-htmlFooter</string>
+wait; cat &lt;&lt;JS
+	&lt;script&gt;
+		window.location.hash = "$(perl -pe &lt;"$tmp" 's|^#+ ||; s|&lt;[^&gt;]+&gt;||g; y|- /|_|; s|__+|_|g; s|[^a-zA-Z0-9_]||g; $_ = lc $_')"
+	&lt;/script&gt;
+JS
+rm -f "$tmp"
+
+htmlFooter
+</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>
