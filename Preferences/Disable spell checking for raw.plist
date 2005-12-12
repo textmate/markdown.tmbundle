@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Spell Checking: Disable for Raw</string>
+	<string>Spell Checking: Disable</string>
 	<key>scope</key>
-	<string>text.html.markdown markup.raw</string>
+	<string>text.html.markdown markup.raw, meta.reference.markdown</string>
 	<key>settings</key>
 	<dict>
 		<key>spellChecking</key>
