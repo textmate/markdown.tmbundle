@@ -44,7 +44,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^#{1,9}\s+(.*)$</string>
+			<string>^#{1,9}\s+(.*?)\s*#*$</string>
 			<key>name</key>
 			<string>markup.heading.markdown</string>
 		</dict>
