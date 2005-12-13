@@ -31,26 +31,20 @@ fi
 
 beginTag div 'contents'
 
-  # if there is a heading above caret, put it in "$tmp"
-  tmp=$(mktemp "/tmp/markdown_heading.XXXXXX")
-  tee &gt;(head -n$TM_LINE_NUMBER|grep '^#'|tail &gt;"$tmp" -n1)\
-  |"$TM_SUPPORT_PATH/bin/Markdown.pl"|perl -pe '
-    # make &lt;h1&gt;Header&lt;/h1&gt; into &lt;h1 id="header"&gt;Header&lt;/h1&gt;
-    # so that we can link to it
-    if(($tag, $title) = /&lt;(h[1-6])&gt;(.*?)&lt;\/\1&gt;/) {
-      $_ = $title; s|&lt;[^&gt;]+&gt;||g; y|- /|_|; s|__+|_|g; s|[^a-zA-Z0-9_]||g;
-      $_ = "&lt;$tag id=\"" . (lc $_) . "\"&gt;$title&lt;/$tag&gt;\n";
-    }'
+  # if the caret is below line 5, insert a &lt;span&gt;
+  # that we can then scroll down to
+  { [[ $TM_LINE_NUMBER -gt 5 ]] &amp;&amp; ruby -e '
+      cur = 0
+      reach = ENV["TM_LINE_NUMBER"].to_i - 5
+      STDIN.each_line do |line|
+        puts "&lt;span id=\"scroll_to_caret\"&gt;&lt;/span&gt;" if(cur == reach)
+        print line
+        cur = cur + 1
+      end
+      puts "&lt;script&gt;window.location.hash = \"scroll_to_caret\"&lt;/script&gt;"
+  ' || cat; }|"$TM_SUPPORT_PATH/bin/Markdown.pl"
 
 endTag
-
-# if there was a heading above caret, scroll down to it
-wait; [[ -n "$(&lt; "$tmp")" ]] &amp;&amp; cat &lt;&lt;JS; rm -f "$tmp"
-  &lt;script&gt;
-    window.location.hash = "$(perl -pe &lt;"$tmp" 's|^#+\s+||; s|&lt;[^&gt;]+&gt;||g; y|- /|_|; s|__+|_|g; s|[^a-zA-Z0-9_]||g; $_ = lc $_')"
-  &lt;/script&gt;
-JS
-
 htmlFooter
 </string>
 	<key>input</key>
