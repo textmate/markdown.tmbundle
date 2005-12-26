@@ -132,6 +132,25 @@
 			</array>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.reference.markdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^\s*\[(.+)\]: (.+)$</string>
+			<key>name</key>
+			<string>meta.reference.list.markdown</string>
+		</dict>
+		<dict>
 			<key>begin</key>
 			<string>^(?=\S)</string>
 			<key>end</key>
@@ -249,25 +268,6 @@
 					<string>\[([^]]*)\] *\[(.*?)\]</string>
 					<key>name</key>
 					<string>meta.reference.item.markdown</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.reference.markdown</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>markup.underline.link.markdown</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>^\[(.+)\]: (.+)$</string>
-					<key>name</key>
-					<string>meta.reference.list.markdown</string>
 				</dict>
 			</array>
 		</dict>
