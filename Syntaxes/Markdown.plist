@@ -122,7 +122,7 @@
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>text.html.disable-markdown</string>
+			<string>meta.disable-markdown</string>
 			<key>patterns</key>
 			<array>
 				<dict>
