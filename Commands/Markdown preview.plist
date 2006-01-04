@@ -31,18 +31,24 @@ fi
 
 beginTag div 'contents'
 
-  # if the caret is below line 5, insert a &lt;span&gt;
-  # that we can then scroll down to
-  { [[ $TM_LINE_NUMBER -gt 5 ]] &amp;&amp; ruby -e '
-      cur = 0
-      reach = ENV["TM_LINE_NUMBER"].to_i - 5
-      STDIN.each_line do |line|
-        puts "&lt;span id=\"scroll_to_caret\"&gt;&lt;/span&gt;" if(cur == reach)
-        print line
-        cur = cur + 1
-      end
-      puts "&lt;script&gt;window.location.hash = \"scroll_to_caret\"&lt;/script&gt;"
-  ' || cat; }|"$TM_SUPPORT_PATH/bin/Markdown.pl"
+# make the header above caret into a link that we scroll down to
+${TM_RUBY:-ruby} -e '
+
+  lines = STDIN.read.split("\n");
+  n = [ENV["TM_LINE_NUMBER"].to_i, lines.length].min - 1
+
+  while n &gt; 0 &amp;&amp; !lines[n].match(/^#+/)
+    n = n-1
+  end
+
+  if n &gt; 0 &amp;&amp; m = lines[n].match(/^(#+\s*)(.*?)(\s*#*)$/)
+    lines[n] = "#{m[1]}&lt;span id=\"scroll_to_here\"&gt;#{m[2]}&lt;/span&gt;#{m[3]}"
+  end
+
+  puts lines.join("\n")
+  puts "&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
+
+'|"$TM_SUPPORT_PATH/bin/Markdown.pl"
 
 endTag
 htmlFooter
