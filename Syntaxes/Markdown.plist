@@ -248,7 +248,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\[[^]]*\](\s*)\(.*?\)</string>
+					<string>\[[^]]*\]( )\(.*?\)</string>
 					<key>name</key>
 					<string>markup.underline.link.markdown</string>
 				</dict>
