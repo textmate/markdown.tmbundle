@@ -103,7 +103,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(?=&lt;(\w+)[^&gt;]*(?&lt;!/)&gt;$)</string>
+			<string>^(?=&lt;(\w+)[^&gt;]*(?&lt;!/)&gt;)$</string>
 			<key>comment</key>
 			<string>Markdown formatting is disabled inside block-level tags. We only do that when a tag is at the start of a line (which only contain that tag). It would be better to list exactly which tags this should happen for (but I'm lazy) -- Allan</string>
 			<key>end</key>
@@ -239,8 +239,16 @@
 					<string>dummy.line-break</string>
 				</dict>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.whitespace.markdown</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>\[[^]]*\] *\(.*?\)</string>
+					<string>\[[^]]*\](\s*)\(.*?\)</string>
 					<key>name</key>
 					<string>markup.underline.link.markdown</string>
 				</dict>
