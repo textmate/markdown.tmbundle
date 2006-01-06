@@ -169,12 +169,6 @@
 				</dict>
 			</array>
 		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Since html is valid in Markdown include the html patterns</string>
-			<key>include</key>
-			<string>text.html.basic</string>
-		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -248,13 +242,19 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\[[^]]*\]( )\(.*?\)</string>
+					<string>\[[^]]*\]( ?)\(.*?\)</string>
 					<key>name</key>
 					<string>markup.underline.link.markdown</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>&lt;(mailto|https?)://.*?&gt;</string>
+					<string>&lt;(https?|ftp)://.*?&gt;</string>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>&lt;(mailto:)?[-.\w]+@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+&gt;</string>
 					<key>name</key>
 					<string>markup.underline.link.markdown</string>
 				</dict>
