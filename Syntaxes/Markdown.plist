@@ -52,29 +52,29 @@
 			<key>begin</key>
 			<string>^\s{0,3}[*+-]\s+</string>
 			<key>end</key>
-			<string>^\s*$</string>
+			<string>^(?=\S)</string>
 			<key>name</key>
 			<string>markup.list.unnumbered</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#inline</string>
+					<string>#list-paragraph</string>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*[0-9]+\.</string>
+			<string>^\s{0,3}[0-9]+\.</string>
 			<key>end</key>
-			<string>^\s*$</string>
+			<string>^(?=\S)</string>
 			<key>name</key>
 			<string>markup.list.numbered</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#inline</string>
+					<string>#list-paragraph</string>
 				</dict>
 			</array>
 		</dict>
@@ -276,6 +276,27 @@
 					<string>\[([^]]*)\] *\[(.*?)\]</string>
 					<key>name</key>
 					<string>meta.reference.item.markdown</string>
+				</dict>
+			</array>
+		</dict>
+		<key>list-paragraph</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>^\s+\S</string>
+					<key>end</key>
+					<string>^\s*$</string>
+					<key>name</key>
+					<string>markup.list.paragraph</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#inline</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
