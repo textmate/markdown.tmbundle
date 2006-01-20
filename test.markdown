@@ -34,7 +34,7 @@ Markdown: Syntax
 **Note:** This document is itself written using Markdown; you
 can [see the source for it by adding '.text' to the URL][src].
 
-    [src]: /projects/markdown/syntax.text
+  [src]: /projects/markdown/syntax.text
 
 * * *
 
@@ -201,8 +201,8 @@ Yes, this takes a tad more effort to create a `<br />`, but a simplistic
 Markdown's email-style [blockquoting][bq] and multi-paragraph [list items][l]
 work best -- and look better -- when you format them with hard breaks.
 
-    [bq]: #blockquote
-    [l]:  #list
+  [bq]: #blockquote
+  [l]:  #list
 
 
 
@@ -279,14 +279,14 @@ adding additional levels of `>`:
 Blockquotes can contain other Markdown elements, including headers, lists,
 and code blocks:
 
-	> ## This is a header.
-	> 
-	> 1.   This is the first list item.
-	> 2.   This is the second list item.
-	> 
-	> Here's some example code:
-	> 
-	>     return shell_exec("echo $input | $markdown_script");
+    > ## This is a header.
+    > 
+    > 1.   This is the first list item.
+    > 2.   This is the second list item.
+    > 
+    > Here's some example code:
+    > 
+    >     return shell_exec("echo $input | $markdown_script");
 
 Any decent text editor should make email-style quoting easy. For
 example, with BBEdit, you can make a selection and choose Increase
@@ -449,7 +449,7 @@ accident, by writing something like this:
 In other words, a *number-period-space* sequence at the beginning of a
 line. To avoid this, you can backslash-escape the period:
 
-    1986\\. What a great season.
+    1986\. What a great season.
 
 
 
@@ -530,12 +530,12 @@ following lines will produce a horizontal rule:
     ***
 
     *****
-	
+    
     - - -
 
     ---------------------------------------
 
-	_ _ _
+    _ _ _
 
 
 * * *
@@ -582,7 +582,7 @@ You can optionally use a space to separate the sets of brackets:
 Then, anywhere in the document, you define your link label like this,
 on a line by itself:
 
-    \[id]: http://example.com/  "Optional Title Here"
+    [id]: http://example.com/  "Optional Title Here"
 
 That is:
 
@@ -596,12 +596,12 @@ That is:
 
 The link URL may, optionally, be surrounded by angle brackets:
 
-    \[id]: <http://example.com/>  "Optional Title Here"
+    [id]: <http://example.com/>  "Optional Title Here"
 
 You can put the title attribute on the next line and use extra spaces
 or tabs for padding, which tends to look better with longer URLs:
 
-    \[id]: http://example.com/longish/path/to/resource/here
+    [id]: http://example.com/longish/path/to/resource/here
         "Optional Title Here"
 
 Link definitions are only used for creating links during Markdown
@@ -609,8 +609,8 @@ processing, and are stripped from your document in the HTML output.
 
 Link definition names may constist of letters, numbers, spaces, and punctuation -- but they are *not* case sensitive. E.g. these two links:
 
-	[link text][a]
-	[link text][A]
+    [link text][a]
+    [link text][A]
 
 are equivalent.
 
@@ -619,20 +619,20 @@ link, in which case the link text itself is used as the name.
 Just use an empty set of square brackets -- e.g., to link the word
 "Google" to the google.com web site, you could simply write:
 
-	[Google][]
+    [Google][]
 
 And then define the link:
 
-	\[Google]: http://google.com/
+    [Google]: http://google.com/
 
 Because link names may contain spaces, this shortcut even works for
 multiple words in the link text:
 
-	Visit [Daring Fireball][] for more information.
+    Visit [Daring Fireball][] for more information.
 
 And then define the link:
-	
-	\[Daring Fireball]: http://daringfireball.net/
+    
+    [Daring Fireball]: http://daringfireball.net/
 
 Link definitions can be placed anywhere in your Markdown document. I
 tend to put them immediately after each paragraph in which they're
@@ -644,18 +644,18 @@ Here's an example of reference links in action:
     I get 10 times more traffic from [Google] [1] than from
     [Yahoo] [2] or [MSN] [3].
 
-      \[1]: http://google.com/        "Google"
-      \[2]: http://search.yahoo.com/  "Yahoo Search"
-      \[3]: http://search.msn.com/    "MSN Search"
+      [1]: http://google.com/        "Google"
+      [2]: http://search.yahoo.com/  "Yahoo Search"
+      [3]: http://search.msn.com/    "MSN Search"
 
 Using the implicit link name shortcut, you could instead write:
 
     I get 10 times more traffic from [Google][] than from
     [Yahoo][] or [MSN][].
 
-      \[google]: http://google.com/        "Google"
-      \[yahoo]:  http://search.yahoo.com/  "Yahoo Search"
-      \[msn]:    http://search.msn.com/    "MSN Search"
+      [google]: http://google.com/        "Google"
+      [yahoo]:  http://search.yahoo.com/  "Yahoo Search"
+      [msn]:    http://search.msn.com/    "MSN Search"
 
 Both of the above examples will produce the following HTML output:
 
@@ -806,7 +806,7 @@ Reference-style image syntax looks like this:
 Where "id" is the name of a defined image reference. Image references
 are defined using syntax identical to link references:
 
-    \[id]: url/to/image  "Optional title attribute"
+    [id]: url/to/image  "Optional title attribute"
 
 As of this writing, Markdown has no syntax for specifying the
 dimensions of an image; if this is important to you, you can simply
@@ -859,7 +859,7 @@ formatting syntax. For example, if you wanted to surround a word with
 literal asterisks (instead of an HTML `<em>` tag), you can backslashes
 before the asterisks, like this:
 
-    \\*literal asterisks\\*
+    \*literal asterisks\*
 
 Markdown provides backslash escapes for the following characters:
 
