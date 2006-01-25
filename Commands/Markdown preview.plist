@@ -48,7 +48,7 @@ ${TM_RUBY:-ruby} -e '
   puts lines.join("\n")
   puts "&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
 
-'|"$TM_SUPPORT_PATH/bin/Markdown.pl"
+'|Markdown.pl|SmartyPants.pl
 
 endTag
 htmlFooter

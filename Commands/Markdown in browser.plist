@@ -26,7 +26,7 @@ htmlHeader "$title" '&lt;style type="text/css"&gt;
 	}
 	&lt;/style&gt;'
 brginTag div 'contents'
-	"$TM_SUPPORT_PATH/bin/Markdown.pl"
+	Markdown.pl|SmartyPants.pl
 endTag
 htmlFooter; } &gt;"$TEMPFILE.html"
 rm "$TEMPFILE"
