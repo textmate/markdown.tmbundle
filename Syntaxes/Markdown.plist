@@ -103,24 +103,11 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(?=&lt;(\w+)[^&gt;]*(?&lt;!/)&gt;)$</string>
+			<string>^(?=&lt;(\w+)[^&gt;]*(?&lt;!/)&gt;$)</string>
 			<key>comment</key>
 			<string>Markdown formatting is disabled inside block-level tags. We only do that when a tag is at the start of a line (which only contain that tag). It would be better to list exactly which tags this should happen for (but I'm lazy) -- Allan</string>
 			<key>end</key>
-			<string>^&lt;/(\1)&gt;$</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>meta.tag.block.any</string>
-				</dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.tag.block.any</string>
-				</dict>
-			</dict>
+			<string>(?&lt;=^&lt;/\1&gt;$\n)</string>
 			<key>name</key>
 			<string>meta.disable-markdown</string>
 			<key>patterns</key>
