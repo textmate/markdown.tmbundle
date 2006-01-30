@@ -62,7 +62,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s{0,3}[*+-]\s+</string>
+			<string>^\s{0,3}[*+-](?=\s)</string>
 			<key>end</key>
 			<string>^(?=\S)</string>
 			<key>name</key>
@@ -284,7 +284,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>^\s+\S</string>
+					<string>\G\s+\S</string>
 					<key>end</key>
 					<string>^\s*$</string>
 					<key>name</key>
