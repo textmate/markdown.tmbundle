@@ -39,8 +39,6 @@
 			<string>markup.heading.2.markdown</string>
 		</dict>
 		<dict>
-			<key>comment</key>
-			<string>Horizontal rules. Currently ignoring - because of conflict with headings</string>
 			<key>match</key>
 			<string>^([*_-]\s*){3,}$</string>
 			<key>name</key>
