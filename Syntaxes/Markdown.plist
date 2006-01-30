@@ -27,14 +27,6 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>comment</key>
-			<string>Horizontal rules. Currently ignoring - because of conflict with headings</string>
-			<key>match</key>
-			<string>^([*_]\s*){3,}$</string>
-			<key>name</key>
-			<string>markup.hr.markdown</string>
-		</dict>
-		<dict>
 			<key>match</key>
 			<string>^={3,}$</string>
 			<key>name</key>
@@ -45,6 +37,14 @@
 			<string>^-{3,}$</string>
 			<key>name</key>
 			<string>markup.heading.2.markdown</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Horizontal rules. Currently ignoring - because of conflict with headings</string>
+			<key>match</key>
+			<string>^([*_-]\s*){3,}$</string>
+			<key>name</key>
+			<string>markup.hr.markdown</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -153,7 +153,7 @@
 			<key>begin</key>
 			<string>^(?=\S)</string>
 			<key>end</key>
-			<string>^\s*$</string>
+			<string>^(?:\s*$|(?=[=-]{3,}$))</string>
 			<key>name</key>
 			<string>markup.paragraph.markdown</string>
 			<key>patterns</key>
