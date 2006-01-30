@@ -77,7 +77,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s{0,3}[0-9]+\.</string>
+			<string>^\s{0,3}[0-9]+\.(?=\s)</string>
 			<key>end</key>
 			<string>^(?=\S)</string>
 			<key>name</key>
