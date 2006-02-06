@@ -5,6 +5,9 @@
 	<key>fileTypes</key>
 	<array>
 		<string>markdown</string>
+		<string>mdown</string>
+		<string>markdn</string>
+		<string>md</string>
 	</array>
 	<key>firstLineMatch</key>
 	<string>markdown</string>
