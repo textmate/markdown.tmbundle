@@ -6,7 +6,7 @@
 	<string>
 `perl &lt;&lt;&lt;$TM_CURRENT_LINE -pe 's/.*?(\d+).*/$1+1/e'`. </string>
 	<key>keyEquivalent</key>
-	<string>#</string>
+	<string></string>
 	<key>name</key>
 	<string>Add Numbered List Item</string>
 	<key>scope</key>
