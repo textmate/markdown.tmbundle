@@ -154,7 +154,7 @@
 			<key>begin</key>
 			<string>^(?=\S)</string>
 			<key>end</key>
-			<string>^(?:\s*$|(?=[=-]{3,}$))</string>
+			<string>^(?:\s*$|(?=\s*&gt;|[=-]{3,}$))</string>
 			<key>name</key>
 			<string>markup.paragraph.markdown</string>
 			<key>patterns</key>
