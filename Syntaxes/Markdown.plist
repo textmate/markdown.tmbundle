@@ -285,7 +285,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\G\s+\S</string>
+					<string>\G\s+(?=\S)</string>
 					<key>end</key>
 					<string>^\s*$</string>
 					<key>name</key>
