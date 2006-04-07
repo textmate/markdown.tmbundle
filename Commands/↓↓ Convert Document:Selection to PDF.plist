@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string># first figure out a name for the result
+NAME="${TM_FILENAME:-untitled}"
+BASENAME="${NAME%.*}"
+DST="/tmp/$BASENAME"
+
+
+MultiMarkdown.pl "$NAME" |SmartyPants.pl &gt;"$DST.html"
+
+# open the generated HTML file in Safari
+cat "$DST.html"
+
+# convert to PDF with htmldoc and open in Preview
+require_cmd htmldoc
+htmldoc -f "$DST.pdf" --header "" --footer "" --webpage "$DST.html"
+open -a Preview "$DST.pdf"
+
+</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^@P</string>
+	<key>name</key>
+	<string>↓↓ Convert Document/Selection to PDF</string>
+	<key>output</key>
+	<string>showAsHTML</string>
+	<key>scope</key>
+	<string>text.html.markdown.multimarkdown</string>
+	<key>uuid</key>
+	<string>DB5085DA-3E95-4020-8521-C9702168F160</string>
+</dict>
+</plist>
