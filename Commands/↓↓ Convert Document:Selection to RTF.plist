@@ -16,12 +16,14 @@ MultiMarkdown.pl "$NAME" | SmartyPants.pl &gt; "$DST.html"
 
 open -a TextEdit.app "$DST.rtf"
 </string>
+	<key>fallbackInput</key>
+	<string>document</string>
 	<key>input</key>
 	<string>selection</string>
 	<key>keyEquivalent</key>
 	<string>^R</string>
 	<key>name</key>
-	<string>↓↓ Convert Document/Selection to RTF</string>
+	<string>↓↓ Convert Document / Selection to RTF</string>
 	<key>output</key>
 	<string>discard</string>
 	<key>scope</key>

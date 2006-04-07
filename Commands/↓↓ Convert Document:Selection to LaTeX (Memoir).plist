@@ -13,7 +13,7 @@
 	<key>keyEquivalent</key>
 	<string></string>
 	<key>name</key>
-	<string>↓↓ Convert Document/Selection to LaTeX (Memoir)</string>
+	<string>↓↓ Convert Document / Selection to LaTeX (Memoir)</string>
 	<key>output</key>
 	<string>openAsNewDocument</string>
 	<key>scope</key>

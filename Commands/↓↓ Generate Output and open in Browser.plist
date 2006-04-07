@@ -14,7 +14,7 @@ open "${TM_DIRECTORY:-/tmp}"/output.html</string>
 	<key>keyEquivalent</key>
 	<string>^O</string>
 	<key>name</key>
-	<string>↓↓ Generate Output and open in Browser</string>
+	<string>↓↓ Generate Output and Open in Browser</string>
 	<key>output</key>
 	<string>discard</string>
 	<key>scope</key>
