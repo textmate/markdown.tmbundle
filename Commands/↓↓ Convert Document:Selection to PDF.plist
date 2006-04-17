@@ -10,10 +10,9 @@ NAME="${TM_FILENAME:-untitled}"
 BASENAME="${NAME%.*}"
 DST="/tmp/$BASENAME"
 
+MultiMarkdown.pl|SmartyPants.pl|"${TM_RUBY:-ruby}" &gt;"$DST.html" -KU -pe '$_.gsub!(/[^\x00-\x7F]/) { |ch| "&amp;##{ch.unpack("U")[0]};" }'
 
-MultiMarkdown.pl "$NAME" |SmartyPants.pl &gt;"$DST.html"
-
-# open the generated HTML file in Safari
+# show the generated HTML file
 cat "$DST.html"
 
 # convert to PDF with htmldoc and open in Preview

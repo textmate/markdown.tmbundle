@@ -10,9 +10,11 @@ NAME="${TM_FILENAME:-untitled}"
 BASENAME="${NAME%.*}"
 DST="/tmp/$BASENAME"
 
-MultiMarkdown.pl "$NAME" | SmartyPants.pl &gt; "$DST.html"
+MultiMarkdown.pl|SmartyPants.pl &gt;"$DST.html"
 
-/usr/bin/textutil -convert rtf - extension rtf -font Times -fontsize 11 "$DST.html"
+# textutil is included with Tiger
+require_cmd textutil
+textutil -convert rtf -extension rtf -font Times -fontsize 11 "$DST.html"
 
 open -a TextEdit.app "$DST.rtf"
 </string>

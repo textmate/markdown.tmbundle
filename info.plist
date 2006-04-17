@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>isDefault</key>
+	<true/>
 	<key>name</key>
 	<string>Markdown</string>
 	<key>ordering</key>
@@ -14,7 +16,6 @@
 		<string>9F73CBC1-E9C0-41A4-891F-B2879A1852F7</string>
 		<string>67EB96A4-4213-42C9-9C47-B886A4B8AC93</string>
 		<string>3BAE5ECF-9006-43D0-9AEB-28FAFE526840</string>
-		<string>B741A691-C71D-46D8-B008-B162F1350701</string>
 		<string>DB5085DA-3E95-4020-8521-C9702168F160</string>
 		<string>D9118E94-4E23-4B75-88D7-6BFEBAA70D1B</string>
 		<string>351451DE-C1A4-4A36-A563-99AF761D026B</string>
@@ -28,6 +29,7 @@
 		<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
 		<string>B6E4F67F-D9E2-4866-A958-A96C063549DB</string>
 		<string>D548EAB4-08E6-449B-89DF-CE8BAAEF7BBA</string>
+		<string>6CABC082-A3F5-4388-8A78-24533015D727</string>
 		<string>0A1D9874-B448-11D9-BD50-000D93B6E43C</string>
 		<string>F5E04BF4-69A9-45AE-9205-B3F3C2B00130</string>
 		<string>E23C5DD2-9A36-4B4A-9729-2A769A055B92</string>
@@ -35,6 +37,7 @@
 		<string>146B2643-D903-49A8-9586-BE9C509D65B1</string>
 		<string>C2DBC2F2-D859-4B35-A38E-244927A8447F</string>
 		<string>C02A37C1-E770-472F-A13E-358FF0C6AD89</string>
+		<string>F878D261-A73A-4A65-875C-F0E07E2C8181</string>
 	</array>
 	<key>uuid</key>
 	<string>D99E8C0C-792F-11D9-A212-000D93B3A10E</string>
