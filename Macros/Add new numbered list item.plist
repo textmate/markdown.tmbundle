@@ -12,7 +12,7 @@
 				<key>findInProjectIgnoreCase</key>
 				<false/>
 				<key>findString</key>
-				<string>^</string>
+				<string>^\s*</string>
 				<key>ignoreCase</key>
 				<false/>
 				<key>regularExpression</key>
@@ -63,7 +63,7 @@
 			<key>argument</key>
 			<dict>
 				<key>command</key>
-				<string>ruby -e 'print STDIN.readline.strip.to_i + 1; print ". "'</string>
+				<string>ruby -e 'num = STDIN.readline; print num[/^\s*/]; print num[/[0-9]+/].to_i + 1; print ". "'</string>
 				<key>input</key>
 				<string>selection</string>
 				<key>output</key>
@@ -78,13 +78,15 @@
 		</dict>
 	</array>
 	<key>keyEquivalent</key>
-	<string></string>
+	<string></string>
 	<key>name</key>
-	<string>Add new numbered list item</string>
+	<string>Add Numbered List Item</string>
 	<key>scope</key>
 	<string>text.html.markdown markup.list.numbered markup.list.paragraph</string>
 	<key>scopeType</key>
 	<string>local</string>
+	<key>useGlobalClipboard</key>
+	<true/>
 	<key>uuid</key>
 	<string>79737383-7F46-4E1C-9D54-29A9B682E2DF</string>
 </dict>

@@ -57,9 +57,9 @@
 		</dict>
 	</array>
 	<key>keyEquivalent</key>
-	<string></string>
+	<string></string>
 	<key>name</key>
-	<string>Add a new unnumbered list item</string>
+	<string>Add Unnumbered List Item</string>
 	<key>scope</key>
 	<string>text.html.markdown markup.list.unnumbered markup.list.paragraph</string>
 	<key>scopeType</key>
