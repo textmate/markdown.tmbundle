@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>deleted</key>
+	<array>
+		<string>50E0F438-31F5-423E-87F8-F73F5EB8DE1E</string>
+		<string>19556021-F2F8-40CA-9DB7-401F102D8B01</string>
+	</array>
 	<key>isDefault</key>
 	<true/>
 	<key>name</key>
@@ -23,8 +28,8 @@
 		<string>B741A691-C71D-46D8-B008-B162F1350701</string>
 		<string>DA157B9A-792F-11D9-A212-000D93B3A10E</string>
 		<string>DA18D8BE-792F-11D9-A212-000D93B3A10E</string>
-		<string>79737383-7F46-4E1C-9D54-29A9B682E2DF</string>
-		<string>B5E5A1B4-540B-46F8-9436-729E14863E7A</string>
+		<string>CD846758-8489-4F90-8B78-702C88187F1C</string>
+		<string>F1703E72-7756-4194-81AA-9EB599CD7928</string>
 		<string>4405912F-4AD5-40F8-93B3-A63394036ACA</string>
 		<string>AC737304-8B70-49F4-9442-AB824D8D911C</string>
 		<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
