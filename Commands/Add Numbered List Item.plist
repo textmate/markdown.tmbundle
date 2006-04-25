@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+def next_list_item(match)
+	spaces = match[1]
+	if spaces =~ /\t/
+		spaces = "\t"
+	end
+	if match[2] =~ /\*/
+		"#{spaces}*#{match[4].chomp()}"
+	else
+		"#{spaces}#{match[3].to_i + 1}.#{match[4].chomp()}"
+	end
+end
+
+listregex = /^(\s*)(\*|([0-9]+)\.)( |\t)*/
+match = nil
+lines = $stdin.readlines()
+lines.reverse.each() do |line|
+	match = listregex.match(line)
+	if match
+		break
+	end
+end
+
+if !match
+	print "#{lines.join().gsub(/[`$]/, "\\\\1").chomp}\n"
+else
+	endspacing = lines.join()[/\n((\s|\n)*)\z/m, 1]
+	print "#{lines.join().gsub(/[$`\\]/, '\\\\\1').sub(/(\s|\n)*\z/m, '')}\n#{next_list_item(match)}$0\n#{endspacing}"
+end</string>
+	<key>fallbackInput</key>
+	<string>scope</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string></string>
+	<key>name</key>
+	<string>Add List Item</string>
+	<key>output</key>
+	<string>insertAsSnippet</string>
+	<key>scope</key>
+	<string>markup.list</string>
+	<key>uuid</key>
+	<string>622F0B69-EB98-4EB9-8DC8-2AC56FF2501E</string>
+</dict>
+</plist>
