@@ -22,7 +22,9 @@ end
 listregex = /^(\s*)(\*|([0-9]+)\.)( |\t)*/
 match = nil
 lines = $stdin.readlines()
-lines.reverse.each() do |line|
+
+offsetline = ENV['TM_LINE_NUMBER'].to_i - ENV['TM_INPUT_START_LINE'].to_i
+lines[0..offsetline].reverse.each() do |line|
 	match = listregex.match(line)
 	if match
 		break
@@ -30,10 +32,16 @@ lines.reverse.each() do |line|
 end
 
 if !match
-	print "#{lines.join().gsub(/[`$]/, "\\\\1").chomp}\n"
+	# don't do anything - this should never happen anyway...
+	print "#{lines.join().gsub(/[$`\\]/, '\\\\\1')}\n"
 else
 	endspacing = lines.join()[/\n((\s|\n)*)\z/m, 1]
-	print "#{lines.join().gsub(/[$`\\]/, '\\\\\1').sub(/(\s|\n)*\z/m, '')}\n#{next_list_item(match)}$0\n#{endspacing}"
+	firstpart = "#{lines[0..offsetline].join().gsub(/[$`\\]/, '\\\\\1').chomp()}\n"
+	secondpart = "#{lines[(offsetline+1)..-1].join().gsub(/[$`\\]/, '\\\\\1').sub(/\n((\s|\n)*)\z/m, '')}"
+	if secondpart =~ /[a-z0-9*]/i
+		secondpart += "\n"
+	end
+	print "#{firstpart}#{next_list_item(match)}$0\n#{secondpart}#{endspacing}"
 end</string>
 	<key>fallbackInput</key>
 	<string>scope</string>
