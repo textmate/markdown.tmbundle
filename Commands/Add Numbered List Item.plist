@@ -42,7 +42,7 @@ else
 
 	# renumber remaining list items
 	if nextitem =~ /[0-9]/
-		secondpart = secondpart.split("\n").map() { |s| s.sub(/^(\s*)([0-9]+)/) { if ($1.nil? and match[1].mil?) or ($1 == match[1]) then "#{$1}#{$2.to_i + 1}" else $0 end } }.join("\n")
+		secondpart = secondpart.split("\n").map() { |s| s.sub(/^(\s*)([0-9]+)/) { if ($1.nil? and match[1].mil?) or ($1 == match[1]) then "#{$1}#{$2.to_i + 1}" else $&amp;.to_s end } }.join("\n")
 	end
 
 	# add a trailing \n if the second part actually contains anything (stripped by the join)
