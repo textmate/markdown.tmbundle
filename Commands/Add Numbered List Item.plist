@@ -33,15 +33,24 @@ end
 
 if !match
 	# don't do anything - this should never happen anyway...
-	print "#{lines.join().gsub(/[$`\\]/, '\\\\\1')}\n"
+	print "#{lines.join().gsub(/([$`\\])/, "\\\\\\1")}\n"
 else
 	endspacing = lines.join()[/\n((\s|\n)*)\z/m, 1]
-	firstpart = "#{lines[0..offsetline].join().gsub(/[$`\\]/, '\\\\\1').chomp()}\n"
-	secondpart = "#{lines[(offsetline+1)..-1].join().gsub(/[$`\\]/, '\\\\\1').sub(/\n((\s|\n)*)\z/m, '')}"
+	firstpart = "#{lines[0..offsetline].join().gsub(/([$`\\])/, "\\\\\\1").chomp()}\n"
+	secondpart = "#{lines[(offsetline+1)..-1].join().gsub(/([$`\\])/, "\\\\\\1").sub(/\n((\s|\n)*)\z/m, '')}"
+	nextitem = next_list_item(match)
+
+	# renumber remaining list items
+	if nextitem =~ /[0-9]/
+		secondpart = secondpart.split("\n").map() { |s| s.sub(/^(\s*)([0-9]+)/) { if ($1.nil? and match[1].mil?) or ($1 == match[1]) then "#{$1}#{$2.to_i + 1}" else $0 end } }.join("\n")
+	end
+
+	# add a trailing \n if the second part actually contains anything (stripped by the join)
 	if secondpart =~ /[a-z0-9*]/i
 		secondpart += "\n"
 	end
-	print "#{firstpart}#{next_list_item(match)}$0\n#{secondpart}#{endspacing}"
+	
+	print "#{firstpart}#{nextitem}$0\n#{secondpart}#{endspacing}"
 end</string>
 	<key>fallbackInput</key>
 	<string>scope</string>
