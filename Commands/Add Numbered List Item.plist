@@ -33,8 +33,8 @@ if !match
 	print "#{lines.join().gsub(/([$`\\])/, "\\\\\\1")}\n"
 else
 	endspacing = lines.join()[/\n((\s|\n)*)\z/m, 1]
-	firstpart = "#{lines[0..offsetline].join().gsub(/([$`\\])/, "\\\\\\1").chomp()}\n"
-	secondpart = "#{lines[(offsetline+1)..-1].join().gsub(/([$`\\])/, "\\\\\\1").sub(/\n((\s|\n)*)\z/m, '')}"
+	firstpart = "#{lines[0..offsetline].to_a.join().gsub(/([$`\\])/, "\\\\\\1").chomp()}\n"
+	secondpart = "#{lines[(offsetline+1)..-1].to_a.join().gsub(/([$`\\])/, "\\\\\\1").sub(/\n((\s|\n)*)\z/m, '')}"
 	nextitem = next_list_item(match)
 
 	# renumber remaining list items
@@ -59,7 +59,7 @@ end
 	<key>name</key>
 	<string>Add List Item</string>
 	<key>output</key>
-	<string>insertAsSnippet</string>
+	<string>showAsTooltip</string>
 	<key>scope</key>
 	<string>markup.list</string>
 	<key>uuid</key>
