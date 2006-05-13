@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+
+class Array
+	
+	def mapi()
+		newself = []
+		self.each_index() do |i|
+			newself &lt;&lt; yield(self[i], i)
+		end
+		
+		newself
+	end
+	
+end
+
+
+def get_list_type(list)
+	numbered = false
+	spaced = false
+	indent = ""
+
+	check = /^(\s*)([0-9]|\*)/.match(list)
+	if !check
+		return nil
+	end
+
+	indent = check[1]
+	if check[2] =~ /[0-9]/
+		numbered = true
+	end
+	
+	nextitemregex = Regexp.new("^#{Regexp.escape(indent)}#{if numbered then '([0-9]+)\\.' else '(\\*)' end} (.*)$")
+	lastline = list[/^(.*)(\n|$)/]
+	list.split(/\n/)[1..-1].each() do |line|
+		if nextitemregex.match(line)
+			if lastline =~ /^\s*$/
+				spaced = true
+			end
+			break
+		end
+		
+		lastline = line
+	end
+	
+	return [indent, numbered, spaced, nextitemregex]	
+end
+
+
+def split_list(list, regex)
+	list = list.split(/\n/)
+	cur = regex.match(list[0])[2]
+	newlist = []
+	list[1..-1].each() do |line|
+		if regex.match(line)
+			newlist &lt;&lt; cur.chomp()
+			cur = $2  # set implicitly by the regex match in the if condition
+		else
+			cur += "\n#{line}"
+		end
+	end
+	newlist &lt;&lt; cur.chomp()
+	
+	newlist
+end
+
+
+list = $stdin.read()
+indent, numbered, spaced, nextitemregex = get_list_type(list)
+
+list = split_list(list, nextitemregex)
+
+if !spaced
+	if numbered
+		print(list.mapi { |v, i| "#{indent}#{(i + 1)}. #{v}" }.join("\n\n"))
+	else
+		print(list.map { |v| "#{indent}* #{v}" }.join("\n\n"))
+	end
+else
+	if numbered
+		print list.map { |v| "#{indent}* #{v}" }.join("\n")
+	else
+		print list.mapi { |v, i| "#{indent}#{(i + 1)}. #{v}" }.join("\n")
+	end
+end</string>
+	<key>fallbackInput</key>
+	<string>scope</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^~@l</string>
+	<key>name</key>
+	<string>Change List Style</string>
+	<key>output</key>
+	<string>replaceSelectedText</string>
+	<key>scope</key>
+	<string>markup.list</string>
+	<key>uuid</key>
+	<string>15D9BCDD-1140-49B1-A054-5D9D57DC29A4</string>
+</dict>
+</plist>
