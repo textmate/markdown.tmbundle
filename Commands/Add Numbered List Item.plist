@@ -59,7 +59,7 @@ end
 	<key>name</key>
 	<string>Add List Item</string>
 	<key>output</key>
-	<string>showAsTooltip</string>
+	<string>insertAsSnippet</string>
 	<key>scope</key>
 	<string>markup.list</string>
 	<key>uuid</key>
