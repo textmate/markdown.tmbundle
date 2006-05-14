@@ -5,7 +5,8 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>MultiMarkdown.pl | SmartyPants.pl | xsltproc -novalid -nonet "$TM_BUNDLE_SUPPORT"/xhtml2article.xslt  -</string>
+	<string>cd "$TM_BUNDLE_SUPPORT"
+MultiMarkdown.pl|SmartyPants.pl|xsltproc -novalid -nonet "$TM_BUNDLE_SUPPORT/xhtml2article.xslt"  -</string>
 	<key>fallbackInput</key>
 	<string>document</string>
 	<key>input</key>
