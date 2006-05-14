@@ -688,13 +688,9 @@
 %\usepackage[parfill]{parskip}	% Activate to begin paragraphs with an empty
 								% line rather than an indent
 
-\usepackage{plainfootnote}		% allows \verbatim, etc in footnotes
-								% see http://www.tug.org/TUGboat/hiw/hey-2n4.ps
-
 \usepackage{ifpdf}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{xmpincl}
 \usepackage[utf8]{inputenc}
 
 % Definitions
