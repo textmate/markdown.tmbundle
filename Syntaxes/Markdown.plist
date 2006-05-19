@@ -9,8 +9,6 @@
 		<string>markdn</string>
 		<string>md</string>
 	</array>
-	<key>firstLineMatch</key>
-	<string>markdown</string>
 	<key>foldingStartMarker</key>
 	<string>(?x)
 		(&lt;(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)\b.*?&gt;
@@ -24,7 +22,7 @@
 		|(^|\s)\}
 		)</string>
 	<key>keyEquivalent</key>
-	<string>~^M</string>
+	<string>^~M</string>
 	<key>name</key>
 	<string>Markdown</string>
 	<key>patterns</key>
