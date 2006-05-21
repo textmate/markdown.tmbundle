@@ -28,7 +28,7 @@ open -a Preview "$DST.pdf"
 	<key>keyEquivalent</key>
 	<string>^@P</string>
 	<key>name</key>
-	<string>↓↓ Convert Document / Selection to PDF</string>
+	<string>Convert Document / Selection to PDF</string>
 	<key>output</key>
 	<string>showAsHTML</string>
 	<key>scope</key>

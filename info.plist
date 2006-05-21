@@ -2,8 +2,58 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>isDefault</key>
-	<true/>
+	<key>mainMenu</key>
+	<dict>
+		<key>items</key>
+		<array>
+			<string>B52DEA16-8480-11D9-BE59-000D93B3A10E</string>
+			<string>58434A58-85E8-11D9-9CD0-000D93B3A10E</string>
+			<string>966B0E57-799A-4B91-84B4-75695A78F7B8</string>
+			<string>------------------------------------</string>
+			<string>49B1C71D-A748-4F99-9503-95444E8FF7BE</string>
+			<string>------------------------------------</string>
+			<string>F3A754C3-CE6B-11D9-9C17-000A95C0F626</string>
+			<string>724FCFF6-CE6B-11D9-9C17-000A95C0F626</string>
+			<string>------------------------------------</string>
+			<string>15D9BCDD-1140-49B1-A054-5D9D57DC29A4</string>
+			<string>------------------------------------</string>
+			<string>622F0B69-EB98-4EB9-8DC8-2AC56FF2501E</string>
+			<string>4405912F-4AD5-40F8-93B3-A63394036ACA</string>
+			<string>AC737304-8B70-49F4-9442-AB824D8D911C</string>
+			<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
+			<string>------------------------------------</string>
+			<string>50BD1D76-727C-4B4C-88A9-9D41998F1EE3</string>
+		</array>
+		<key>submenus</key>
+		<dict>
+			<key>49B1C71D-A748-4F99-9503-95444E8FF7BE</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>7CCF064C-BC8F-437B-A339-0E2156D8B2C3</string>
+					<string>351451DE-C1A4-4A36-A563-99AF761D026B</string>
+					<string>------------------------------------</string>
+					<string>9F73CBC1-E9C0-41A4-891F-B2879A1852F7</string>
+					<string>67EB96A4-4213-42C9-9C47-B886A4B8AC93</string>
+					<string>3BAE5ECF-9006-43D0-9AEB-28FAFE526840</string>
+					<string>DB5085DA-3E95-4020-8521-C9702168F160</string>
+					<string>D9118E94-4E23-4B75-88D7-6BFEBAA70D1B</string>
+				</array>
+				<key>name</key>
+				<string>MultiMarkdown (↓↓)</string>
+			</dict>
+			<key>50BD1D76-727C-4B4C-88A9-9D41998F1EE3</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>B6E4F67F-D9E2-4866-A958-A96C063549DB</string>
+					<string>D548EAB4-08E6-449B-89DF-CE8BAAEF7BBA</string>
+				</array>
+				<key>name</key>
+				<string>Style</string>
+			</dict>
+		</dict>
+	</dict>
 	<key>name</key>
 	<string>Markdown</string>
 	<key>ordering</key>

@@ -25,7 +25,7 @@ open -a TextEdit.app "$DST.rtf"
 	<key>keyEquivalent</key>
 	<string>^R</string>
 	<key>name</key>
-	<string>↓↓ Convert Document / Selection to RTF</string>
+	<string>Convert Document / Selection to RTF</string>
 	<key>output</key>
 	<string>discard</string>
 	<key>scope</key>
