@@ -23,29 +23,39 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>captures</key>
+			<key>begin</key>
+			<string>^([A-Za-z0-9]+):\s*</string>
+			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.other.multimarkdown</string>
 				</dict>
-				<key>2</key>
+			</dict>
+			<key>end</key>
+			<string>^$|^(?=[A-Za-z0-9]+:)</string>
+			<key>name</key>
+			<string>meta.header.multimarkdown</string>
+			<key>patterns</key>
+			<array>
 				<dict>
+					<key>comment</key>
+					<string>The reason for not setting scopeName = "string.unquoted" 
+						(for the parent rule) is that we do not want
+						newlines to be marked is string.unquoted</string>
+					<key>match</key>
+					<string>.</string>
 					<key>name</key>
 					<string>string.unquoted.multimarkdown</string>
 				</dict>
-			</dict>
-			<key>match</key>
-			<string>^([A-Za-z0-9]+):\s*(.+?)$\n?</string>
-			<key>name</key>
-			<string>meta.header.multimarkdown</string>
+			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^</string>
+			<string>^(?!=[A-Za-z0-9]+:)</string>
 			<key>end</key>
-			<string>^(?!not)not$</string>
+			<string>^(?=not)possible$</string>
 			<key>name</key>
 			<string>meta.content.multimarkdown</string>
 			<key>patterns</key>
