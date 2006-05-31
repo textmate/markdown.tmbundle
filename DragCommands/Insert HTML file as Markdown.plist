@@ -4,19 +4,6 @@
 <dict>
 	<key>command</key>
 	<string>python "$TM_BUNDLE_SUPPORT/bin/html2text.py" &lt;"$TM_DROPPED_FILE"|perl -pe 's/\\/\\\\/g; s/`/\\`/g; s/\$/\\\$/g'</string>
-	<key>documentExtensions</key>
-	<array>
-		<string>html</string>
-		<string>htm</string>
-		<string>rhtml</string>
-		<string>shtml</string>
-		<string>phtml</string>
-		<string>php</string>
-		<string>php3</string>
-		<string>php4</string>
-		<string>php5</string>
-		<string>inc</string>
-	</array>
 	<key>draggedFileExtensions</key>
 	<array>
 		<string>html</string>
