@@ -45,7 +45,7 @@
 						(for the parent rule) is that we do not want
 						newlines to be marked is string.unquoted</string>
 					<key>match</key>
-					<string>.</string>
+					<string>.+</string>
 					<key>name</key>
 					<string>string.unquoted.multimarkdown</string>
 				</dict>
