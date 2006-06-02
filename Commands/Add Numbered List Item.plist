@@ -10,9 +10,9 @@
 def next_list_item(match)
 	spaces = match[1]
 	if match[2] =~ /\*/
-		"#{spaces}*#{match[4].chomp()}"
+		"#{spaces}*#{match[4].to_s.chomp()}"
 	else
-		"#{spaces}#{match[3].to_i + 1}.#{match[4].chomp()}"
+		"#{spaces}#{match[3].to_i + 1}.#{match[4].to_s.chomp()}"
 	end
 end
 
