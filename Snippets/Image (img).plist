@@ -6,7 +6,7 @@
 	<string>![${1:alt text}](${2:SRC})
 </string>
 	<key>name</key>
-	<string>Image (img)</string>
+	<string>Image</string>
 	<key>scope</key>
 	<string>text.html.markdown</string>
 	<key>tabTrigger</key>

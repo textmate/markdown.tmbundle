@@ -5,7 +5,7 @@
 	<key>content</key>
 	<string>[${1:description}](${2:HREF})</string>
 	<key>name</key>
-	<string>Link (link)</string>
+	<string>Link</string>
 	<key>scope</key>
 	<string>text.html.markdown</string>
 	<key>tabTrigger</key>
