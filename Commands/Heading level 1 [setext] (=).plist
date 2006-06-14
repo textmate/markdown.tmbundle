@@ -24,7 +24,7 @@ fi</string>
 	<key>lineCaptureRegister</key>
 	<string>2</string>
 	<key>name</key>
-	<string>Heading Level 1 [setext] (=)</string>
+	<string>Heading Level 1 [setext]</string>
 	<key>output</key>
 	<string>insertAsSnippet</string>
 	<key>scope</key>
