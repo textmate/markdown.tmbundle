@@ -5,7 +5,7 @@
 	<key>name</key>
 	<string>Spell Checking: Disable</string>
 	<key>scope</key>
-	<string>text.html.markdown markup.raw, text.html.markdown meta.reference</string>
+	<string>text.html.markdown markup.raw, text.html.markdown meta.reference, meta.link.markdown entity.name</string>
 	<key>settings</key>
 	<dict>
 		<key>spellChecking</key>

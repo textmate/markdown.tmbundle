@@ -236,25 +236,51 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
+							<string>markup.underline.link.markdown</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
 							<string>invalid.illegal.whitespace.markdown</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.url-or-reference.markdown</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\[[^]]*\]( ?)\(.*?\)</string>
+					<string>\[([^]]*)\]( ?)\((.*?)\)</string>
 					<key>name</key>
-					<string>markup.underline.link.markdown</string>
+					<string>meta.link.markdown</string>
 				</dict>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>markup.underline.link.markdown</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>&lt;(https?|ftp)://.*?&gt;</string>
+					<string>&lt;((?:https?|ftp)://.*?)&gt;</string>
 					<key>name</key>
-					<string>markup.underline.link.markdown</string>
+					<string>meta.link.inet.markdown</string>
 				</dict>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>markup.underline.link.markdown</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>&lt;(mailto:)?[-.\w]+@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+&gt;</string>
+					<string>&lt;((?:mailto:)?[-.\w]+@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)&gt;</string>
 					<key>name</key>
-					<string>markup.underline.link.markdown</string>
+					<string>meta.link.email.lt-gt.markdown</string>
 				</dict>
 				<dict>
 					<key>captures</key>
