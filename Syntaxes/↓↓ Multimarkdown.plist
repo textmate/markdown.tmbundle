@@ -19,7 +19,7 @@
 	<key>keyEquivalent</key>
 	<string>^~M</string>
 	<key>name</key>
-	<string>MultiMarkdown (↓↓)</string>
+	<string>MultiMarkdown</string>
 	<key>patterns</key>
 	<array>
 		<dict>
