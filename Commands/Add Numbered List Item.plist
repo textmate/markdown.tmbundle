@@ -92,11 +92,20 @@ index = ENV['TM_LINE_INDEX'].to_i()
 # split the appropriate entry
 list.each_index() do |i|
 	if list[i][0][0] &lt;= offsetline and (i == (list.length() - 1) or list[i+1][0][0] &gt; offsetline)
+		# the breakline and the indent determine where the cursor was when enter was hit
+		# if the cursor was on a subline of a multi-line entry, then we don't need to account
+		# for the initial indent the bullet or numbers gave it
 		breakline = offsetline - list[i][0][0]
 		lineindent = (if breakline == 0 then list[i][0][1] else -1 end)
+
+		# we run into some issues with the convenience slicing functions
+		# if it is negative, then the end point is assumed to be counted
+		# from the end of the array.  That means we have to litter this with
+		# functional if statements to avoid that case
 		firstpart = (if breakline &gt; 0 then list[i][1].to_a()[0..breakline-1].join() else "" end)
 		firstpart = firstpart + (if (index-lineindent-2) &lt;= 0 then "" else (list[i][1].to_a()[breakline][0..(index-lineindent-2)]) end)
-		secondpart = list[i][1].to_a()[breakline][index-lineindent-1..-1] + list[i][1].to_a()[breakline+1..-1].join()
+
+		secondpart = list[i][1].to_a()[breakline][[index-lineindent-1,0].max()..-1] + list[i][1].to_a()[breakline+1..-1].join()
 		list = ((if i == 0 then [] else list[0..i-1].map { |l| es(l[1]) } end) + [es(firstpart), "$0" + es(secondpart)] + list[i+1..-1].map { |l| es(l[1]) })
  		break
 	end
