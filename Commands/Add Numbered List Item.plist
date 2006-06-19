@@ -7,56 +7,114 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 
-def next_list_item(match)
-	spaces = match[1]
-	if match[2] =~ /\*/
-		"#{spaces}*#{match[4].to_s.chomp()}"
-	else
-		"#{spaces}#{match[3].to_i + 1}.#{match[4].to_s.chomp()}"
-	end
-end
 
-listregex = /^(\s*)(\*|([0-9]+)\.)( |\t)*/
-match = nil
-lines = $stdin.readlines()
-
-offsetline = ENV['TM_LINE_NUMBER'].to_i - ENV['TM_INPUT_START_LINE'].to_i
-lines[0..offsetline].reverse.each() do |line|
-	match = listregex.match(line)
-	if match
-		break
-	end
-end
-
-if !match
-	# don't do anything - this should never happen anyway...
-	print "#{lines.join().gsub(/([$`\\])/, "\\\\\\1")}\n"
-else
-	endspacing = lines.join()[/\n((\s|\n)*)\z/m, 1]
-	firstpart = "#{lines[0..offsetline].to_a.join().gsub(/([$`\\])/, "\\\\\\1").chomp()}\n"
-	secondpart = "#{lines[(offsetline+1)..-1].to_a.join().gsub(/([$`\\])/, "\\\\\\1").sub(/\n((\s|\n)*)\z/m, '')}"
-	nextitem = next_list_item(match)
-
+class Array
 	
-
-	# renumber list items
-	if nextitem =~ /[0-9]/
-		# renumber the first part while we are here (requested by allan, who is often lazy)
-		# this uses functional paradigms with side-effects, and is frankly nasty
-		current = 0
-		firstpartpart = firstpart.split("\n").map() { |s| s.sub(/^(\s*)([0-9]+)/) { if ($1.nil? and match[1].nil?) or ($1 == match[1]) then current += 1; "#{$1}#{current}" else $&amp;.to_s end } }.join("\n")
-		current += 1
-		secondpart = secondpart.split("\n").map() { |s| s.sub(/^(\s*)([0-9]+)/) { if ($1.nil? and match[1].nil?) or ($1 == match[1]) then current += 1; "#{$1}#{current}" else $&amp;.to_s end } }.join("\n")
+	# maps, passing in the index of the original item and well as the item
+	def mapi()
+		newself = []
+		self.each_index() do |i|
+			newself &lt;&lt; yield(self[i], i)
+		end
+		
+		newself
 	end
-
-	# add a trailing \n if the second part actually contains anything (stripped by the join)
-	if secondpart =~ /[a-z0-9*]/i
-		secondpart += "\n"
-	end
-
-	print "#{firstpart}#{nextitem}$0\n#{secondpart}#{endspacing}"
+	
 end
-</string>
+
+
+def es(str)
+	str.to_s.gsub(/([$`\\])/, "\\\\\\1")
+end
+
+
+def get_list_type(list)
+	numbered = false
+	spaced = false
+	indent = ""
+
+	check = /^(\s*)([0-9]|\*)/.match(list)
+	if !check
+		return nil
+	end
+
+	indent = check[1]
+	if check[2] =~ /[0-9]/
+		numbered = true
+	end
+	
+	nextitemregex = Regexp.new("^(#{Regexp.escape(indent)}#{if numbered then '[0-9]+\\.' else '\\*' end}) (.*)$")
+	lastline = list[/^(.*)(\n|$)/]
+	list.split(/\n/)[1..-1].each() do |line|
+		if nextitemregex.match(line)
+			if lastline =~ /^\s*$/
+				spaced = true
+			end
+			break
+		end
+		
+		lastline = line
+	end
+	
+	return [indent, numbered, spaced, nextitemregex]	
+end
+
+
+def split_list(list, regex)
+	list = list.split(/\n/)
+	cur = regex.match(list[0])[2]
+	newlist = []
+	linestarts = [[0, $1.length()]]
+	(1..list.length() - 1).each do |i|
+		line = list[i]
+		if regex.match(line)
+			newlist &lt;&lt; cur.chomp()
+			linestarts &lt;&lt; [i, $1.length()]
+			cur = $2  # set implicitly by the regex match in the if condition
+		else
+			cur += "\n#{line}"
+		end
+	end
+	newlist &lt;&lt; cur.chomp()
+	
+	linestarts.zip(newlist)
+end
+
+# get the list itself in a nice array
+listtxt = $stdin.read()
+indent, numbered, spaced, nextitemregex = get_list_type(listtxt)
+list = split_list(listtxt, nextitemregex)
+
+# now we need to figure out where we were when we hit enter
+offsetline = ENV['TM_LINE_NUMBER'].to_i() - ENV['TM_INPUT_START_LINE'].to_i()
+index = ENV['TM_LINE_INDEX'].to_i()
+
+# split the appropriate entry
+list.each_index() do |i|
+	if list[i][0][0] &lt;= offsetline and (i == (list.length() - 1) or list[i+1][0][0] &gt; offsetline)
+		breakline = offsetline - list[i][0][0]
+		lineindent = (if breakline == 0 then list[i][0][1] else -1 end)
+		firstpart = (if breakline &gt; 0 then list[i][1].to_a()[0..breakline-1].join() else "" end)
+		firstpart = firstpart + (if (index-lineindent-2) &lt;= 0 then "" else (list[i][1].to_a()[breakline][0..(index-lineindent-2)]) end)
+		secondpart = list[i][1].to_a()[breakline][index-lineindent-1..-1] + list[i][1].to_a()[breakline+1..-1].join()
+		list = ((if i == 0 then [] else list[0..i-1].map { |l| es(l[1]) } end) + [es(firstpart), "$0" + es(secondpart)] + list[i+1..-1].map { |l| es(l[1]) })
+ 		break
+	end
+end
+
+if spaced
+	if numbered
+		print(list.mapi { |v, i| "#{indent}#{(i + 1)}. #{v}" }.join("\n\n"))
+	else
+		print(list.map { |v| "#{indent}* #{v}" }.join("\n\n"))
+	end
+else
+	if numbered
+		print list.mapi { |v, i| "#{indent}#{(i + 1)}. #{v}" }.join("\n")
+	else
+		print list.map { |v| "#{indent}* #{v}" }.join("\n")
+	end
+end</string>
 	<key>fallbackInput</key>
 	<string>scope</string>
 	<key>input</key>
