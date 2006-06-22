@@ -2,13 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>deleted</key>
+	<array>
+		<string>58434A58-85E8-11D9-9CD0-000D93B3A10E</string>
+	</array>
 	<key>mainMenu</key>
 	<dict>
 		<key>items</key>
 		<array>
 			<string>B52DEA16-8480-11D9-BE59-000D93B3A10E</string>
-			<string>58434A58-85E8-11D9-9CD0-000D93B3A10E</string>
 			<string>966B0E57-799A-4B91-84B4-75695A78F7B8</string>
+			<string>FE31CF79-5F04-4FB6-B5CE-70BC781FF8B5</string>
 			<string>------------------------------------</string>
 			<string>49B1C71D-A748-4F99-9503-95444E8FF7BE</string>
 			<string>------------------------------------</string>
@@ -59,8 +63,8 @@
 	<key>ordering</key>
 	<array>
 		<string>B52DEA16-8480-11D9-BE59-000D93B3A10E</string>
-		<string>58434A58-85E8-11D9-9CD0-000D93B3A10E</string>
 		<string>966B0E57-799A-4B91-84B4-75695A78F7B8</string>
+		<string>FE31CF79-5F04-4FB6-B5CE-70BC781FF8B5</string>
 		<string>F3A754C3-CE6B-11D9-9C17-000A95C0F626</string>
 		<string>724FCFF6-CE6B-11D9-9C17-000A95C0F626</string>
 		<string>9F73CBC1-E9C0-41A4-891F-B2879A1852F7</string>
