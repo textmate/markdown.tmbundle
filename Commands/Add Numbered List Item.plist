@@ -7,83 +7,17 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 
+$: &lt;&lt; ENV['TM_BUNDLE_SUPPORT']
+$: &lt;&lt; ENV['TM_SUPPORT_PATH']
 
-class Array
-	
-	# maps, passing in the index of the original item and well as the item
-	def mapi()
-		newself = []
-		self.each_index() do |i|
-			newself &lt;&lt; yield(self[i], i)
-		end
-		
-		newself
-	end
-	
-end
-
-
-def es(str)
-	str.to_s.gsub(/([$`\\])/, "\\\\\\1")
-end
-
-
-def get_list_type(list)
-	numbered = false
-	spaced = false
-	indent = ""
-
-	check = /^(\s*)([0-9]|\*)/.match(list)
-	if !check
-		return nil
-	end
-
-	indent = check[1]
-	if check[2] =~ /[0-9]/
-		numbered = true
-	end
-	
-	nextitemregex = Regexp.new("^(#{Regexp.escape(indent)}#{if numbered then '[0-9]+\\.' else '\\*' end}) (.*)$")
-	lastline = list[/^(.*)(\n|$)/]
-	list.split(/\n/)[1..-1].each() do |line|
-		if nextitemregex.match(line)
-			if lastline =~ /^\s*$/
-				spaced = true
-			end
-			break
-		end
-		
-		lastline = line
-	end
-	
-	return [indent, numbered, spaced, nextitemregex]	
-end
-
-
-def split_list(list, regex)
-	list = list.split(/\n/)
-	cur = regex.match(list[0])[2]
-	newlist = []
-	linestarts = [[0, $1.length()]]
-	(1..list.length() - 1).each do |i|
-		line = list[i]
-		if regex.match(line)
-			newlist &lt;&lt; cur.chomp()
-			linestarts &lt;&lt; [i, $1.length()]
-			cur = $2  # set implicitly by the regex match in the if condition
-		else
-			cur += "\n#{line}"
-		end
-	end
-	newlist &lt;&lt; cur.chomp()
-	
-	linestarts.zip(newlist)
-end
+require "enumerator"
+require 'lib/markdownhelpers'
+require 'lib/escape'
 
 # get the list itself in a nice array
 listtxt = $stdin.read()
-indent, numbered, spaced, nextitemregex = get_list_type(listtxt)
-list = split_list(listtxt, nextitemregex)
+indent, numbered, spaced, nextitemregex = Markdown.get_list_type(listtxt)
+list = Markdown.split_list(listtxt, nextitemregex)
 
 # now we need to figure out where we were when we hit enter
 offsetline = ENV['TM_LINE_NUMBER'].to_i() - ENV['TM_INPUT_START_LINE'].to_i()
@@ -106,24 +40,25 @@ list.each_index() do |i|
 		firstpart = firstpart + (if (index-lineindent-2) &lt;= 0 then "" else (list[i][1].to_a()[breakline][0..(index-lineindent-2)]) end)
 
 		secondpart = list[i][1].to_a()[breakline][[index-lineindent-1,0].max()..-1] + list[i][1].to_a()[breakline+1..-1].join()
-		list = ((if i == 0 then [] else list[0..i-1].map { |l| es(l[1]) } end) + [es(firstpart), "$0" + es(secondpart)] + list[i+1..-1].map { |l| es(l[1]) })
+		list = ((if i == 0 then [] else list[0..i-1].map { |l| e_sn(l[1]) } end) + [e_sn(firstpart), "$0" + e_sn(secondpart[/^\s*(.*)/,1])] + list[i+1..-1].map { |l| e_sn(l[1]) })
  		break
 	end
 end
 
 if spaced
 	if numbered
-		print(list.mapi { |v, i| "#{indent}#{(i + 1)}. #{v}" }.join("\n\n"))
+		print(list.enum_with_index.map { |v, i| "#{indent}#{(i + 1)}. #{v}" }.join("\n\n"))
 	else
 		print(list.map { |v| "#{indent}* #{v}" }.join("\n\n"))
 	end
 else
 	if numbered
-		print list.mapi { |v, i| "#{indent}#{(i + 1)}. #{v}" }.join("\n")
+		print list.enum_with_index.map { |v, i| "#{indent}#{(i + 1)}. #{v}" }.join("\n")
 	else
 		print list.map { |v| "#{indent}* #{v}" }.join("\n")
 	end
-end</string>
+end
+</string>
 	<key>fallbackInput</key>
 	<string>scope</string>
 	<key>input</key>
