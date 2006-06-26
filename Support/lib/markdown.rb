@@ -79,6 +79,11 @@ module Markdown
 		end
 		
 		
+		def rawstr=(newrawstr)
+			@str = newrawstr
+		end
+		
+		
 		def insert(pos, insert)
 			index = 0
 			newstr = []
@@ -156,15 +161,40 @@ module Markdown
 		# performs pending insertions after the yield (to avoid escaping insertions)
 		def map!(&block)
 			@entries.each() do |e|
-				e.each() do |l|
+				e.each_index() do |i|
+					l = e[i]
 					if l.kind_of?(ListLine)
+						newrawstr = []
 						l.rawstr.each() do |s|
 							if s.kind_of?(String)
 								s = yield(s)
 							end
+							newrawstr << s
 						end
+						e[i].rawstr = newrawstr
 					else
 						l.map!(&block)
+					end
+				end
+			end
+			
+			self
+		end
+		
+		
+		# indents the item marked by the original input line
+		def indent_entry(line)
+			curline = 0
+			@entries.each_index() do |i|
+				@entries[i].each_index do |li|
+					l = @entries[i][li]
+					if l.kind_of?(ListLine)
+						if l.line == line
+							@entries[i] = List.new(-1, newindent, self.numbered, [secondpart])
+							break
+						elsif l.line <= line and l.line + l.length >= line
+							l.indent(line - l.line)
+						end
 					end
 				end
 			end
