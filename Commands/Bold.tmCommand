@@ -11,13 +11,8 @@ require 'escape'
 s = STDIN.read
 if s == "" then
   print "**$1**$0"
-elsif s =~ /^(\*+)(.*?)(\*+)$/ then
-  m1,s,m2 = $1,$2,$3
-  if m1 != "**" or m2 != "**" then
-    print "${1:**#{e_sn(s)}**}$0"
-  else
-    print "${1:#{e_sn(s)}}$0"
-  end
+elsif s =~ /^\*{2}(.*)\*{2}$/ then
+  print "${1:#{e_sn($1)}}$0"
 else
   print "${1:**#{e_sn(s)}**}$0"
 end</string>

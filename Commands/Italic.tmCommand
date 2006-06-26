@@ -9,12 +9,15 @@
 $: &lt;&lt; ENV['TM_SUPPORT_PATH'] + '/lib'
 require 'escape'
 s = STDIN.read
-if s =~ /^\*(.*)\*$/ then
-  s = $1
-  if s =~ /^\*+(.*?)\*+$/ then
-     print "${1:*#{e_sn($1)}*}$0"
+if s =~ /^(\*+)(.*[^\*])\*+$/ then
+  m, s = $1, $2
+  case m.length
+    when 1
+      print "${1:#{e_sn(s)}}$0"
+    when 2
+      print "${1:***#{e_sn(s)}***}$0"
   else
-  	print "${1:#{e_sn(s)}}$0"
+      print "${1:**#{e_sn(s)}**}$0"
   end
 elsif s == ""
   print "*$1*$0"
