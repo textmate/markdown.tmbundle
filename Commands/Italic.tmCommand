@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+$: &lt;&lt; ENV['TM_SUPPORT_PATH'] + '/lib'
+require 'escape'
+s = STDIN.read
+if s =~ /^\*(.*)\*$/ then
+  s = $1
+  if s =~ /^\*+(.*?)\*+$/ then
+     print "${1:*#{e_sn($1)}*}$0"
+  else
+  	print "${1:#{e_sn(s)}}$0"
+  end
+elsif s == ""
+  print "*$1*$0"
+else
+  print "${1:*#{e_sn(s)}*}$0"
+end</string>
+	<key>fallbackInput</key>
+	<string>word</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>@i</string>
+	<key>name</key>
+	<string>Italic</string>
+	<key>output</key>
+	<string>insertAsSnippet</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
+	<key>uuid</key>
+	<string>F56525A1-C879-4A7C-9584-4DB28AFC58C2</string>
+</dict>
+</plist>
