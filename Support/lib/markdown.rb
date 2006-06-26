@@ -192,7 +192,13 @@ module Markdown
 							newentries << firstpart
 							
 							secondpart = [ListLine.new(-1, breakline.indent, breakline[pos..-1].lstrip().add_newline())] + breakentry[li+1..-1]
-							secondpart[0].insert(0, " " + insert)
+
+							if firstpart.map { |l| l.to_s() }.join().strip == "" and secondpart.map { |l| l.to_s() }.join().strip() != ""
+								firstpart[-1].insert(0, " " + insert)
+								secondpart[0].insert(0, " ")
+							else
+								secondpart[0].insert(0, " " + insert)
+							end
 							
 							if aslist
 								newindent = increase_indent(self.indent)
