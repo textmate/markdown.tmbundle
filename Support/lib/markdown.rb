@@ -160,8 +160,8 @@ module Markdown
 					line = lines[i]
 					linenumber += 1
 					
-					# we might be in an indented sublist, if the indent goes down, return the list and the remainder
-					if list.indent.length > 0 && line[/^(\s*)/, 1].to_s.length < list.indent.length
+					# we might be in an indented sublist, if the indent goes down, and the line isn't blank, return the list and the remainder
+					if list.indent.length > 0 && line[/^(\s*)/, 1].to_s.length < list.indent.length && line.strip() != ""
 						list << entry
 						return [list, lines[i..-1].join()]
 					end
