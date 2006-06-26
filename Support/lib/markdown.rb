@@ -13,15 +13,32 @@ end
 
 module Markdown
 	
+	class Insert
+		
+		def initialize(str)
+			@str = str
+		end
+		
+		
+		def length
+			str.length
+		end
+		
+		
+		def to_s
+			@str.to_s
+		end
+	end
+	
+	
 	class ListLine
-		attr_accessor :line, :indent, :str
+		attr_accessor :line, :indent
 
 		
 		def initialize(line, indent, str)
 			@line = line
 			@indent = indent
-			@str = str
-			@inserts = []
+			@str = [str]
 		end
 		
 		
@@ -34,29 +51,59 @@ module Markdown
 				
 				newbegin = if arg.begin >= 0 then [arg.begin - @indent.length, 0].max() else arg.begin end
 				newend = if arg.end >= 0 then [arg.end - @indent.length, 0].max() else arg.end end
-				return @str[Range.new(newbegin, newend, arg.exclude_end?)]
+				return self.to_s()[Range.new(newbegin, newend, arg.exclude_end?)]
 			elsif arg.kind_of?(Integer)
 				if arg < 0
-					return @str[arg]
+					return self.to_s()[arg]
 				else
-					return @str[[arg - @indent.length(), 0].max()]
+					return self.to_s()[[arg - @indent.length(), 0].max()]
 				end
 			else
-				return @str[arg]
+				return self.to_s()[arg]
 			end
 		end
 		
 		
+		def str=(newstr)
+			@str = [newstr]
+		end
+		
+		
+		def str()
+			to_s()
+		end
+		
+		
+		def rawstr()
+			@str
+		end
+		
+		
 		def insert(pos, insert)
-			@inserts << [pos, insert]
+			index = 0
+			newstr = []
+			@str.each() do |s|
+				if index + s.length < pos
+					index += s.length
+					newstr << s
+				elsif index <= pos and index + s.length >= pos
+					pos -= index
+					newstr << s[0...pos]
+					newstr << Insert.new(insert)
+					newstr << s[pos..-1]
+				else
+					newstr << s
+				end
+			end
+			@str = newstr
+			
+			self
 		end
 		
 		
 		def to_s()
-			str = @str
-			@inserts.each { |i| str = str.insert(i[0], i[1]) }
-			str
-		end		
+			@str.map { |s| s.to_s }.join()
+		end
 	end
 	
 	
@@ -68,9 +115,18 @@ module Markdown
 		attr_accessor :line, :indent, :numbered
 		
 		@@sublistregex = /^\s+([0-9]+\.|\*)\s/
-		
-		def initialize()
+
+		# This should never be called unless you know what you are doing.  It is used
+		# internally to create sublists.  Generally you will want to call List.parse(str)
+		# instead
+		def initialize(line=nil, indent=nil, numbered=nil, entries = [])
+			@line = line
+			@indent = indent
+			@numbered = numbered
 			@entries = []
+			entries.each() do |e|
+				@entries << e
+			end
 		end
 		
 		
@@ -96,11 +152,17 @@ module Markdown
 		end
 		
 		
+		# yields each str in turn to &block and replaces the result.  Also
+		# performs pending insertions after the yield (to avoid escaping insertions)
 		def map!(&block)
 			@entries.each() do |e|
 				e.each() do |l|
 					if l.kind_of?(ListLine)
-						l.str = yield(l.str)
+						l.rawstr.each() do |s|
+							if s.kind_of?(String)
+								s = yield(s)
+							end
+						end
 					else
 						l.map!(&block)
 					end
@@ -113,8 +175,9 @@ module Markdown
 		
 		# breaks the list at line, pos in the original input
 		# inserts insert at the break point and filters everything
-		# else through block
-		def break(line, pos, insert = "$0", &block)
+		# else through block.  If aslist is true, then the break
+		# item is inserted as a new list
+		def break(line, pos, insert = "$0", aslist = false, &block)
 			curline = 0
 			@entries.each_index() do |i|
 				@entries[i].each_index do |li|
@@ -123,15 +186,27 @@ module Markdown
 						if l.line == line
 							breakentry = @entries[i]
 							breakline = @entries[i][li]
+							newentries = []
+							
 							firstpart = breakentry[0...li] << ListLine.new(-1, breakline.indent, (breakline[0...pos].add_newline()))
+							newentries << firstpart
+							
 							secondpart = [ListLine.new(-1, breakline.indent, breakline[pos..-1].lstrip().add_newline())] + breakentry[li+1..-1]
 							secondpart[0].insert(0, " " + insert)
 							
-							@entries = @entries[0...i] + [firstpart, secondpart] + @entries[i+1..-1]
+							if aslist
+								newindent = increase_indent(self.indent)
+								secondpart = List.new(-1, newindent, self.numbered, [secondpart])
+								firstpart << secondpart
+							else
+								newentries << secondpart
+							end
+
+							@entries = @entries[0...i] + newentries + @entries[i+1..-1]
 							break
  						end
 					elsif l.line <= line and l.line + l.length >= line
-						l.break(line - l.line, pos)
+						l.break(line - l.line, pos, insert, aslist)
 					end
 				end
 			end
@@ -205,6 +280,17 @@ module Markdown
 			end
 			
 			str
+		end
+		
+		private
+		
+		# creates a new, deper indent based on indent
+		def increase_indent(indent)
+			if indent =~ /\t/
+				"\t#{indent}"
+			else
+				" " * ENV['TM_TAB_SIZE'].to_i + indent
+			end
 		end
 	end
 	
