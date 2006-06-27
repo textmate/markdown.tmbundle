@@ -209,7 +209,25 @@ module Markdown
 				end
 			end
 		end
-		
+
+
+		def get_list(line, &block)
+			curline = 0
+			@entries.each_index() do |i|
+				@entries[i].each_index do |li|
+					l = @entries[i][li]
+					if l.kind_of?(ListLine)
+						if l.line == line
+							yield self
+							break
+						end
+					elsif l.line <= line and l.line + l.length >= line
+						l.get_list(line - l.line, &block)
+					end
+				end
+			end
+		end
+				
 		
 		def select(line, &block)
 			get_entry(line) do |e|
@@ -219,8 +237,8 @@ module Markdown
 			
 			self.map!(&block)
 		end
-		
-		
+
+
 		# indents the item marked by the original input line
 		def indent_entry(line)
 			get_entry(line) { |e| e = [List.new(-1, newindent, self.numbered, [secondpart])] }
