@@ -12,7 +12,7 @@ open "${TM_DIRECTORY:-/tmp}"/output.html</string>
 	<key>input</key>
 	<string>selection</string>
 	<key>keyEquivalent</key>
-	<string>^O</string>
+	<string>^@p</string>
 	<key>name</key>
 	<string>Generate Output and Open in Browser</string>
 	<key>output</key>

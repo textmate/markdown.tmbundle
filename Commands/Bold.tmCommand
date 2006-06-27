@@ -8,13 +8,19 @@
 	<string>#!/usr/bin/env ruby
 $: &lt;&lt; ENV['TM_SUPPORT_PATH'] + '/lib'
 require 'escape'
+def esc(str)
+  e_sn(str).gsub(/\}/, '\\}') # escaping inside a placeholder
+end
+
 s = STDIN.read
-if s == "" then
-  print "**$1**$0"
+if s.empty? then
+  print "**$1**"
 elsif s =~ /^\*{2}(.*)\*{2}$/ then
-  print "${1:#{e_sn($1)}}$0"
+  print "${1:#{esc $1}}"
+elsif ENV.has_key? 'TM_SELECTED_TEXT'
+  print "${1:**#{esc s}**}"
 else
-  print "${1:**#{e_sn(s)}**}$0"
+  print "**#{e_sn s}**"
 end</string>
 	<key>fallbackInput</key>
 	<string>word</string>

@@ -24,9 +24,9 @@ print list.to_s()
 	<key>input</key>
 	<string>selection</string>
 	<key>keyEquivalent</key>
-	<string>^~@l</string>
+	<string>^{</string>
 	<key>name</key>
-	<string>Reformat</string>
+	<string>Toggle List Style</string>
 	<key>output</key>
 	<string>replaceSelectedText</string>
 	<key>scope</key>
