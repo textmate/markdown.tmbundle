@@ -265,7 +265,7 @@ module Markdown
 							firstpart = breakentry[0...li] << ListLine.new(-1, breakline.indent, (breakline[0...pos].add_newline()))
 							newentries << firstpart
 							
-							secondpart = [ListLine.new(-1, breakline.indent, breakline[pos..-1].lstrip().add_newline())] + breakentry[li+1..-1]
+							secondpart = [ListLine.new(-1, breakline.indent, breakline[pos..-1].to_s.lstrip().add_newline())] + breakentry[li+1..-1]
 
 							if firstpart.map { |l| l.to_s() }.join().strip == "" and secondpart.map { |l| l.to_s() }.join().strip() != ""
 								firstpart[-1].insert(0, " " + insert)
