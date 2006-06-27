@@ -35,7 +35,7 @@ print list.to_s()
 	<key>name</key>
 	<string>Change Style</string>
 	<key>output</key>
-	<string>showAsTooltip</string>
+	<string>replaceSelectedText</string>
 	<key>scope</key>
 	<string>markup.list</string>
 	<key>uuid</key>
