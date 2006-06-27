@@ -21,7 +21,7 @@ module Markdown
 		
 		
 		def length
-			str.length
+			@str.length
 		end
 		
 		
@@ -88,6 +88,11 @@ module Markdown
 			index = 0
 			newstr = []
 			@str.each() do |s|
+				if s.kind_of?(Insert)
+					newstr << s
+					next
+				end
+				
 				if index + s.length < pos
 					index += s.length
 					newstr << s
@@ -103,6 +108,12 @@ module Markdown
 			@str = newstr
 			
 			self
+		end
+		
+		
+		# returns the length of the str portions only
+		def length()
+			@str.select { |s| s.kind_of?(String) }.join.length()
 		end
 		
 		
@@ -182,22 +193,37 @@ module Markdown
 		end
 		
 		
-		# indents the item marked by the original input line
-		def indent_entry(line)
+		def get_entry(line, &block)
 			curline = 0
 			@entries.each_index() do |i|
 				@entries[i].each_index do |li|
 					l = @entries[i][li]
 					if l.kind_of?(ListLine)
 						if l.line == line
-							@entries[i] = List.new(-1, newindent, self.numbered, [secondpart])
+							yield @entries[i]
 							break
-						elsif l.line <= line and l.line + l.length >= line
-							l.indent(line - l.line)
 						end
+					elsif l.line <= line and l.line + l.length >= line
+						l.get_entry(line - l.line, &block)
 					end
 				end
 			end
+		end
+		
+		
+		def select(line, &block)
+			get_entry(line) do |e|
+				e[0].insert(0, "${1:")
+				last_line(e).insert(e[-1].length-1, "}")
+			end
+			
+			self.map!(&block)
+		end
+		
+		
+		# indents the item marked by the original input line
+		def indent_entry(line)
+			get_entry(line) { |e| e = [List.new(-1, newindent, self.numbered, [secondpart])] }
 			
 			self
 		end
@@ -319,6 +345,18 @@ module Markdown
 		end
 		
 		private
+		
+		
+		# returns the last line of an entry
+		def last_line(entry)
+			last = entry[-1]
+			if last.kind_of?(List)
+				last_line(last[-1])
+			else
+				last
+			end
+		end
+		
 		
 		# creates a new, deper indent based on indent
 		def increase_indent(indent)

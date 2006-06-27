@@ -21,7 +21,7 @@ list = Markdown::List.parse(listtxt)
 offsetline = ENV['TM_LINE_NUMBER'].to_i() - ENV['TM_INPUT_START_LINE'].to_i()
 index = ENV['TM_LINE_INDEX'].to_i()
 
-list.break(offsetline, index) { |l| e_sn(l) }
+list.select(offsetline) { |l| e_sn(l) }
 print list.to_s()
 </string>
 	<key>fallbackInput</key>
@@ -29,14 +29,14 @@ print list.to_s()
 	<key>input</key>
 	<string>selection</string>
 	<key>keyEquivalent</key>
-	<string></string>
+	<string>@</string>
 	<key>name</key>
-	<string>Add New Item</string>
+	<string>Select Current Item</string>
 	<key>output</key>
 	<string>insertAsSnippet</string>
 	<key>scope</key>
 	<string>markup.list</string>
 	<key>uuid</key>
-	<string>622F0B69-EB98-4EB9-8DC8-2AC56FF2501E</string>
+	<string>ADEF8E57-BF21-487A-9115-E1D1146142CD</string>
 </dict>
 </plist>

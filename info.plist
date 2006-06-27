@@ -5,6 +5,7 @@
 	<key>deleted</key>
 	<array>
 		<string>58434A58-85E8-11D9-9CD0-000D93B3A10E</string>
+		<string>15D9BCDD-1140-49B1-A054-5D9D57DC29A4</string>
 	</array>
 	<key>mainMenu</key>
 	<dict>
@@ -19,22 +20,33 @@
 			<string>966B0E57-799A-4B91-84B4-75695A78F7B8</string>
 			<string>FE31CF79-5F04-4FB6-B5CE-70BC781FF8B5</string>
 			<string>------------------------------------</string>
-			<string>49B1C71D-A748-4F99-9503-95444E8FF7BE</string>
-			<string>------------------------------------</string>
 			<string>F3A754C3-CE6B-11D9-9C17-000A95C0F626</string>
 			<string>724FCFF6-CE6B-11D9-9C17-000A95C0F626</string>
 			<string>------------------------------------</string>
-			<string>15D9BCDD-1140-49B1-A054-5D9D57DC29A4</string>
-			<string>------------------------------------</string>
-			<string>622F0B69-EB98-4EB9-8DC8-2AC56FF2501E</string>
+			<string>31614C02-1FED-4644-9518-2C2DEF0D7A2C</string>
+			<string>F56525A1-C879-4A7C-9584-4DB28AFC58C2</string>
 			<string>4405912F-4AD5-40F8-93B3-A63394036ACA</string>
 			<string>AC737304-8B70-49F4-9442-AB824D8D911C</string>
 			<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
 			<string>------------------------------------</string>
-			<string>50BD1D76-727C-4B4C-88A9-9D41998F1EE3</string>
+			<string>350477DF-B66B-49E8-8A31-CF26C2AD745D</string>
+			<string>49B1C71D-A748-4F99-9503-95444E8FF7BE</string>
 		</array>
 		<key>submenus</key>
 		<dict>
+			<key>350477DF-B66B-49E8-8A31-CF26C2AD745D</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>622F0B69-EB98-4EB9-8DC8-2AC56FF2501E</string>
+					<string>000B399B-FB71-49EF-B799-A1200A3865AB</string>
+					<string>ADEF8E57-BF21-487A-9115-E1D1146142CD</string>
+					<string>2E75B4D8-E6E8-4E3C-969D-FFC650092A39</string>
+					<string>5EFA9FF4-2246-4AF4-ABD6-2B7ADB4E9B80</string>
+				</array>
+				<key>name</key>
+				<string>Lists</string>
+			</dict>
 			<key>49B1C71D-A748-4F99-9503-95444E8FF7BE</key>
 			<dict>
 				<key>items</key>
@@ -50,16 +62,6 @@
 				</array>
 				<key>name</key>
 				<string>MultiMarkdown</string>
-			</dict>
-			<key>50BD1D76-727C-4B4C-88A9-9D41998F1EE3</key>
-			<dict>
-				<key>items</key>
-				<array>
-					<string>31614C02-1FED-4644-9518-2C2DEF0D7A2C</string>
-					<string>F56525A1-C879-4A7C-9584-4DB28AFC58C2</string>
-				</array>
-				<key>name</key>
-				<string>Format</string>
 			</dict>
 		</dict>
 	</dict>
@@ -80,7 +82,10 @@
 		<string>351451DE-C1A4-4A36-A563-99AF761D026B</string>
 		<string>7CCF064C-BC8F-437B-A339-0E2156D8B2C3</string>
 		<string>622F0B69-EB98-4EB9-8DC8-2AC56FF2501E</string>
-		<string>15D9BCDD-1140-49B1-A054-5D9D57DC29A4</string>
+		<string>000B399B-FB71-49EF-B799-A1200A3865AB</string>
+		<string>ADEF8E57-BF21-487A-9115-E1D1146142CD</string>
+		<string>2E75B4D8-E6E8-4E3C-969D-FFC650092A39</string>
+		<string>5EFA9FF4-2246-4AF4-ABD6-2B7ADB4E9B80</string>
 		<string>31614C02-1FED-4644-9518-2C2DEF0D7A2C</string>
 		<string>F56525A1-C879-4A7C-9584-4DB28AFC58C2</string>
 		<string>DA157B9A-792F-11D9-A212-000D93B3A10E</string>
