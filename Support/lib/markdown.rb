@@ -129,6 +129,8 @@ module Markdown
 
 		
 		attr_accessor :line, :indent, :numbered
+		attr_reader :entries
+		
 		
 		@@sublistregex = /^\s+([0-9]+\.|\*)\s/
 
@@ -200,7 +202,7 @@ module Markdown
 					l = @entries[i][li]
 					if l.kind_of?(ListLine)
 						if l.line == line
-							yield @entries[i]
+							yield(@entries[i], self, i)
 							break
 						end
 					elsif l.line <= line and l.line + l.length >= line
@@ -209,28 +211,10 @@ module Markdown
 				end
 			end
 		end
-
-
-		def get_list(line, &block)
-			curline = 0
-			@entries.each_index() do |i|
-				@entries[i].each_index do |li|
-					l = @entries[i][li]
-					if l.kind_of?(ListLine)
-						if l.line == line
-							yield self
-							break
-						end
-					elsif l.line <= line and l.line + l.length >= line
-						l.get_list(line - l.line, &block)
-					end
-				end
-			end
-		end
 				
 		
 		def select(line, &block)
-			get_entry(line) do |e|
+			get_entry(line) do |e, list, num|
 				e[0].insert(0, "${1:")
 				last_line(e).insert(e[-1].length-1, "}")
 			end
@@ -239,9 +223,32 @@ module Markdown
 		end
 
 
-		# indents the item marked by the original input line
+		# deletes the entry at i
+		def delete_at(i)
+			@entries.delete_at(i)
+		end
+
+
+		# indents the item marked by the original input line and returns the new list
 		def indent_entry(line)
-			get_entry(line) { |e| e = [List.new(-1, newindent, self.numbered, [secondpart])] }
+			get_entry(line) do |e, list, num|
+				# can't indent the first item in a list
+				if num == 0
+					return self
+				end
+				
+				newindent = increase_indent(list.indent)
+				newentry = List.new(-1, newindent, list.numbered, [e])
+				
+				list[num - 1] << newentry
+				list.delete_at(num)
+			end
+			
+			# a bit of slight of hand, we turn the list back into
+			# a string and parse it back into itself to clear up
+			# any internal discrepencies that may have been created -
+			# mostly handles merging lists
+			@entries = List.parse(self.to_s).entries()
 			
 			self
 		end
@@ -328,7 +335,7 @@ module Markdown
 						entry = [ListLine.new(linenumber, $1, $2 + "\n")]
 					else
 						if @@sublistregex.match(line)
-							sublist, str = List.parse(lines[i..-1].join(), i)
+							sublist, str = List.parse(lines[i..-1].join(), linenumber)
 							entry << sublist
 							linenumber += sublist.length - 1
 							raise SubList
@@ -362,6 +369,7 @@ module Markdown
 			str
 		end
 		
+
 		private
 		
 		
@@ -378,7 +386,7 @@ module Markdown
 		
 		# creates a new, deper indent based on indent
 		def increase_indent(indent)
-			if indent =~ /\t/
+			if ENV['TM_SOFT_TABS'] == 'NO'
 				"\t#{indent}"
 			else
 				" " * ENV['TM_TAB_SIZE'].to_i + indent

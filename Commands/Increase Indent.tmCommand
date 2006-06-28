@@ -21,9 +21,7 @@ list = Markdown::List.parse(listtxt)
 offsetline = ENV['TM_LINE_NUMBER'].to_i() - ENV['TM_INPUT_START_LINE'].to_i()
 index = ENV['TM_LINE_INDEX'].to_i()
 
-list.get_entry(offsetline) do |e, l, n|
-	l.numbered = !l.numbered
-end
+list.indent_entry(offsetline)
 print list.to_s()
 </string>
 	<key>fallbackInput</key>
@@ -31,14 +29,14 @@ print list.to_s()
 	<key>input</key>
 	<string>selection</string>
 	<key>keyEquivalent</key>
-	<string>^~@l</string>
+	<string>@]</string>
 	<key>name</key>
-	<string>Change Style</string>
+	<string>Increase Indent</string>
 	<key>output</key>
 	<string>replaceSelectedText</string>
 	<key>scope</key>
 	<string>markup.list</string>
 	<key>uuid</key>
-	<string>39A74FF2-46EF-4178-9E3A-7D4DB3968E05</string>
+	<string>70F80DF8-3FFE-46E3-A1A7-5E480E2623BD</string>
 </dict>
 </plist>
