@@ -116,7 +116,7 @@
 			<key>begin</key>
 			<string>^(?=&lt;(\w+)[^&gt;]*(?&lt;!/)&gt;$)</string>
 			<key>comment</key>
-			<string>Markdown formatting is disabled inside block-level tags. We only do that when a tag is at the start of a line (which only contain that tag). It would be better to list exactly which tags this should happen for (but I'm lazy) -- Allan</string>
+			<string>Markdown formatting is disabled inside block-level tags. We only do that when a tag is at the start of a line (which only contains that tag). It would be better to list exactly which tags this should happen for (but I'm lazy) -- Allan</string>
 			<key>end</key>
 			<string>(?&lt;=^&lt;/\1&gt;$\n)</string>
 			<key>name</key>
