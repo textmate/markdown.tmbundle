@@ -313,7 +313,7 @@
 					<key>end</key>
 					<string>^\s*$</string>
 					<key>name</key>
-					<string>markup.list.paragraph</string>
+					<string>meta.paragraph.list.markdown</string>
 					<key>patterns</key>
 					<array>
 						<dict>
