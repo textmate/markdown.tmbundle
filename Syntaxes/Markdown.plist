@@ -142,9 +142,37 @@
 					<key>name</key>
 					<string>markup.underline.link.markdown</string>
 				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.other.link-title.markdown</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.link-title.markdown</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.single.link-title.markdown</string>
+				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*\[(.+)\]: (.+)$</string>
+			<string>(?x:
+				\s*						# Leading whitespace
+				\[(.+?)\]:				# Reference name
+				[ \t]*					# Optional whitespace
+				&lt;?(\S+?)&gt;?				# The url
+				[ \t]*					# Optional whitespace
+				(?:
+					  (\(.+?\))			# Match title in quotes…
+					| (".+?")			# or in parens.
+					| ('.+?')
+				)?						# Title is optional
+				\s*						# Optional whitespace
+				$
+			)</string>
 			<key>name</key>
 			<string>meta.reference.list.markdown</string>
 		</dict>
@@ -267,8 +295,8 @@
 							&lt;?(\S+?)&gt;?				# The url
 							[ \t]*					# Optional whitespace
 							(?:
-								  (\(.+?\))			# Match title in quotes…
-								| (".+?")			# or in parens.
+								  (\(.+?\))			# Match title in parens…
+								| (".+?")			# or in quotes.
 							)?						# Title is optional
 							\s*						# Optional whitespace
 						\)
