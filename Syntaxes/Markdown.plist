@@ -236,7 +236,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>markup.underline.link.markdown</string>
+							<string>markup.underline.link.name.markdown</string>
 						</dict>
 						<key>2</key>
 						<dict>
@@ -246,11 +246,33 @@
 						<key>3</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.url-or-reference.markdown</string>
+							<string>markup.underline.link.markdown</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>string.quoted.other.link-title.markdown</string>
+						</dict>
+						<key>5</key>
+						<dict>
+							<key>name</key>
+							<string>string.quoted.double.link-title.markdown</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\[([^]]*)\]( ?)\((.*?)\)</string>
+					<string>(?x:
+						\[([^\]]*?)\]				# Match the link text.
+						([ ]?)						# Space not allowed
+						\(							# Opening paren for url
+							&lt;?(\S+?)&gt;?				# The url
+							[ \t]*					# Optional whitespace
+							(?:
+								  (\(.+?\))			# Match title in quotes…
+								| (".+?")			# or in parens.
+							)?						# Title is optional
+							\s*						# Optional whitespace
+						\)
+					 )</string>
 					<key>name</key>
 					<string>meta.link.markdown</string>
 				</dict>
