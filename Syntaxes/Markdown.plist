@@ -338,7 +338,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>markup.underline.link.markdown</string>
+							<string>markup.underline.link.name.markdown</string>
 						</dict>
 						<key>2</key>
 						<dict>
