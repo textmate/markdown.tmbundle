@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>[${TM_SELECTED_TEXT:Link text...}](${1:`
+   # if the clipboard contains a single line, let’s use that
+   export __CF_USER_TEXT_ENCODING=$UID:0x8000100:0x8000100
+   if [[ $(pbpaste|wc -l) -eq 0 ]]
+      then pbpaste|sed 's/&amp;/&amp;amp;/g'
+      else echo http://site.com/
+   fi
+`})</string>
+	<key>keyEquivalent</key>
+	<string>^L</string>
+	<key>name</key>
+	<string>Wrap Selection as Link</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
+	<key>uuid</key>
+	<string>4AB16529-60A5-4CE7-8E97-B0785CAF87C4</string>
+</dict>
+</plist>

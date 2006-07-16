@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+word =STDIN.read
+require 'net/http' 
+require ENV['TM_SUPPORT_PATH']+"/lib/progress.rb"
+TextMate.call_with_progress("Asking Google for the link") {
+	response = Net::HTTP.get_response(URI.parse(URI.escape("http://www.google.com/search?q=#{word}&amp;btnI=I'm+Feeling+Lucky")))
+	print "[#{word}](#{response.to_hash['location']})"
+}
+</string>
+	<key>fallbackInput</key>
+	<string>word</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^@L</string>
+	<key>name</key>
+	<string>Feeling Lucky</string>
+	<key>output</key>
+	<string>replaceSelectedText</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
+	<key>uuid</key>
+	<string>485F0ABF-7A7D-4432-8AB6-702414D6ADBD</string>
+</dict>
+</plist>
