@@ -256,7 +256,7 @@
 					<key>match</key>
 					<string> {2,}$</string>
 					<key>name</key>
-					<string>dummy.line-break</string>
+					<string>meta.dummy.line-break</string>
 				</dict>
 				<dict>
 					<key>captures</key>
