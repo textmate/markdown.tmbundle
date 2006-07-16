@@ -41,9 +41,9 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>^([*_-]\s*){3,}$</string>
+			<string>^([*_-]\s*){3,}$\n?</string>
 			<key>name</key>
-			<string>markup.hr.markdown</string>
+			<string>meta.separator.markdown</string>
 		</dict>
 		<dict>
 			<key>captures</key>
