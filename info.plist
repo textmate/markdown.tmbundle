@@ -9,6 +9,8 @@
 		<string>B6E4F67F-D9E2-4866-A958-A96C063549DB</string>
 		<string>D548EAB4-08E6-449B-89DF-CE8BAAEF7BBA</string>
 		<string>70F80DF8-3FFE-46E3-A1A7-5E480E2623BD</string>
+		<string>AC737304-8B70-49F4-9442-AB824D8D911C</string>
+		<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
 	</array>
 	<key>mainMenu</key>
 	<dict>
@@ -20,15 +22,13 @@
 			<string>------------------------------------</string>
 			<string>49B1C71D-A748-4F99-9503-95444E8FF7BE</string>
 			<string>------------------------------------</string>
-			<string>F3A754C3-CE6B-11D9-9C17-000A95C0F626</string>
-			<string>724FCFF6-CE6B-11D9-9C17-000A95C0F626</string>
-			<string>------------------------------------</string>
 			<string>914B78B7-3C9E-4630-8BFC-665A358FB49B</string>
-			<string>350477DF-B66B-49E8-8A31-CF26C2AD745D</string>
+			<string>------------------------------------</string>
+			<string>A6E74A5E-FFE9-43FA-8936-970F3CE47DCB</string>
 			<string>1015F63E-FE5A-4DEA-9556-E603D54C25EF</string>
+			<string>350477DF-B66B-49E8-8A31-CF26C2AD745D</string>
 			<string>------------------------------------</string>
 			<string>4405912F-4AD5-40F8-93B3-A63394036ACA</string>
-			<string>AC737304-8B70-49F4-9442-AB824D8D911C</string>
 		</array>
 		<key>submenus</key>
 		<dict>
@@ -36,12 +36,11 @@
 			<dict>
 				<key>items</key>
 				<array>
-					<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
 					<string>485F0ABF-7A7D-4432-8AB6-702414D6ADBD</string>
 					<string>4AB16529-60A5-4CE7-8E97-B0785CAF87C4</string>
 				</array>
 				<key>name</key>
-				<string>Link</string>
+				<string>Links</string>
 			</dict>
 			<key>350477DF-B66B-49E8-8A31-CF26C2AD745D</key>
 			<dict>
@@ -85,6 +84,16 @@
 				<key>name</key>
 				<string>Format</string>
 			</dict>
+			<key>A6E74A5E-FFE9-43FA-8936-970F3CE47DCB</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>F3A754C3-CE6B-11D9-9C17-000A95C0F626</string>
+					<string>724FCFF6-CE6B-11D9-9C17-000A95C0F626</string>
+				</array>
+				<key>name</key>
+				<string>Headings</string>
+			</dict>
 		</dict>
 	</dict>
 	<key>name</key>
@@ -116,8 +125,6 @@
 		<string>DA157B9A-792F-11D9-A212-000D93B3A10E</string>
 		<string>DA18D8BE-792F-11D9-A212-000D93B3A10E</string>
 		<string>4405912F-4AD5-40F8-93B3-A63394036ACA</string>
-		<string>AC737304-8B70-49F4-9442-AB824D8D911C</string>
-		<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
 		<string>0A1D9874-B448-11D9-BD50-000D93B6E43C</string>
 		<string>F5E04BF4-69A9-45AE-9205-B3F3C2B00130</string>
 		<string>E23C5DD2-9A36-4B4A-9729-2A769A055B92</string>

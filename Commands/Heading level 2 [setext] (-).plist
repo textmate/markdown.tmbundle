@@ -19,12 +19,10 @@ fi</string>
 	<string>1</string>
 	<key>input</key>
 	<string>document</string>
-	<key>keyEquivalent</key>
-	<string></string>
 	<key>lineCaptureRegister</key>
 	<string>2</string>
 	<key>name</key>
-	<string>Heading Level 2 [setext]</string>
+	<string>Level 2 [setext]</string>
 	<key>output</key>
 	<string>insertAsSnippet</string>
 	<key>scope</key>
