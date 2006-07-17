@@ -37,7 +37,7 @@ print list.to_s()
 	<key>output</key>
 	<string>replaceSelectedText</string>
 	<key>scope</key>
-	<string>markup.list</string>
+	<string>text.html.markdown markup.list</string>
 	<key>uuid</key>
 	<string>39A74FF2-46EF-4178-9E3A-7D4DB3968E05</string>
 </dict>

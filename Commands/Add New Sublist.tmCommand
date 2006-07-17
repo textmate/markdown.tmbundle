@@ -35,7 +35,7 @@ print list.to_s()
 	<key>output</key>
 	<string>insertAsSnippet</string>
 	<key>scope</key>
-	<string>markup.list</string>
+	<string>text.html.markdown markup.list</string>
 	<key>uuid</key>
 	<string>000B399B-FB71-49EF-B799-A1200A3865AB</string>
 </dict>

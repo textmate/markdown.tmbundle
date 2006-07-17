@@ -107,7 +107,7 @@ print list.to_s()
 	<key>name</key>
 	<string>Cut Item</string>
 	<key>scope</key>
-	<string>markup.list</string>
+	<string>text.html.markdown markup.list</string>
 	<key>useGlobalClipboard</key>
 	<true/>
 	<key>uuid</key>
