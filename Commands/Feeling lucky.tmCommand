@@ -9,7 +9,7 @@
 word =STDIN.read
 require 'net/http' 
 require ENV['TM_SUPPORT_PATH']+"/lib/progress.rb"
-TextMate.call_with_progress("Asking Google for the link") {
+TextMate.call_with_progress(:title =&gt; "Feeling Lucky", :message =&gt; "Asking Google for the link") {
 	response = Net::HTTP.get_response(URI.parse(URI.escape("http://www.google.com/search?q=#{word}&amp;btnI=I'm+Feeling+Lucky")))
 	print "[#{word}](#{response.to_hash['location']})"
 }
@@ -21,7 +21,7 @@ TextMate.call_with_progress("Asking Google for the link") {
 	<key>keyEquivalent</key>
 	<string>^@L</string>
 	<key>name</key>
-	<string>Lookup Word / Selection on Google and Link</string>
+	<string>Feeling Lucky</string>
 	<key>output</key>
 	<string>replaceSelectedText</string>
 	<key>scope</key>
