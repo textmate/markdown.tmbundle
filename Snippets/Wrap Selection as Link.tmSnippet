@@ -7,7 +7,7 @@
    # if the clipboard contains a single line, let’s use that
    export __CF_USER_TEXT_ENCODING=$UID:0x8000100:0x8000100
    if [[ $(pbpaste|wc -l) -eq 0 ]]
-      then pbpaste|sed 's/&amp;/&amp;amp;/g'
+      then pbpaste
       else echo http://site.com/
    fi
 `})</string>
