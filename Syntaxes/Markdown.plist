@@ -41,7 +41,19 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>^([*_-]\s*){3,}$\n?</string>
+			<string>^[ ]{0,2}([ ]?\*[ ]?){3,}[ \t]*$\n?</string>
+			<key>name</key>
+			<string>meta.separator.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^[ ]{0,2}([ ]?-[ ]?){3,}[ \t]*$\n?</string>
+			<key>name</key>
+			<string>meta.separator.markdown</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^[ ]{0,2}([ ]?_[ ]?){3,}[ \t]*$\n?</string>
 			<key>name</key>
 			<string>meta.separator.markdown</string>
 		</dict>
