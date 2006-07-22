@@ -29,18 +29,6 @@
 	<array>
 		<dict>
 			<key>match</key>
-			<string>^={3,}$</string>
-			<key>name</key>
-			<string>markup.heading.1.markdown</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>^-{3,}$</string>
-			<key>name</key>
-			<string>markup.heading.2.markdown</string>
-		</dict>
-		<dict>
-			<key>match</key>
 			<string>^[ ]{0,2}([ ]?\*[ ]?){3,}[ \t]*$\n?</string>
 			<key>name</key>
 			<string>meta.separator.markdown</string>
@@ -190,9 +178,9 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(?=\S)</string>
+			<string>^(?=\S)(?!^[=-]{3,}(?=$))</string>
 			<key>end</key>
-			<string>^(?:\s*$|(?=\s*&gt;|={3,}$|-{3,}$))</string>
+			<string>(^(?:\s*$|(?=\s*&gt;))|(?&lt;=^===|^====|=====)\n|(?&lt;=^---|^----|-----)\n)</string>
 			<key>name</key>
 			<string>meta.paragraph.markdown</string>
 			<key>patterns</key>
@@ -204,6 +192,18 @@
 				<dict>
 					<key>include</key>
 					<string>text.html.basic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>^={3,}(?=$)</string>
+					<key>name</key>
+					<string>markup.heading.1.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>^-{3,}(?=$)</string>
+					<key>name</key>
+					<string>markup.heading.2.markdown</string>
 				</dict>
 			</array>
 		</dict>
