@@ -180,7 +180,7 @@
 			<key>begin</key>
 			<string>^(?=\S)(?!^[=-]{3,}(?=$))</string>
 			<key>end</key>
-			<string>(^(?:\s*$|(?=\s*&gt;))|(?&lt;=^===|^====|=====)\n|(?&lt;=^---|^----|-----)\n)</string>
+			<string>(^(?:\s*$|(?=\s*&gt;))|(?&lt;=^===|^====|=====)[ \t]*\n|(?&lt;=^---|^----|-----)[ \t]*\n)</string>
 			<key>name</key>
 			<string>meta.paragraph.markdown</string>
 			<key>patterns</key>
@@ -195,13 +195,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>^={3,}(?=$)</string>
+					<string>^={3,}(?=[ \t]*$)</string>
 					<key>name</key>
 					<string>markup.heading.1.markdown</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>^-{3,}(?=$)</string>
+					<string>^-{3,}(?=[ \t]*$)</string>
 					<key>name</key>
 					<string>markup.heading.2.markdown</string>
 				</dict>
