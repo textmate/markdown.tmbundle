@@ -230,13 +230,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>`([^\\`]|\\.)*?`</string>
+					<string>``.*?``</string>
 					<key>name</key>
 					<string>markup.raw.inline.markdown</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>``.*?``</string>
+					<string>`([^\\`]|\\.)*?`</string>
 					<key>name</key>
 					<string>markup.raw.inline.markdown</string>
 				</dict>
