@@ -135,7 +135,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.reference.markdown</string>
+					<string>constant.other.reference.link.markdown</string>
 				</dict>
 				<key>2</key>
 				<dict>
@@ -145,17 +145,17 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>string.quoted.other.link-title.markdown</string>
+					<string>string.other.link.description.title.markdown</string>
 				</dict>
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>string.quoted.double.link-title.markdown</string>
+					<string>string.other.link.description.title.markdown</string>
 				</dict>
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>string.quoted.single.link-title.markdown</string>
+					<string>string.other.link.description.title.markdown</string>
 				</dict>
 			</dict>
 			<key>match</key>
@@ -174,7 +174,7 @@
 				$
 			)</string>
 			<key>name</key>
-			<string>meta.reference.list.markdown</string>
+			<string>meta.link.reference.def.markdown</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -336,7 +336,54 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>markup.underline.link.name.markdown</string>
+							<string>string.other.link.description.markdown</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.whitespace.markdown</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>markup.underline.link.image.markdown</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.description.title.markdown</string>
+						</dict>
+						<key>5</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.description.title.markdown</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?x:
+						\!							# Images start with !
+						\[([^\]]*?)\]				# Match the link text.
+						([ ]?)						# Space not allowed
+						\(							# Opening paren for url
+							&lt;?(\S+?)&gt;?				# The url
+							[ \t]*					# Optional whitespace
+							(?:
+								  (\(.+?\))			# Match title in parens…
+								| (".+?")			# or in quotes.
+							)?						# Title is optional
+							\s*						# Optional whitespace
+						\)
+					 )</string>
+					<key>name</key>
+					<string>meta.image.inline.markdown</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.title.markdown</string>
 						</dict>
 						<key>2</key>
 						<dict>
@@ -351,12 +398,12 @@
 						<key>4</key>
 						<dict>
 							<key>name</key>
-							<string>string.quoted.other.link-title.markdown</string>
+							<string>string.other.link.description.title.markdown</string>
 						</dict>
 						<key>5</key>
 						<dict>
 							<key>name</key>
-							<string>string.quoted.double.link-title.markdown</string>
+							<string>string.other.link.description.title.markdown</string>
 						</dict>
 					</dict>
 					<key>match</key>
@@ -364,7 +411,7 @@
 						\[([^\]]*?)\]				# Match the link text.
 						([ ]?)						# Space not allowed
 						\(							# Opening paren for url
-							&lt;?(\S+?)&gt;?				# The url
+							&lt;?(\S*?)&gt;?				# The url
 							[ \t]*					# Optional whitespace
 							(?:
 								  (\(.+?\))			# Match title in parens…
@@ -374,7 +421,7 @@
 						\)
 					 )</string>
 					<key>name</key>
-					<string>meta.link.markdown</string>
+					<string>meta.link.inline.markdown</string>
 				</dict>
 				<dict>
 					<key>captures</key>
@@ -410,18 +457,51 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>markup.underline.link.name.markdown</string>
+							<string>string.other.link.description.markdown</string>
 						</dict>
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.reference.markdown</string>
+							<string>constant.other.reference.link.markdown</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\!\[([^]]*)\] *\[(.*?)\]</string>
+					<key>name</key>
+					<string>meta.image.reference.markdown</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.title.markdown</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\[([^]]*)\] *\[\]</string>
+					<key>name</key>
+					<string>meta.link.reference.literal.markdown</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>string.other.link.title.markdown</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>constant.other.reference.link.markdown</string>
 						</dict>
 					</dict>
 					<key>match</key>
 					<string>\[([^]]*)\] *\[(.*?)\]</string>
 					<key>name</key>
-					<string>meta.reference.item.markdown</string>
+					<string>meta.link.reference.markdown</string>
 				</dict>
 			</array>
 		</dict>
