@@ -241,86 +241,26 @@
 					<string>markup.raw.inline.markdown</string>
 				</dict>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>markup.italic.markdown</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>markup.italic.markdown</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>markup.italic.markdown</string>
-						</dict>
-						<key>8</key>
-						<dict>
-							<key>name</key>
-							<string>markup.italic.markdown</string>
-						</dict>
-					</dict>
 					<key>match</key>
-					<string>(?x)
-								(\*\*|__)(?=\S)								# Start italic
-									[^_*]*									# Anything Else
-									(?:((\*|_)(?=\S).+?(?&lt;=\S)\3)|[_*])?	# Italic
-									[^_*]*									# Anything Else
-									(?:((\*|_)(?=\S).+?(?&lt;=\S)\5)|[_*])?	# Italic
-									[^_*]*									# Anything Else
-									(?:((\*|_)(?=\S).+?(?&lt;=\S)\7)|[_*])?	# Italic
-									[^_*]*									# Anything Else
-									(?:((\*|_)(?=\S).+?(?&lt;=\S)\9)|[_*])?	# Italic
-									.*?										# Anything Else
-								(?&lt;![^\\]\\|[^\\]\\\\\\|[^\\]\\\\\\\\\\)(?&lt;=\S)\1
-																			# Catch escapes, exit
-							</string>
+					<string>[*]{2}([^\\*]|\\.)*[*]{2}</string>
 					<key>name</key>
 					<string>markup.bold.markdown</string>
 				</dict>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>markup.bold.markdown</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>markup.bold.markdown</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>markup.bold.markdown</string>
-						</dict>
-						<key>8</key>
-						<dict>
-							<key>name</key>
-							<string>markup.bold.markdown</string>
-						</dict>
-					</dict>
 					<key>match</key>
-					<string>(?x)
-								(\*|_)(?=\S)									# Start italic
-									[^_*]*										# Anything Else
-									(?:((\*\*|__)(?=\S).+?(?&lt;=\S)\3)|[_*])??	# Bold
-									[^_*]*										# Anything Else
-									(?:((\*\*|__)(?=\S).+?(?&lt;=\S)\5)|[_*])??	# Bold
-									[^_*]*										# Anything Else
-									(?:((\*\*|__)(?=\S).+?(?&lt;=\S)\7)|[_*])??	# Bold
-									[^_*]*										# Anything Else
-									(?:((\*\*|__)(?=\S).+?(?&lt;=\S)\9)|[_*])??	# Bold
-									.*?											# Anything Else
-								(?&lt;![^\\]\\|[^\\]\\\\\\|[^\\]\\\\\\\\\\)(?&lt;=\S)\1
-																				# Catch escapes, exit
-							</string>
+					<string>[*]([^\\* ]|\\.| [*] | )*(?&lt;! )[*]</string>
+					<key>name</key>
+					<string>markup.italic.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[_]{2}([^\\_]|\\.)*[_]{2}</string>
+					<key>name</key>
+					<string>markup.bold.markdown</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[_]([^\\_ ]|\\.| .[^\\])*[_]</string>
 					<key>name</key>
 					<string>markup.italic.markdown</string>
 				</dict>
@@ -466,7 +406,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\!\[([^]]*)\] *\[(.*?)\]</string>
+					<string>\!\[(.*?)\] *\[(.*?)\]</string>
 					<key>name</key>
 					<string>meta.image.reference.markdown</string>
 				</dict>
@@ -480,7 +420,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\[([^]]*)\] *\[\]</string>
+					<string>\[(.*?)\] *\[\]</string>
 					<key>name</key>
 					<string>meta.link.reference.literal.markdown</string>
 				</dict>
@@ -499,7 +439,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\[([^]]*)\] *\[(.*?)\]</string>
+					<string>\[(.*?)\] *\[(.*?)\]</string>
 					<key>name</key>
 					<string>meta.link.reference.markdown</string>
 				</dict>
