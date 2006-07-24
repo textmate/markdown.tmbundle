@@ -29,39 +29,30 @@
 	<array>
 		<dict>
 			<key>match</key>
-			<string>^[ ]{0,2}([ ]?\*[ ]?){3,}[ \t]*$\n?</string>
+			<string>^[ ]{,3}([-*_])([ ]{,2}\1){2,}[ \t]*$\n?</string>
 			<key>name</key>
 			<string>meta.separator.markdown</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>^[ ]{0,2}([ ]?-[ ]?){3,}[ \t]*$\n?</string>
-			<key>name</key>
-			<string>meta.separator.markdown</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>^[ ]{0,2}([ ]?_[ ]?){3,}[ \t]*$\n?</string>
-			<key>name</key>
-			<string>meta.separator.markdown</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>^#{1,6}\s*(.*?)\s*#*$</string>
-			<key>name</key>
-			<string>markup.heading.markdown</string>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s{0,3}[*+-](?=\s)</string>
+			<string>^#{1,6}\s*</string>
+			<key>contentName</key>
+			<string>entity.name.section</string>
+			<key>end</key>
+			<string>\s*#*$</string>
+			<key>name</key>
+			<string>markup.heading.markdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#inline</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^[ ]{0,3}[*+-](?=\s)</string>
 			<key>end</key>
 			<string>^(?=\S)</string>
 			<key>name</key>
@@ -76,7 +67,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s{0,3}[0-9]+\.(?=\s)</string>
+			<string>^[ ]{0,3}[0-9]+\.(?=\s)</string>
 			<key>end</key>
 			<string>^(?=\S)</string>
 			<key>name</key>
@@ -106,19 +97,36 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string> {4,}|\t</string>
+			<string>^(?=[ ]{4}|\t)</string>
 			<key>end</key>
-			<string>^\s*$</string>
+			<string>^(?![ ]{4}|\t)</string>
 			<key>name</key>
 			<string>markup.raw.block.markdown</string>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^(?=&lt;(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del)\b)</string>
+			<string>^(?=&lt;(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del)\b)(?!.*?&lt;/\1&gt;)</string>
 			<key>comment</key>
 			<string>Markdown formatting is disabled inside block-level tags.</string>
 			<key>end</key>
 			<string>(?&lt;=^&lt;/\1&gt;$\n)</string>
+			<key>name</key>
+			<string>meta.disable-markdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>text.html.basic</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(?=&lt;(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del)\b)</string>
+			<key>comment</key>
+			<string>Same rule but for one line disables.</string>
+			<key>end</key>
+			<string>$\n?</string>
 			<key>name</key>
 			<string>meta.disable-markdown</string>
 			<key>patterns</key>
@@ -210,240 +218,508 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>ampersand</key>
+		<dict>
+			<key>comment</key>
+			<string>Markdown will convert this for us. We match it so that the HTML grammar won't mark it up as invalid.</string>
+			<key>match</key>
+			<string>&amp;(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)</string>
+			<key>name</key>
+			<string>meta.other.valid-ampersand.markdown</string>
+		</dict>
+		<key>bold</key>
+		<dict>
+			<key>begin</key>
+			<string>(?x)
+						(\*\*|__)(?=\S)								# Open
+						(?=
+							(
+							    &lt;[^&gt;]*+&gt;							# HTML tags
+							  | (?&lt;raw&gt;`+)([^`]|(?!(?&lt;!`)\k&lt;raw&gt;(?!`))`)*+\k&lt;raw&gt;
+																	# Raw
+							  | \\[\\`*_{}\[\]()#.!+\-&gt;]?+			# Escapes
+							  | \[
+								(				
+								        (?&lt;square&gt;					# Named group
+											[^\[\]\\]				# Match most chars
+								          | \\.						# Escaped chars
+								          | \[ \g&lt;square&gt;*+ \]		# Nested brackets
+								        )*+
+									\]
+									(
+										(							# Reference Link
+											[ ]?					# Optional space
+											\[[^\]]*+\]				# Ref name
+										)
+									  | (							# Inline Link
+											\(						# Opening paren
+												[ \t]*+				# Optional whtiespace
+												&lt;?(.*?)&gt;?			# URL
+												[ \t]*+				# Optional whtiespace
+												(					# Optional Title
+													(?&lt;title&gt;['"])
+													(.*?)
+													\k&lt;title&gt;
+												)?
+											\)
+										)
+									)
+								)
+							  | (?!(?&lt;=\S)\1).						# Everything besides
+																	# style closer
+							)*+
+							(?&lt;=\S)\1								# Close
+						)
+					</string>
+			<key>end</key>
+			<string>(?&lt;=\S)\1</string>
+			<key>name</key>
+			<string>markup.bold.markdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?=&lt;[^&gt;]*?&gt;)</string>
+					<key>end</key>
+					<string>(?&lt;=&gt;)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>text.html.basic</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#escape</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#ampersand</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#bracket</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#raw</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#italic</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#image-inline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-inline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-inet</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-email</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#image-ref</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-ref-literal</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-ref</string>
+				</dict>
+			</array>
+		</dict>
+		<key>bracket</key>
+		<dict>
+			<key>comment</key>
+			<string>Markdown will convert this for us. We match it so that the HTML grammar won't mark it up as invalid.</string>
+			<key>match</key>
+			<string>&lt;(?![a-z/?\$!])</string>
+			<key>name</key>
+			<string>meta.other.valid-bracket.markdown</string>
+		</dict>
+		<key>escape</key>
+		<dict>
+			<key>match</key>
+			<string>\\[-`*_#+.!(){}\[\]\\&gt;]</string>
+			<key>name</key>
+			<string>constant.character.escape.markdown</string>
+		</dict>
+		<key>image-inline</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.markdown</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.whitespace.markdown</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.link.image.markdown</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.title.markdown</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.title.markdown</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?x:
+				\!							# Images start with !
+				\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\]	
+											# Match the link text.
+				([ ]?)						# Space not allowed
+				\(							# Opening paren for url
+					&lt;?(\S+?)&gt;?				# The url
+					[ \t]*					# Optional whitespace
+					(?:
+						  (\(.+?\))			# Match title in parens…
+						| (".+?")			# or in quotes.
+					)?						# Title is optional
+					\s*						# Optional whitespace
+				\)
+			 )</string>
+			<key>name</key>
+			<string>meta.image.inline.markdown</string>
+		</dict>
+		<key>image-ref</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.markdown</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>constant.other.reference.link.markdown</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\!\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\][ ]?\[(.*?)\]</string>
+			<key>name</key>
+			<string>meta.image.reference.markdown</string>
+		</dict>
 		<key>inline</key>
 		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>\\[-`*_#+.!(){}\[\]\\]</string>
-					<key>name</key>
-					<string>constant.character.escape.markdown</string>
+					<key>include</key>
+					<string>#escape</string>
 				</dict>
 				<dict>
-					<key>comment</key>
-					<string>Markdown will convert this for us. We match it so that the HTML grammar won't mark it up as invalid.</string>
-					<key>match</key>
-					<string>&amp;(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)</string>
-					<key>name</key>
-					<string>meta.other.valid-ampersand.markdown</string>
+					<key>include</key>
+					<string>#ampersand</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>``.*?``</string>
-					<key>name</key>
-					<string>markup.raw.inline.markdown</string>
+					<key>include</key>
+					<string>#bracket</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>`([^\\`]|\\.)*?`</string>
-					<key>name</key>
-					<string>markup.raw.inline.markdown</string>
+					<key>include</key>
+					<string>#raw</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>[*]{2}([^\\*]|\\.)*[*]{2}</string>
-					<key>name</key>
-					<string>markup.bold.markdown</string>
+					<key>include</key>
+					<string>#bold</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>[*]([^\\* ]|\\.| [*] | )*(?&lt;! )[*]</string>
-					<key>name</key>
-					<string>markup.italic.markdown</string>
+					<key>include</key>
+					<string>#italic</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>[_]{2}([^\\_]|\\.)*[_]{2}</string>
-					<key>name</key>
-					<string>markup.bold.markdown</string>
+					<key>include</key>
+					<string>#line-break</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>[_]([^\\_ ]|\\.| .[^\\])*[_]</string>
-					<key>name</key>
-					<string>markup.italic.markdown</string>
+					<key>include</key>
+					<string>#image-inline</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string> {2,}$</string>
-					<key>name</key>
-					<string>meta.dummy.line-break</string>
+					<key>include</key>
+					<string>#link-inline</string>
 				</dict>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>string.other.link.description.markdown</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.whitespace.markdown</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>markup.underline.link.image.markdown</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>string.other.link.description.title.markdown</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>string.other.link.description.title.markdown</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>(?x:
-						\!							# Images start with !
-						\[([^\]]*?)\]				# Match the link text.
-						([ ]?)						# Space not allowed
-						\(							# Opening paren for url
-							&lt;?(\S+?)&gt;?				# The url
-							[ \t]*					# Optional whitespace
-							(?:
-								  (\(.+?\))			# Match title in parens…
-								| (".+?")			# or in quotes.
-							)?						# Title is optional
-							\s*						# Optional whitespace
-						\)
-					 )</string>
-					<key>name</key>
-					<string>meta.image.inline.markdown</string>
+					<key>include</key>
+					<string>#link-inet</string>
 				</dict>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>string.other.link.title.markdown</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.whitespace.markdown</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>markup.underline.link.markdown</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>string.other.link.description.title.markdown</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>string.other.link.description.title.markdown</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>(?x:
-						\[([^\]]*?)\]				# Match the link text.
-						([ ]?)						# Space not allowed
-						\(							# Opening paren for url
-							&lt;?(\S*?)&gt;?				# The url
-							[ \t]*					# Optional whitespace
-							(?:
-								  (\(.+?\))			# Match title in parens…
-								| (".+?")			# or in quotes.
-							)?						# Title is optional
-							\s*						# Optional whitespace
-						\)
-					 )</string>
-					<key>name</key>
-					<string>meta.link.inline.markdown</string>
+					<key>include</key>
+					<string>#link-email</string>
 				</dict>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>markup.underline.link.markdown</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>&lt;((?:https?|ftp)://.*?)&gt;</string>
-					<key>name</key>
-					<string>meta.link.inet.markdown</string>
+					<key>include</key>
+					<string>#image-ref</string>
 				</dict>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>markup.underline.link.markdown</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>&lt;((?:mailto:)?[-.\w]+@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)&gt;</string>
-					<key>name</key>
-					<string>meta.link.email.lt-gt.markdown</string>
+					<key>include</key>
+					<string>#link-ref-literal</string>
 				</dict>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>string.other.link.description.markdown</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>constant.other.reference.link.markdown</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>\!\[(.*?)\] *\[(.*?)\]</string>
-					<key>name</key>
-					<string>meta.image.reference.markdown</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>string.other.link.title.markdown</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>\[(.*?)\] *\[\]</string>
-					<key>name</key>
-					<string>meta.link.reference.literal.markdown</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>string.other.link.title.markdown</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>constant.other.reference.link.markdown</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>\[(.*?)\] *\[(.*?)\]</string>
-					<key>name</key>
-					<string>meta.link.reference.markdown</string>
+					<key>include</key>
+					<string>#link-ref</string>
 				</dict>
 			</array>
+		</dict>
+		<key>italic</key>
+		<dict>
+			<key>begin</key>
+			<string>(?x)
+						(\*|_)(?=\S)								# Open
+						(?=
+							(
+							    &lt;[^&gt;]*+&gt;							# HTML tags
+							  | (?&lt;raw&gt;`+)([^`]|(?!(?&lt;!`)\k&lt;raw&gt;(?!`))`)*+\k&lt;raw&gt;
+																	# Raw
+							  | \\[\\`*_{}\[\]()#.!+\-&gt;]?+			# Escapes
+							  | \[
+								(				
+								        (?&lt;square&gt;					# Named group
+											[^\[\]\\]				# Match most chars
+								          | \\.						# Escaped chars
+								          | \[ \g&lt;square&gt;*+ \]		# Nested brackets
+								        )*+
+									\]
+									(
+										(							# Reference Link
+											[ ]?					# Optional space
+											\[[^\]]*+\]				# Ref name
+										)
+									  | (							# Inline Link
+											\(						# Opening paren
+												[ \t]*+				# Optional whtiespace
+												&lt;?(.*?)&gt;?			# URL
+												[ \t]*+				# Optional whtiespace
+												(					# Optional Title
+													(?&lt;title&gt;['"])
+													(.*?)
+													\k&lt;title&gt;
+												)?
+											\)
+										)
+									)
+								)
+							  | \1\1								# Must be bold closer
+							  | (?!(?&lt;=\S)\1).						# Everything besides
+																	# style closer
+							)*+
+							(?&lt;=\S)\1								# Close
+						)
+					</string>
+			<key>end</key>
+			<string>(?&lt;=\S)\1((?!\1)|(?=\1\1))</string>
+			<key>name</key>
+			<string>markup.italic.markdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?=&lt;[^&gt;]*?&gt;)</string>
+					<key>end</key>
+					<string>(?&lt;=&gt;)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>text.html.basic</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#escape</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#ampersand</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#bracket</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#raw</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#bold</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#image-inline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-inline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-inet</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-email</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#image-ref</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-ref-literal</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#link-ref</string>
+				</dict>
+			</array>
+		</dict>
+		<key>line-break</key>
+		<dict>
+			<key>match</key>
+			<string> {2,}$</string>
+			<key>name</key>
+			<string>meta.dummy.line-break</string>
+		</dict>
+		<key>link-email</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>&lt;((?:mailto:)?[-.\w]+@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)&gt;</string>
+			<key>name</key>
+			<string>meta.link.email.lt-gt.markdown</string>
+		</dict>
+		<key>link-inet</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>&lt;((?:https?|ftp)://.*?)&gt;</string>
+			<key>name</key>
+			<string>meta.link.inet.markdown</string>
+		</dict>
+		<key>link-inline</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.title.markdown</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.whitespace.markdown</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.title.markdown</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.title.markdown</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?x:
+				\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\]	
+											# Match the link text.
+				([ ]?)						# Space not allowed
+				\(							# Opening paren for url
+					&lt;?(.*?)&gt;?				# The url
+					[ \t]*					# Optional whitespace
+					(?:
+						  (\(.+?\))			# Match title in parens…
+						| (".+?")			# or in quotes.
+					)?						# Title is optional
+					\s*						# Optional whitespace
+				\)
+			 )</string>
+			<key>name</key>
+			<string>meta.link.inline.markdown</string>
+		</dict>
+		<key>link-ref</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.title.markdown</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>constant.other.reference.link.markdown</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\][ ]?\[([^\]]*+)\]</string>
+			<key>name</key>
+			<string>meta.link.reference.markdown</string>
+		</dict>
+		<key>link-ref-literal</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.title.markdown</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\][ ]?\[\]</string>
+			<key>name</key>
+			<string>meta.link.reference.literal.markdown</string>
 		</dict>
 		<key>list-paragraph</key>
 		<dict>
@@ -465,6 +741,13 @@
 					</array>
 				</dict>
 			</array>
+		</dict>
+		<key>raw</key>
+		<dict>
+			<key>match</key>
+			<string>(`+)([^`]|(?!(?&lt;!`)\1(?!`))`)*+\1</string>
+			<key>name</key>
+			<string>markup.raw.inline.markdown</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>
