@@ -160,11 +160,6 @@
 					<key>name</key>
 					<string>string.other.link.description.title.markdown</string>
 				</dict>
-				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>string.other.link.description.title.markdown</string>
-				</dict>
 			</dict>
 			<key>match</key>
 			<string>(?x:
@@ -176,7 +171,6 @@
 				(?:
 					  (\(.+?\))			# Match title in quotes…
 					| (".+?")			# or in parens.
-					| ('.+?')
 				)?						# Title is optional
 				\s*						# Optional whitespace
 				$
