@@ -21,7 +21,7 @@ TextMate.call_with_progress(:title =&gt; "Feeling Lucky", :message =&gt; "Asking
 	<key>keyEquivalent</key>
 	<string>^@L</string>
 	<key>name</key>
-	<string>Feeling Lucky</string>
+	<string>Lookup Word / Selection on Google and Link</string>
 	<key>output</key>
 	<string>replaceSelectedText</string>
 	<key>scope</key>
