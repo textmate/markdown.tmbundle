@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>firstLineMatch</key>
-	<string>^Format:.*$</string>
+	<string>^Format:\s*(?i:complete)\s*$</string>
 	<key>foldingStartMarker</key>
 	<string>(?x)
 		(&lt;(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)\b.*?&gt;
@@ -43,7 +43,7 @@
 					<key>comment</key>
 					<string>The reason for not setting scopeName = "string.unquoted" 
 						(for the parent rule) is that we do not want
-						newlines to be marked is string.unquoted</string>
+						newlines to be marked as string.unquoted</string>
 					<key>match</key>
 					<string>.+</string>
 					<key>name</key>
