@@ -28,25 +28,41 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>^[ ]{,3}([-*_])([ ]{,2}\1){2,}[ \t]*$\n?</string>
-			<key>name</key>
-			<string>meta.separator.markdown</string>
-		</dict>
-		<dict>
 			<key>begin</key>
-			<string>^#{1,6}\s*</string>
-			<key>contentName</key>
-			<string>entity.name.section</string>
+			<string>(?x)^
+				(?=	[ ]{,3}&gt;
+				|	([ ]{4}|\t)
+				|	[#]{1,6}\s*+
+				|	[ ]{,3}(?&lt;marker&gt;[-*_])([ ]{,2}\k&lt;marker&gt;){2,}[ \t]*+$
+				)</string>
+			<key>comment</key>
+			<string>We could also use an empty end match and set applyEndPatternLast, but then we must be sure that the begin pattern will only match stuff matched by the sub-patterns.</string>
 			<key>end</key>
-			<string>\s*#*$</string>
+			<string>(?x)^
+				(?!	[ ]{,3}&gt;
+				|	([ ]{4}|\t)
+				|	[#]{1,6}\s*+
+				|	[ ]{,3}(?&lt;marker&gt;[-*_])([ ]{,2}\k&lt;marker&gt;){2,}[ \t]*+$
+				)</string>
 			<key>name</key>
-			<string>markup.heading.markdown</string>
+			<string>meta.block-level.markdown</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#inline</string>
+					<string>#block_quote</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#block_raw</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#heading</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#separator</string>
 				</dict>
 			</array>
 		</dict>
@@ -79,29 +95,6 @@
 					<string>#list-paragraph</string>
 				</dict>
 			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>^[ ]{,3}&gt;</string>
-			<key>end</key>
-			<string>^\s*$</string>
-			<key>name</key>
-			<string>markup.quote.markdown</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#inline</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>^(?=[ ]{4}|\t)</string>
-			<key>end</key>
-			<string>^(?![ ]{4}|\t)</string>
-			<key>name</key>
-			<string>markup.raw.block.markdown</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -220,6 +213,92 @@
 			<string>&amp;(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)</string>
 			<key>name</key>
 			<string>meta.other.valid-ampersand.markdown</string>
+		</dict>
+		<key>block_quote</key>
+		<dict>
+			<key>begin</key>
+			<string>\G[ ]{,3}&gt;[ ]?</string>
+			<key>comment</key>
+			<string>We terminate the block quote when seeing an empty line, a separator or a line with leading &gt; characters. The latter is to “reset” the quote level for quoted lines.</string>
+			<key>end</key>
+			<string>(?x)^
+				(?=	\s*$
+				|	[ ]{,3}(?&lt;marker&gt;[-*_])([ ]{,2}\k&lt;marker&gt;){2,}[ \t]*+$
+				|	[ ]{,3}&gt;
+				)</string>
+			<key>name</key>
+			<string>markup.quote.markdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?x)\G
+						(?=	[ ]{,3}&gt;
+						)</string>
+					<key>end</key>
+					<string>^</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#block_quote</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>applyEndPatternLast</key>
+					<integer>1</integer>
+					<key>begin</key>
+					<string>(?x)\G
+						(?=	([ ]{4}|\t)
+						|	[#]{1,6}\s*+
+						|	[ ]{,3}(?&lt;marker&gt;[-*_])([ ]{,2}\k&lt;marker&gt;){2,}[ \t]*+$
+						)</string>
+					<key>end</key>
+					<string>^</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#block_raw</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#heading</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#separator</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(?x)\G
+						(?!	$
+						|	[ ]{,3}&gt;
+						|	([ ]{4}|\t)
+						|	[#]{1,6}\s*+
+						|	[ ]{,3}(?&lt;marker&gt;[-*_])([ ]{,2}\k&lt;marker&gt;){2,}[ \t]*+$
+						)</string>
+					<key>end</key>
+					<string>$|(?&lt;=\n)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#inline</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>block_raw</key>
+		<dict>
+			<key>match</key>
+			<string>\G([ ]{4}|\t).*$\n?</string>
+			<key>name</key>
+			<string>markup.raw.block.markdown</string>
 		</dict>
 		<key>bold</key>
 		<dict>
@@ -349,6 +428,24 @@
 			<string>\\[-`*_#+.!(){}\[\]\\&gt;]</string>
 			<key>name</key>
 			<string>constant.character.escape.markdown</string>
+		</dict>
+		<key>heading</key>
+		<dict>
+			<key>begin</key>
+			<string>\G#{1,6}\s*</string>
+			<key>contentName</key>
+			<string>entity.name.section</string>
+			<key>end</key>
+			<string>\s*#*$</string>
+			<key>name</key>
+			<string>markup.heading.markdown</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#inline</string>
+				</dict>
+			</array>
 		</dict>
 		<key>image-inline</key>
 		<dict>
@@ -742,6 +839,13 @@
 			<string>(`+)([^`]|(?!(?&lt;!`)\1(?!`))`)*+\1</string>
 			<key>name</key>
 			<string>markup.raw.inline.markdown</string>
+		</dict>
+		<key>separator</key>
+		<dict>
+			<key>match</key>
+			<string>\G[ ]{,3}([-*_])([ ]{,2}\1){2,}[ \t]*$\n?</string>
+			<key>name</key>
+			<string>meta.separator.markdown</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>
