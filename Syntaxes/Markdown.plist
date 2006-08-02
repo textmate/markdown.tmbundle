@@ -82,7 +82,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*&gt;</string>
+			<string>^[ ]{,3}&gt;</string>
 			<key>end</key>
 			<string>^\s*$</string>
 			<key>name</key>
