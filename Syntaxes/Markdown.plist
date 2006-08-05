@@ -432,7 +432,7 @@
 		<key>heading</key>
 		<dict>
 			<key>begin</key>
-			<string>\G#{1,6}\s*</string>
+			<string>\G#{1,6}\s*(?=\S)</string>
 			<key>contentName</key>
 			<string>entity.name.section</string>
 			<key>end</key>
