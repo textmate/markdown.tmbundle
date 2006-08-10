@@ -36,7 +36,11 @@
 				|	[ ]{,3}(?&lt;marker&gt;[-*_])([ ]{,2}\k&lt;marker&gt;){2,}[ \t]*+$
 				)</string>
 			<key>comment</key>
-			<string>We could also use an empty end match and set applyEndPatternLast, but then we must be sure that the begin pattern will only match stuff matched by the sub-patterns.</string>
+			<string>
+				We could also use an empty end match and set
+				applyEndPatternLast, but then we must be sure that the begin
+				pattern will only match stuff matched by the sub-patterns.
+			</string>
 			<key>end</key>
 			<string>(?x)^
 				(?!	[ ]{,3}&gt;
@@ -100,7 +104,9 @@
 			<key>begin</key>
 			<string>^(?=&lt;(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del)\b)(?!.*?&lt;/\1&gt;)</string>
 			<key>comment</key>
-			<string>Markdown formatting is disabled inside block-level tags.</string>
+			<string>
+				Markdown formatting is disabled inside block-level tags.
+			</string>
 			<key>end</key>
 			<string>(?&lt;=^&lt;/\1&gt;$\n)</string>
 			<key>name</key>
@@ -208,7 +214,10 @@
 		<key>ampersand</key>
 		<dict>
 			<key>comment</key>
-			<string>Markdown will convert this for us. We match it so that the HTML grammar won't mark it up as invalid.</string>
+			<string>
+				Markdown will convert this for us. We match it so that the
+				HTML grammar will not mark it up as invalid.
+			</string>
 			<key>match</key>
 			<string>&amp;(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)</string>
 			<key>name</key>
@@ -219,7 +228,11 @@
 			<key>begin</key>
 			<string>\G[ ]{,3}&gt;[ ]?</string>
 			<key>comment</key>
-			<string>We terminate the block quote when seeing an empty line, a separator or a line with leading &gt; characters. The latter is to “reset” the quote level for quoted lines.</string>
+			<string>
+				We terminate the block quote when seeing an empty line, a
+				separator or a line with leading &gt; characters. The latter is
+				to “reset” the quote level for quoted lines.
+			</string>
 			<key>end</key>
 			<string>(?x)^
 				(?=	\s*$
@@ -416,7 +429,10 @@
 		<key>bracket</key>
 		<dict>
 			<key>comment</key>
-			<string>Markdown will convert this for us. We match it so that the HTML grammar won't mark it up as invalid.</string>
+			<string>
+				Markdown will convert this for us. We match it so that the
+				HTML grammar will not mark it up as invalid.
+			</string>
 			<key>match</key>
 			<string>&lt;(?![a-z/?\$!])</string>
 			<key>name</key>
