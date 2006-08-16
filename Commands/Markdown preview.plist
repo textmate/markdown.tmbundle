@@ -46,7 +46,7 @@ ${TM_RUBY:-ruby} -e '
   end
 
   puts lines.join("\n")
-  puts "&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
+  puts "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
 
 '|Markdown.pl|SmartyPants.pl
 
