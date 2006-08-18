@@ -8,9 +8,9 @@
 	<string>D99E8C0C-792F-11D9-A212-000D93B3A10E</string>
 	<key>command</key>
 	<string>. "$TM_SUPPORT_PATH/lib/webpreview.sh"
-htmlHeader "Markdown Cheat Sheet" "Markdown Cheat Sheet"
+html_header "Markdown Cheat Sheet" "Markdown Cheat Sheet"
 Markdown.pl "$TM_BUNDLE_SUPPORT/help.markdown"
-htmlFooter</string>
+html_footer</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
