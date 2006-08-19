@@ -5,7 +5,7 @@
 	<key>name</key>
 	<string>Typing Pairs: Disable _ for Raw and Links</string>
 	<key>scope</key>
-	<string>text.html.markdown markup.raw, markup.underline.link.markdown</string>
+	<string>text.html.markdown markup.raw, text.html.markdown meta.link</string>
 	<key>settings</key>
 	<dict>
 		<key>smartTypingPairs</key>
