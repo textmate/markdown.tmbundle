@@ -450,7 +450,7 @@
 			<key>begin</key>
 			<string>\G#{1,6}\s*(?=\S)</string>
 			<key>contentName</key>
-			<string>entity.name.section</string>
+			<string>entity.name.section.markdown</string>
 			<key>end</key>
 			<string>\s*#*$\n?</string>
 			<key>name</key>
