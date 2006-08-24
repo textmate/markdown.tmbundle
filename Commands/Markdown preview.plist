@@ -6,7 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>. "$TM_SUPPORT_PATH/lib/webpreview.sh"
-html_header "Markdown Preview" "${TM_FILENAME:-untitled.markdown}"
+html_header "Markdown Preview" "${TM_FILENAME:-}"
 
 if [[ -f "$TM_FILEPATH" ]]; then
   echo "&lt;base href='tm-file://${TM_FILEPATH// /%20}'&gt;"
