@@ -5,31 +5,12 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>. "$TM_SUPPORT_PATH/lib/html.sh"
-
-if [[ -z $TM_FILENAME ]]
-  then title="Markdown as HTML"
-  else title="${TM_FILENAME%.*}"
-fi
-
-htmlHeader "$title" '&lt;style type="text/css"&gt;
-  body {  
-    background-color: #eee;
-  }
-  .contents { 
-    background: white;
-    font-family: Georgia, serif;
-    font-size: 13px;
-    border: 1px #888 solid;
-    padding: 0 1em;
-  }
-  &lt;/style&gt;'
+	<string>. "$TM_SUPPORT_PATH/lib/webpreview.sh"
+html_header "Markdown Preview" "${TM_FILENAME:-untitled.markdown}"
 
 if [[ -f "$TM_FILEPATH" ]]; then
   echo "&lt;base href='tm-file://${TM_FILEPATH// /%20}'&gt;"
 fi
-
-beginTag div 'contents'
 
 # make the header above caret into a link that we scroll down to
 ${TM_RUBY:-ruby} -e '
@@ -49,10 +30,7 @@ ${TM_RUBY:-ruby} -e '
   puts "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
 
 '|Markdown.pl|SmartyPants.pl
-
-endTag
-htmlFooter
-</string>
+html_footer</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>
