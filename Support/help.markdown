@@ -1,5 +1,3 @@
-# Markdown Syntax Cheat Sheet #
-
 ## Phrase Emphasis ##
 
 	*italic*   **bold**
