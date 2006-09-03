@@ -11,8 +11,6 @@ MultiMarkdown.pl|SmartyPants.pl|xsltproc -novalid -nonet "$TM_BUNDLE_SUPPORT/xht
 	<string>document</string>
 	<key>input</key>
 	<string>selection</string>
-	<key>keyEquivalent</key>
-	<string>^L</string>
 	<key>name</key>
 	<string>Convert Document / Selection to LaTeX</string>
 	<key>output</key>
