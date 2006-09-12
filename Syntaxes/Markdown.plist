@@ -364,6 +364,8 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>applyEndPatternLast</key>
+					<integer>1</integer>
 					<key>begin</key>
 					<string>(?=&lt;[^&gt;]*?&gt;)</string>
 					<key>end</key>
@@ -498,7 +500,7 @@
 				\!							# Images start with !
 				\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\]	
 											# Match the link text.
-				([ ]?)						# Space not allowed
+				([ ])?						# Space not allowed
 				\(							# Opening paren for url
 					&lt;?(\S+?)&gt;?				# The url
 					[ \t]*					# Optional whitespace
@@ -646,6 +648,8 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>applyEndPatternLast</key>
+					<integer>1</integer>
 					<key>begin</key>
 					<string>(?=&lt;[^&gt;]*?&gt;)</string>
 					<key>end</key>
@@ -779,7 +783,7 @@
 			<string>(?x:
 				\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\]	
 											# Match the link text.
-				([ ]?)						# Space not allowed
+				([ ])?						# Space not allowed
 				\(							# Opening paren for url
 					&lt;?(.*?)&gt;?				# The url
 					[ \t]*					# Optional whitespace
