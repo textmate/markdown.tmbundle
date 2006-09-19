@@ -4,8 +4,19 @@
 <dict>
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
+	<key>bundleUUID</key>
+	<string>D99E8C0C-792F-11D9-A212-000D93B3A10E</string>
 	<key>command</key>
-	<string>MultiMarkdown.pl|SmartyPants.pl</string>
+	<string>. "$TM_SUPPORT_PATH/lib/webpreview.sh"
+
+if [[ -z $TM_FILENAME ]]
+  then title="Markdown as HTML"
+  else title="${TM_FILENAME%.*}"
+fi
+
+html_header "$title" "MultiMarkdown"
+MultiMarkdown.pl|SmartyPants.pl
+html_footer</string>
 	<key>fallbackInput</key>
 	<string>document</string>
 	<key>input</key>
