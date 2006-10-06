@@ -9,9 +9,9 @@
 	<key>capturePattern</key>
 	<string>^([^:]*):([^:]*):(.*)$</string>
 	<key>command</key>
-	<string>: ${TM_LINE_INDEX:=$((TM_COLUMN_NUMBER-1))} # backwards compatibility
+	<string>#!/bin/sh
 
-if [[ $TM_LINE_INDEX == 0 ]] # only when at BOL
+if [[ $TM_LINE_INDEX == 0 &amp;&amp; $TM_LINE_NUMBER != 1 ]]
    then head -n$((TM_LINE_NUMBER-1))|tail -n1|sed 's/./=/g'
    else echo -ne '=\t'
 fi</string>
