@@ -24,13 +24,18 @@
 	<array>
 		<dict>
 			<key>begin</key>
-			<string>^([A-Za-z0-9]+):\s*</string>
+			<string>^([A-Za-z0-9]+)(:)\s*</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.other.multimarkdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.key-value.multimarkdown</string>
 				</dict>
 			</dict>
 			<key>end</key>

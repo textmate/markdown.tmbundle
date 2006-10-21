@@ -72,7 +72,15 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^[ ]{0,3}[*+-](?=\s)</string>
+			<string>^[ ]{0,3}([*+-])(?=\s)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.list-item.markdown</string>
+				</dict>
+			</dict>
 			<key>end</key>
 			<string>^(?=\S)</string>
 			<key>name</key>
@@ -87,7 +95,15 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^[ ]{0,3}[0-9]+\.(?=\s)</string>
+			<string>^[ ]{0,3}[0-9]+(\.)(?=\s)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.list-item.markdown</string>
+				</dict>
+			</dict>
 			<key>end</key>
 			<string>^(?=\S)</string>
 			<key>name</key>
@@ -142,34 +158,79 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>constant.other.reference.link.markdown</string>
+					<string>punctuation.definition.constant.markdown</string>
+				</dict>
+				<key>10</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.markdown</string>
+				</dict>
+				<key>11</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.title.markdown</string>
+				</dict>
+				<key>12</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.markdown</string>
+				</dict>
+				<key>13</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.markdown</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>markup.underline.link.markdown</string>
+					<string>constant.other.reference.link.markdown</string>
 				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>string.other.link.description.title.markdown</string>
+					<string>punctuation.definition.constant.markdown</string>
 				</dict>
 				<key>4</key>
 				<dict>
 					<key>name</key>
+					<string>punctuation.separator.key-value.markdown</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.link.markdown</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.link.markdown</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
 					<string>string.other.link.description.title.markdown</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.markdown</string>
 				</dict>
 			</dict>
 			<key>match</key>
 			<string>(?x:
 				\s*						# Leading whitespace
-				\[(.+?)\]:				# Reference name
+				(\[)(.+?)(\])(:)		# Reference name
 				[ \t]*					# Optional whitespace
-				&lt;?(\S+?)&gt;?				# The url
+				(&lt;?)(\S+?)(&gt;?)			# The url
 				[ \t]*					# Optional whitespace
 				(?:
-					  (\(.+?\))			# Match title in quotes…
-					| (".+?")			# or in parens.
+					  ((\().+?(\)))		# Match title in quotes…
+					| ((").+?("))		# or in parens.
 				)?						# Title is optional
 				\s*						# Optional whitespace
 				$
@@ -195,14 +256,30 @@
 					<string>text.html.basic</string>
 				</dict>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.heading.markdown</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>^={3,}(?=[ \t]*$)</string>
+					<string>^(={3,})(?=[ \t]*$)</string>
 					<key>name</key>
 					<string>markup.heading.1.markdown</string>
 				</dict>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.heading.markdown</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>^-{3,}(?=[ \t]*$)</string>
+					<string>^(-{3,})(?=[ \t]*$)</string>
 					<key>name</key>
 					<string>markup.heading.2.markdown</string>
 				</dict>
@@ -226,7 +303,15 @@
 		<key>block_quote</key>
 		<dict>
 			<key>begin</key>
-			<string>\G[ ]{,3}&gt;(?!$)[ ]?</string>
+			<string>\G[ ]{,3}(&gt;)(?!$)[ ]?</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.blockquote.markdown</string>
+				</dict>
+			</dict>
 			<key>comment</key>
 			<string>
 				We terminate the block quote when seeing an empty line, a
@@ -357,8 +442,16 @@
 							(?&lt;=\S)\1								# Close
 						)
 					</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.bold.markdown</string>
+				</dict>
+			</dict>
 			<key>end</key>
-			<string>(?&lt;=\S)\1</string>
+			<string>(?&lt;=\S)(\1)</string>
 			<key>name</key>
 			<string>markup.bold.markdown</string>
 			<key>patterns</key>
@@ -450,11 +543,19 @@
 		<key>heading</key>
 		<dict>
 			<key>begin</key>
-			<string>\G#{1,6}(?!#)\s*(?=\S)</string>
+			<string>\G(#{1,6})(?!#)\s*(?=\S)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.heading.markdown</string>
+				</dict>
+			</dict>
 			<key>contentName</key>
 			<string>entity.name.section.markdown</string>
 			<key>end</key>
-			<string>\s*#*$\n?</string>
+			<string>\s*(#*)$\n?</string>
 			<key>name</key>
 			<string>markup.heading.markdown</string>
 			<key>patterns</key>
@@ -472,44 +573,94 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
+					<string>punctuation.defintion.string.begin.markdown</string>
+				</dict>
+				<key>10</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.title.markdown</string>
+				</dict>
+				<key>11</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.defintion.string.markdown</string>
+				</dict>
+				<key>12</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.defintion.string.markdown</string>
+				</dict>
+				<key>13</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.title.markdown</string>
+				</dict>
+				<key>14</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.defintion.string.markdown</string>
+				</dict>
+				<key>15</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.defintion.string.markdown</string>
+				</dict>
+				<key>16</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.metadata.markdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
 					<string>string.other.link.description.markdown</string>
 				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>invalid.illegal.whitespace.markdown</string>
-				</dict>
-				<key>4</key>
-				<dict>
-					<key>name</key>
-					<string>markup.underline.link.image.markdown</string>
+					<string>punctuation.defintion.string.end.markdown</string>
 				</dict>
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>string.other.link.description.title.markdown</string>
+					<string>invalid.illegal.whitespace.markdown</string>
 				</dict>
 				<key>6</key>
 				<dict>
 					<key>name</key>
-					<string>string.other.link.description.title.markdown</string>
+					<string>punctuation.definition.metadata.markdown</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.defintion.link.markdown</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.link.image.markdown</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.defintion.link.markdown</string>
 				</dict>
 			</dict>
 			<key>match</key>
 			<string>(?x:
 				\!							# Images start with !
-				\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\]	
+				(\[)((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)(\])	
 											# Match the link text.
 				([ ])?						# Space not allowed
-				\(							# Opening paren for url
-					&lt;?(\S+?)&gt;?				# The url
+				(\()						# Opening paren for url
+					(&lt;?)(\S+?)(&gt;?)			# The url
 					[ \t]*					# Optional whitespace
 					(?:
-						  (\(.+?\))			# Match title in parens…
-						| (".+?")			# or in quotes.
+						  ((\().+?(\)))		# Match title in parens…
+						| ((").+?("))		# or in quotes.
 					)?						# Title is optional
 					\s*						# Optional whitespace
-				\)
+				(\))
 			 )</string>
 			<key>name</key>
 			<string>meta.image.inline.markdown</string>
@@ -521,16 +672,36 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
+					<string>punctuation.defintion.string.begin.markdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
 					<string>string.other.link.description.markdown</string>
 				</dict>
-				<key>3</key>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.defintion.string.begin.markdown</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.defintion.constant.markdown</string>
+				</dict>
+				<key>6</key>
 				<dict>
 					<key>name</key>
 					<string>constant.other.reference.link.markdown</string>
 				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.defintion.constant.markdown</string>
+				</dict>
 			</dict>
 			<key>match</key>
-			<string>\!\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\][ ]?\[(.*?)\]</string>
+			<string>\!(\[)((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)(\])[ ]?(\[)(.*?)(\])</string>
 			<key>name</key>
 			<string>meta.image.reference.markdown</string>
 		</dict>
@@ -641,8 +812,16 @@
 							(?&lt;=\S)\1								# Close
 						)
 					</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.italic.markdown</string>
+				</dict>
+			</dict>
 			<key>end</key>
-			<string>(?&lt;=\S)\1((?!\1)|(?=\1\1))</string>
+			<string>(?&lt;=\S)(\1)((?!\1)|(?=\1\1))</string>
 			<key>name</key>
 			<string>markup.italic.markdown</string>
 			<key>patterns</key>
@@ -726,11 +905,21 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
+					<string>punctuation.definition.link.markdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
 					<string>markup.underline.link.markdown</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.link.markdown</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>&lt;((?:mailto:)?[-.\w]+@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)&gt;</string>
+			<string>(&lt;)((?:mailto:)?[-.\w]+@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)(&gt;)</string>
 			<key>name</key>
 			<string>meta.link.email.lt-gt.markdown</string>
 		</dict>
@@ -741,11 +930,21 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
+					<string>punctuation.definition.link.markdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
 					<string>markup.underline.link.markdown</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.link.markdown</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>&lt;((?:https?|ftp)://.*?)&gt;</string>
+			<string>(&lt;)((?:https?|ftp)://.*?)(&gt;)</string>
 			<key>name</key>
 			<string>meta.link.inet.markdown</string>
 		</dict>
@@ -756,43 +955,93 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>string.other.link.title.markdown</string>
+					<string>punctuation.definition.string.begin.markdown</string>
 				</dict>
-				<key>3</key>
+				<key>10</key>
 				<dict>
 					<key>name</key>
-					<string>invalid.illegal.whitespace.markdown</string>
+					<string>string.other.link.description.title.markdown</string>
+				</dict>
+				<key>11</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.markdown</string>
+				</dict>
+				<key>12</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.markdown</string>
+				</dict>
+				<key>13</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.description.title.markdown</string>
+				</dict>
+				<key>14</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.markdown</string>
+				</dict>
+				<key>15</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.markdown</string>
+				</dict>
+				<key>16</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.metadata.markdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.title.markdown</string>
 				</dict>
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>markup.underline.link.markdown</string>
+					<string>punctuation.definition.string.end.markdown</string>
 				</dict>
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>string.other.link.description.title.markdown</string>
+					<string>invalid.illegal.whitespace.markdown</string>
 				</dict>
 				<key>6</key>
 				<dict>
 					<key>name</key>
-					<string>string.other.link.description.title.markdown</string>
+					<string>punctuation.definition.metadata.markdown</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.link.markdown</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.link.markdown</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.link.markdown</string>
 				</dict>
 			</dict>
 			<key>match</key>
 			<string>(?x:
-				\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\]	
+				(\[)((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)(\])	
 											# Match the link text.
 				([ ])?						# Space not allowed
-				\(							# Opening paren for url
-					&lt;?(.*?)&gt;?				# The url
+				(\()						# Opening paren for url
+					(&lt;?)(.*?)(&gt;?)			# The url
 					[ \t]*					# Optional whitespace
 					(?:
-						  (\(.+?\))			# Match title in parens…
-						| (".+?")			# or in quotes.
+						  ((\().+?(\)))		# Match title in parens…
+						| ((").+?("))		# or in quotes.
 					)?						# Title is optional
 					\s*						# Optional whitespace
-				\)
+				(\))
 			 )</string>
 			<key>name</key>
 			<string>meta.link.inline.markdown</string>
@@ -804,16 +1053,36 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
+					<string>punctuation.definition.string.begin.markdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
 					<string>string.other.link.title.markdown</string>
 				</dict>
-				<key>3</key>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.markdown</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.constant.begin.markdown</string>
+				</dict>
+				<key>6</key>
 				<dict>
 					<key>name</key>
 					<string>constant.other.reference.link.markdown</string>
 				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.constant.end.markdown</string>
+				</dict>
 			</dict>
 			<key>match</key>
-			<string>\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\][ ]?\[([^\]]*+)\]</string>
+			<string>(\[)((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)(\])[ ]?(\[)([^\]]*+)(\])</string>
 			<key>name</key>
 			<string>meta.link.reference.markdown</string>
 		</dict>
@@ -824,11 +1093,31 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
+					<string>punctuation.definition.string.begin.markdown</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
 					<string>string.other.link.title.markdown</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.markdown</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.constant.begin.markdown</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.constant.end.markdown</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\[((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)\][ ]?\[\]</string>
+			<string>(\[)((?&lt;square&gt;[^\[\]\\]|\\.|\[\g&lt;square&gt;*+\])*+)(\])[ ]?(\[)(\])</string>
 			<key>name</key>
 			<string>meta.link.reference.literal.markdown</string>
 		</dict>
@@ -855,8 +1144,21 @@
 		</dict>
 		<key>raw</key>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.raw.markdown</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.raw.markdown</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>(`+)([^`]|(?!(?&lt;!`)\1(?!`))`)*+\1</string>
+			<string>(`+)([^`]|(?!(?&lt;!`)\1(?!`))`)*+(\1)</string>
 			<key>name</key>
 			<string>markup.raw.inline.markdown</string>
 		</dict>
