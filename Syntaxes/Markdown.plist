@@ -78,7 +78,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.list-item.markdown</string>
+					<string>punctuation.definition.list_item.markdown</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -101,7 +101,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.list-item.markdown</string>
+					<string>punctuation.definition.list_item.markdown</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -573,7 +573,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.string.begin.markdown</string>
+					<string>punctuation.definition.string.begin.markdown</string>
 				</dict>
 				<key>10</key>
 				<dict>
@@ -583,12 +583,12 @@
 				<key>11</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.string.markdown</string>
+					<string>punctuation.definition.string.markdown</string>
 				</dict>
 				<key>12</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.string.markdown</string>
+					<string>punctuation.definition.string.markdown</string>
 				</dict>
 				<key>13</key>
 				<dict>
@@ -598,12 +598,12 @@
 				<key>14</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.string.markdown</string>
+					<string>punctuation.definition.string.markdown</string>
 				</dict>
 				<key>15</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.string.markdown</string>
+					<string>punctuation.definition.string.markdown</string>
 				</dict>
 				<key>16</key>
 				<dict>
@@ -618,7 +618,7 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.string.end.markdown</string>
+					<string>punctuation.definition.string.end.markdown</string>
 				</dict>
 				<key>5</key>
 				<dict>
@@ -633,7 +633,7 @@
 				<key>7</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.link.markdown</string>
+					<string>punctuation.definition.link.markdown</string>
 				</dict>
 				<key>8</key>
 				<dict>
@@ -643,7 +643,7 @@
 				<key>9</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.link.markdown</string>
+					<string>punctuation.definition.link.markdown</string>
 				</dict>
 			</dict>
 			<key>match</key>
@@ -672,7 +672,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.string.begin.markdown</string>
+					<string>punctuation.definition.string.begin.markdown</string>
 				</dict>
 				<key>2</key>
 				<dict>
@@ -682,12 +682,12 @@
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.string.begin.markdown</string>
+					<string>punctuation.definition.string.begin.markdown</string>
 				</dict>
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.constant.markdown</string>
+					<string>punctuation.definition.constant.markdown</string>
 				</dict>
 				<key>6</key>
 				<dict>
@@ -697,7 +697,7 @@
 				<key>7</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.defintion.constant.markdown</string>
+					<string>punctuation.definition.constant.markdown</string>
 				</dict>
 			</dict>
 			<key>match</key>
