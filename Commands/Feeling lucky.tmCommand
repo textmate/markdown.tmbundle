@@ -25,7 +25,7 @@ TextMate.call_with_progress(:title =&gt; "Feeling Lucky", :message =&gt; "Asking
 	<key>output</key>
 	<string>replaceSelectedText</string>
 	<key>scope</key>
-	<string>text.html.markdown</string>
+	<string>text.html.markdown -meta.disable-markdown</string>
 	<key>uuid</key>
 	<string>485F0ABF-7A7D-4432-8AB6-702414D6ADBD</string>
 </dict>
