@@ -10,7 +10,7 @@
 	<key>name</key>
 	<string>Hard Linebreak</string>
 	<key>scope</key>
-	<string>text.html.markdown</string>
+	<string>text.html.markdown -meta.disable-markdown</string>
 	<key>uuid</key>
 	<string>4405912F-4AD5-40F8-93B3-A63394036ACA</string>
 </dict>

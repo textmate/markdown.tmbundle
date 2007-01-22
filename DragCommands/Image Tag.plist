@@ -22,7 +22,7 @@ echo -n "![\${1:$alt}]($TM_DROPPED_FILE)"</string>
 	<key>output</key>
 	<string>insertAsSnippet</string>
 	<key>scope</key>
-	<string>text.html.markdown</string>
+	<string>text.html.markdown -meta.disable-markdown</string>
 	<key>uuid</key>
 	<string>DA18D8BE-792F-11D9-A212-000D93B3A10E</string>
 </dict>

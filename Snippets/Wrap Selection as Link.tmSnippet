@@ -16,7 +16,7 @@
 	<key>name</key>
 	<string>Wrap Selection as Link</string>
 	<key>scope</key>
-	<string>text.html.markdown</string>
+	<string>text.html.markdown -meta.disable-markdown</string>
 	<key>uuid</key>
 	<string>4AB16529-60A5-4CE7-8E97-B0785CAF87C4</string>
 </dict>

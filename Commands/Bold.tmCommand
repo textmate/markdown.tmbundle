@@ -33,7 +33,7 @@ end</string>
 	<key>output</key>
 	<string>insertAsSnippet</string>
 	<key>scope</key>
-	<string>text.html.markdown</string>
+	<string>text.html.markdown -meta.disable-markdown</string>
 	<key>uuid</key>
 	<string>31614C02-1FED-4644-9518-2C2DEF0D7A2C</string>
 </dict>
