@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>contactEmailRot13</key>
+	<string>zfurrgf@juvgrsnyyf.bet</string>
+	<key>contactName</key>
+	<string>Michael Sheets</string>
 	<key>deleted</key>
 	<array>
 		<string>58434A58-85E8-11D9-9CD0-000D93B3A10E</string>
@@ -12,6 +16,8 @@
 		<string>AC737304-8B70-49F4-9442-AB824D8D911C</string>
 		<string>6A1D4980-B41C-11D9-95E7-000D93B6E43C</string>
 	</array>
+	<key>description</key>
+	<string>&lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt; allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML. This bundle provides preview functionality, syntax highlighting, and several useful commands.</string>
 	<key>mainMenu</key>
 	<dict>
 		<key>items</key>
