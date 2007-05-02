@@ -9,7 +9,8 @@
 # web-log editor like Ecto or MarsEdit.  You can write in markdown
 # and then convert back to html before save and close.
 
-Markdown.pl|SmartyPants.pl|perl -pe '
+HTML4=$([ -n "$TM_XHTML" ] || echo '--html4tags')
+Markdown.pl $HTML4|"${TM_SMARTYPANTS:-SmartyPants.pl}"|perl -pe '
 	# make &lt;h1&gt;Header&lt;/h1&gt; into &lt;h1 id="header"&gt;Header&lt;/h1&gt;
 	# so that we can link to page#header
 	if(($tag, $title) = /&lt;(h[1-6])&gt;(.*?)&lt;\/\1&gt;/) {
