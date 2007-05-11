@@ -15,11 +15,16 @@ MultiMarkdown.pl|SmartyPants.pl|"${TM_RUBY:-ruby}" &gt;"$DST.html" -KU -pe '$_.g
 # show the generated HTML file
 cat "$DST.html"
 
-# convert to PDF with htmldoc and open in Preview
+# convert to PDF with htmldoc
 require_cmd htmldoc
 htmldoc -f "$DST.pdf" --header "" --footer "" --webpage "$DST.html"
-open -a Preview "$DST.pdf"
 
+# open in the users PDF viewer (falling back on Preview)
+viewer=$(find_app "${TM_PDF_VIEWER:-Preview.app}")
+if [ $? = 0 ];
+	then open -a "$viewer" "$DST.pdf"
+	else echo "Could not find your PDF viewer: ‘${TM_PDF_VIEWER:-Preview.app}’"
+fi
 </string>
 	<key>fallbackInput</key>
 	<string>document</string>
