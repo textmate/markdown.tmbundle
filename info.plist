@@ -33,23 +33,12 @@
 			<string>914B78B7-3C9E-4630-8BFC-665A358FB49B</string>
 			<string>------------------------------------</string>
 			<string>A6E74A5E-FFE9-43FA-8936-970F3CE47DCB</string>
-			<string>1015F63E-FE5A-4DEA-9556-E603D54C25EF</string>
 			<string>350477DF-B66B-49E8-8A31-CF26C2AD745D</string>
 			<string>------------------------------------</string>
 			<string>4405912F-4AD5-40F8-93B3-A63394036ACA</string>
 		</array>
 		<key>submenus</key>
 		<dict>
-			<key>1015F63E-FE5A-4DEA-9556-E603D54C25EF</key>
-			<dict>
-				<key>items</key>
-				<array>
-					<string>485F0ABF-7A7D-4432-8AB6-702414D6ADBD</string>
-					<string>4AB16529-60A5-4CE7-8E97-B0785CAF87C4</string>
-				</array>
-				<key>name</key>
-				<string>Links</string>
-			</dict>
 			<key>350477DF-B66B-49E8-8A31-CF26C2AD745D</key>
 			<dict>
 				<key>items</key>
