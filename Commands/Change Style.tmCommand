@@ -31,7 +31,7 @@ print list.to_s()
 	<key>input</key>
 	<string>selection</string>
 	<key>keyEquivalent</key>
-	<string>^~@l</string>
+	<string>^*</string>
 	<key>name</key>
 	<string>Change Style</string>
 	<key>output</key>
