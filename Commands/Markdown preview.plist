@@ -33,7 +33,7 @@ html_footer</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>
-	<string>^~@p</string>
+	<string>^T</string>
 	<key>name</key>
 	<string>Preview</string>
 	<key>output</key>
