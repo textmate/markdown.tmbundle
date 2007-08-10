@@ -84,7 +84,7 @@
 			<key>end</key>
 			<string>^(?=\S)</string>
 			<key>name</key>
-			<string>markup.list.unnumbered</string>
+			<string>markup.list.unnumbered.markdown</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -107,7 +107,7 @@
 			<key>end</key>
 			<string>^(?=\S)</string>
 			<key>name</key>
-			<string>markup.list.numbered</string>
+			<string>markup.list.numbered.markdown</string>
 			<key>patterns</key>
 			<array>
 				<dict>
