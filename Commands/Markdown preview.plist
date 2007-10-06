@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
@@ -14,7 +14,7 @@ fi
 
 # Convert to html then make one of the html tags above caret 
 # into a link that we scroll down to
-Markdown.pl|SmartyPants.pl|${TM_RUBY:-ruby} -e '
+Markdown.pl|"${TM_SMARTYPANTS:-SmartyPants.pl}"|${TM_RUBY:-ruby} -e '
 lines = STDIN.read.split("\n")
 n = [ENV["TM_LINE_NUMBER"].to_i, lines.length].min - 7
 
