@@ -5,7 +5,7 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>MultiMarkdown.pl|"${TM_SMARTYPANTS:-SmartyPants.pl}"</string>
+	<string>InsertFormatHeader.rb|MultiMarkdown.pl|"${TM_SMARTYPANTS:-SmartyPants.pl}"</string>
 	<key>fallbackInput</key>
 	<string>document</string>
 	<key>input</key>
