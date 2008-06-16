@@ -15,6 +15,11 @@ if [[ -z $TM_FILENAME ]]
 fi
 
 html_header "$title" "MultiMarkdown"
+
+if [[ -f "$TM_FILEPATH" ]]; then
+  echo "&lt;base href='tm-file://${TM_FILEPATH// /%20}'&gt;"
+fi
+
 MultiMarkdown.pl|"${TM_SMARTYPANTS:-SmartyPants.pl}"
 html_footer</string>
 	<key>fallbackInput</key>
