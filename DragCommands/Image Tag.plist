@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>command</key>
 	<string>base=${TM_DROPPED_FILE##*/}
 alt=$(tr &lt;&lt;&lt;${base%.*} '[_-]' ' '|perl -pe 's/(\w+)/\u$1/g')
-echo -n "![\${1:$alt}]($TM_DROPPED_FILE)"</string>
+if [ -n "$TM_DROPPED_FILE_STRIP_ROOT" ]
+then
+	file=$(sed -e "s|^$TM_DROPPED_FILE_STRIP_ROOT||" &lt;&lt;&lt; $TM_DROPPED_FILE);
+else
+	file=${TM_DROPPED_FILE};
+fi
+echo -n "![\${1:$alt}]($file)"</string>
 	<key>draggedFileExtensions</key>
 	<array>
 		<string>png</string>
