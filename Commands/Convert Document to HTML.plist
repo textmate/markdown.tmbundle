@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
@@ -10,7 +10,7 @@
 # and then convert back to html before save and close.
 
 HTML4=$([ -n "$TM_XHTML" ] || echo '--html4tags')
-Markdown.pl $HTML4|"${TM_SMARTYPANTS:-SmartyPants.pl}"|perl -pe '
+"${TM_MARKDOWN:-Markdown.pl}" $HTML4|"${TM_SMARTYPANTS:-SmartyPants.pl}"|perl -pe '
 	# make &lt;h1&gt;Header&lt;/h1&gt; into &lt;h1 id="header"&gt;Header&lt;/h1&gt;
 	# so that we can link to page#header
 	if(($tag, $title) = /&lt;(h[1-6])&gt;(.*?)&lt;\/\1&gt;/) {
