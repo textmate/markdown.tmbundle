@@ -393,7 +393,9 @@
 		</dict>
 		<key>block_raw</key>
 		<dict>
-			<key>match</key>
+			<key>begin</key>
+			<string>\G([ ]{4}|\t).*$\n?</string>
+			<key>while</key>
 			<string>\G([ ]{4}|\t).*$\n?</string>
 			<key>name</key>
 			<string>markup.raw.block.markdown</string>
