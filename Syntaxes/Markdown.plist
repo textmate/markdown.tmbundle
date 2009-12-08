@@ -95,7 +95,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^[ ]{0,3}[0-9]+(\.)(?=\s)</string>
+			<string>^[ ]{0,3}([0-9]+\.)(?=\s)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
