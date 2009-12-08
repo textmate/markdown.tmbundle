@@ -1138,6 +1138,20 @@
 							<key>include</key>
 							<string>#inline</string>
 						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.list_item.markdown</string>
+								</dict>
+							</dict>
+							<key>comment</key>
+							<string>Match the list punctuation</string>
+							<key>match</key>
+							<string>^\s*([*+-]|[0-9]+\.)</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
