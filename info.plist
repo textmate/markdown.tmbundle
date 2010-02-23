@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>contactEmailRot13</key>
@@ -27,6 +27,7 @@
 			<string>B52DEA16-8480-11D9-BE59-000D93B3A10E</string>
 			<string>966B0E57-799A-4B91-84B4-75695A78F7B8</string>
 			<string>FE31CF79-5F04-4FB6-B5CE-70BC781FF8B5</string>
+			<string>C70F0881-D108-47B1-A06F-09C74954E5C2</string>
 			<string>------------------------------------</string>
 			<string>49B1C71D-A748-4F99-9503-95444E8FF7BE</string>
 			<string>------------------------------------</string>
@@ -108,6 +109,7 @@
 		<string>DB5085DA-3E95-4020-8521-C9702168F160</string>
 		<string>D9118E94-4E23-4B75-88D7-6BFEBAA70D1B</string>
 		<string>351451DE-C1A4-4A36-A563-99AF761D026B</string>
+		<string>C70F0881-D108-47B1-A06F-09C74954E5C2</string>
 		<string>7CCF064C-BC8F-437B-A339-0E2156D8B2C3</string>
 		<string>622F0B69-EB98-4EB9-8DC8-2AC56FF2501E</string>
 		<string>000B399B-FB71-49EF-B799-A1200A3865AB</string>
@@ -127,7 +129,6 @@
 		<string>146B2643-D903-49A8-9586-BE9C509D65B1</string>
 		<string>C2DBC2F2-D859-4B35-A38E-244927A8447F</string>
 		<string>C02A37C1-E770-472F-A13E-358FF0C6AD89</string>
-		<string>F878D261-A73A-4A65-875C-F0E07E2C8181</string>
 	</array>
 	<key>uuid</key>
 	<string>D99E8C0C-792F-11D9-A212-000D93B3A10E</string>

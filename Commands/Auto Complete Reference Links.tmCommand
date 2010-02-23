@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby -wKU
+
+require ENV['TM_SUPPORT_PATH'] + '/lib/ui'
+require ENV['TM_SUPPORT_PATH'] + '/lib/exit_codes'
+
+word = ENV['TM_CURRENT_WORD']
+word = '' if word =~ /[\[\]]/
+links = []
+link_regex = /^ {0,3}\[(\w+)\]:/
+
+STDIN.read.each { |ln| links &lt;&lt; $1 if ln =~ link_regex }
+
+TextMate.exit_show_tool_tip( "No links found." ) if links.empty?
+
+TextMate::UI.complete(links, :initial_filter =&gt; word, :extra_chars =&gt; '_-')
+
+</string>
+	<key>fallbackInput</key>
+	<string>word</string>
+	<key>input</key>
+	<string>document</string>
+	<key>keyEquivalent</key>
+	<string>~</string>
+	<key>name</key>
+	<string>Auto Complete Reference Link</string>
+	<key>output</key>
+	<string>discard</string>
+	<key>scope</key>
+	<string>meta.link.reference.literal.markdown, meta.link.reference.markdown</string>
+	<key>uuid</key>
+	<string>C70F0881-D108-47B1-A06F-09C74954E5C2</string>
+</dict>
+</plist>
