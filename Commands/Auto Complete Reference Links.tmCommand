@@ -13,7 +13,7 @@ require ENV['TM_SUPPORT_PATH'] + '/lib/exit_codes'
 word = ENV['TM_CURRENT_WORD']
 word = '' if word =~ /[\[\]]/
 links = []
-link_regex = /^ {0,3}\[(\w+)\]:/
+link_regex = /^ {0,3}\[(.+)\]:/
 
 STDIN.read.each { |ln| links &lt;&lt; $1 if ln =~ link_regex }
 
