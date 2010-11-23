@@ -5,12 +5,12 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string># This command works well when you use the TextMate service from a 
+	<string>#!/bin/bash
+# This command works well when you use the TextMate service from a 
 # web-log editor like Ecto or MarsEdit.  You can write in markdown
 # and then convert back to html before save and close.
 
-HTML4=$([ -n "$TM_XHTML" ] || echo '--html4tags')
-"${TM_MARKDOWN:-Markdown.pl}" $HTML4|"${TM_SMARTYPANTS:-SmartyPants.pl}"|perl -pe '
+"${TM_MARKDOWN:-Markdown.pl}"|"${TM_SMARTYPANTS:-SmartyPants.pl}"|perl -pe '
 	# make &lt;h1&gt;Header&lt;/h1&gt; into &lt;h1 id="header"&gt;Header&lt;/h1&gt;
 	# so that we can link to page#header
 	if(($tag, $title) = /&lt;(h[1-6])&gt;(.*?)&lt;\/\1&gt;/) {
