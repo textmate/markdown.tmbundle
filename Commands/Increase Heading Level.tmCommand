@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env python
+
+import os
+import sys
+import re
+
+hashes = ''
+line = os.environ['TM_CURRENT_LINE']
+m = re.match(r'(#{1,6})\s+(.+?)\s*(#*)$', line)
+
+if m:
+    hashes = m.group(1)
+
+if len(hashes) &lt; 6:
+    hashes = '#' * (len(hashes) + 1)
+    heading = m.group(2).strip()
+    sys.stdout.write('%s %s' % (hashes, heading))
+    if m.group(3) != '':
+        sys.stdout.write(' %s' % hashes)
+else:
+    sys.stdout.write(line)</string>
+	<key>fallbackInput</key>
+	<string>line</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@]</string>
+	<key>name</key>
+	<string>Increase Heading Level</string>
+	<key>outputCaret</key>
+	<string>heuristic</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
+	<key>scope</key>
+	<string>L:markup.heading.*.markdown | R:markup.heading.*.markdown</string>
+	<key>uuid</key>
+	<string>7E9407AB-7A37-4CF8-B0E5-CBBA9AF8982A</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
