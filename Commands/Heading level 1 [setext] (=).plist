@@ -12,18 +12,22 @@
 	<string>#!/usr/bin/env ruby -wKU
 
 require 'jcode'
+require ENV['TM_SUPPORT_PATH'] + '/lib/textmate'
 
-# Split document into lines. Get current line number minus one for
-# previous, minus another for ruby being 0 based.
-lines = STDIN.readlines
-line  = ENV['TM_LINE_NUMBER'].to_i - 2
+begin
+  # Split document into lines. Get current line number minus one for
+  # previous, minus another for ruby being 0 based.
+  lines = STDIN.readlines
+  line  = ENV['TM_LINE_NUMBER'].to_i - 2
 
-# Get length of previous line, using jlength for unicode
-length = lines[line].rstrip.jlength
+  # Get length of previous line, using jlength for unicode
+  length = lines[line].rstrip.jlength
 
-# Print same number of =
-length.times { print "=" }
-</string>
+  # Print same number of =
+  length.times { print "=" }
+rescue
+  TextMate.exit_show_tool_tip("Use this command on the line following a string to turn it into setext-style heading.")
+end</string>
 	<key>fileCaptureRegister</key>
 	<string>1</string>
 	<key>input</key>
