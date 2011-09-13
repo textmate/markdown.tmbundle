@@ -266,10 +266,10 @@
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>(^|\G)[ ]{0,3}([*+-])(?=\s)</string>
+							<string>(^|\G)([ ]{0,3})([*+-])(?=\s)</string>
 							<key>beginCaptures</key>
 							<dict>
-								<key>2</key>
+								<key>3</key>
 								<dict>
 									<key>name</key>
 									<string>punctuation.definition.list.markdown</string>
@@ -291,14 +291,14 @@
 								</dict>
 							</array>
 							<key>while</key>
-							<string>\G([ ]{1,4}|\t|$)</string>
+							<string>\G\2([ ]{1,4}|\t|$)</string>
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>(^|\G)[ ]{0,3}([0-9]+\.)(?=\s)</string>
+							<string>(^|\G)([ ]{0,3})([0-9]+\.)(?=\s)</string>
 							<key>beginCaptures</key>
 							<dict>
-								<key>2</key>
+								<key>3</key>
 								<dict>
 									<key>name</key>
 									<string>punctuation.definition.list.markdown</string>
@@ -318,7 +318,7 @@
 								</dict>
 							</array>
 							<key>while</key>
-							<string>\G([ ]{1,4}|\t|$)</string>
+							<string>\G\2([ ]{1,4}|\t|$)</string>
 						</dict>
 					</array>
 				</dict>
