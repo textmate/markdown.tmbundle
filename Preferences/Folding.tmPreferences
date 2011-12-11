@@ -12,6 +12,18 @@
 		<string>^(?!#+\s+)</string>
 		<key>foldingIndentedBlockStart</key>
 		<string>^#+\s+</string>
+		<key>foldingStartMarker</key>
+		<string>(?x)
+		(&lt;(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)\b.*?&gt;
+		|&lt;!--(?!.*--&gt;)
+		|\{\s*($|\?&gt;\s*$|//|/\*(.*\*/\s*$|(?!.*?\*/)))
+		)</string>
+		<key>foldingStopMarker</key>
+		<string>(?x)
+		(&lt;/(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)&gt;
+		|^\s*--&gt;
+		|(^|\s)\}
+		)</string>
 	</dict>
 	<key>uuid</key>
 	<string>3B52CA89-648E-480E-AE45-20D4638B23B2</string>
