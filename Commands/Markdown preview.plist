@@ -9,7 +9,7 @@
 html_header "Markdown Preview" "${TM_FILENAME:-}"
 
 if [[ -f "$TM_FILEPATH" ]]; then
-  echo "&lt;base href='tm-file://${TM_FILEPATH// /%20}'&gt;"
+  echo "&lt;base href='file://${TM_FILEPATH// /%20}'&gt;"
 fi
 
 # Convert to html then make one of the html tags above caret 
