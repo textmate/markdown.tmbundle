@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>command</key>
-	<string>base=${TM_DROPPED_FILE##*/}
+	<string>#!/usr/bin/env bash
+
+base=${TM_DROPPED_FILE##*/}
 alt=$(tr &lt;&lt;&lt;${base%.*} '[_-]' ' '|perl -pe 's/(\w+)/\u$1/g')
 if [ -n "$TM_DROPPED_FILE_STRIP_ROOT" ]
 then
@@ -11,6 +13,7 @@ then
 else
 	file=${TM_DROPPED_FILE};
 fi
+file=`echo $file | sed -e 's/ /%20/g'`
 echo -n "![\${1:$alt}]($file)"</string>
 	<key>draggedFileExtensions</key>
 	<array>
