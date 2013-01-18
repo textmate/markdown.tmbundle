@@ -13,12 +13,10 @@ import re
 
 hashes = ''
 line = os.environ['TM_CURRENT_LINE']
-m = re.match(r'(#{1,6})\s+(.+?)\s*(#*)$', line)
+m = re.match(r'(#{2,6})\s*(.+?)\s*(#*)$', line)
 
 if m:
     hashes = m.group(1)
-
-if len(hashes) &gt; 1:
     hashes = '#' * (len(hashes) - 1)
     heading = m.group(2).strip()
     sys.stdout.write('%s %s' % (hashes, heading))
