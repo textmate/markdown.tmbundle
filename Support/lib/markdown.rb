@@ -310,14 +310,14 @@ module Markdown
 		def List.parse(str, line = 0)
 			list = List.new()
 			list.indent = str[/^(\s*)/, 1].to_s()
-			list.numbered = /^\s*([0-9])/.match(str.lines.to_a[0])
+			list.numbered = /^\s*([0-9])/.match(str.to_a[0])
 			list.line = line
 			itemregex = /^(#{Regexp.escape(list.indent)}#{if list.numbered then "[0-9]+\\." else "\\*" end})(\s.*)/
 
 			entry = []
 			linenumber = -1
 			begin
-				lines = str.lines.to_a()
+				lines = str.to_a()
 				lines.each_index() do |i|
 					line = lines[i]
 					linenumber += 1
