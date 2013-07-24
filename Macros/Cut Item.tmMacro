@@ -10,7 +10,7 @@
 				<key>beforeRunningCommand</key>
 				<string>nop</string>
 				<key>command</key>
-				<string>#!/usr/bin/env ruby
+				<string>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
 
 $: &lt;&lt; ENV['TM_BUNDLE_SUPPORT']
 $: &lt;&lt; ENV['TM_SUPPORT_PATH']
@@ -69,7 +69,7 @@ print list.to_s()
 				<key>beforeRunningCommand</key>
 				<string>nop</string>
 				<key>command</key>
-				<string>#!/usr/bin/env ruby
+				<string>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
 
 $: &lt;&lt; ENV['TM_BUNDLE_SUPPORT']
 $: &lt;&lt; ENV['TM_SUPPORT_PATH']

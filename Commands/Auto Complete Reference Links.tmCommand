@@ -5,7 +5,7 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>#!/usr/bin/env ruby -wKU
+	<string>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby -wKU
 
 require ENV['TM_SUPPORT_PATH'] + '/lib/ui'
 require ENV['TM_SUPPORT_PATH'] + '/lib/exit_codes'
@@ -26,15 +26,23 @@ TextMate::UI.complete(links, :initial_filter =&gt; word, :extra_chars =&gt; '_-'
 	<string>word</string>
 	<key>input</key>
 	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>~</string>
 	<key>name</key>
 	<string>Auto Complete Reference Link</string>
-	<key>output</key>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
 	<string>discard</string>
 	<key>scope</key>
 	<string>meta.link.reference.literal.markdown, meta.link.reference.markdown</string>
 	<key>uuid</key>
 	<string>C70F0881-D108-47B1-A06F-09C74954E5C2</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>

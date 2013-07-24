@@ -9,7 +9,7 @@
 	<key>capturePattern</key>
 	<string>^([^:]*):([^:]*):(.*)$</string>
 	<key>command</key>
-	<string>#!/usr/bin/env ruby -wKU
+	<string>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby -wKU
 
 require 'jcode'
 require ENV['TM_SUPPORT_PATH'] + '/lib/textmate'
@@ -32,17 +32,25 @@ end</string>
 	<string>1</string>
 	<key>input</key>
 	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>lineCaptureRegister</key>
 	<string>2</string>
 	<key>name</key>
 	<string>Level 2 [setext]</string>
-	<key>output</key>
-	<string>afterSelectedText</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>atCaret</string>
 	<key>scope</key>
 	<string>text.html.markdown</string>
 	<key>tabTrigger</key>
 	<string>-</string>
 	<key>uuid</key>
 	<string>724FCFF6-CE6B-11D9-9C17-000A95C0F626</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>
