@@ -20,6 +20,11 @@ begin
   lines = STDIN.readlines
   line  = ENV['TM_LINE_NUMBER'].to_i - 2
 
+  # If line does not start with word character we insert literal tab
+  if lines[line] !~ /^\w/
+    TextMate.exit_insert_snippet("-\t")
+  end
+
   # Get length of previous line, using jlength for unicode
   length = lines[line].rstrip.jlength
 
@@ -45,7 +50,7 @@ end</string>
 	<key>outputLocation</key>
 	<string>atCaret</string>
 	<key>scope</key>
-	<string>text.html.markdown</string>
+	<string>text.html.markdown &amp; L:dyn.caret.begin.line</string>
 	<key>tabTrigger</key>
 	<string>-</string>
 	<key>uuid</key>
