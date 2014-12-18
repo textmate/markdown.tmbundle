@@ -270,7 +270,7 @@
 						</dict>
 					</array>
 					<key>while</key>
-					<string>(^|\G)(?!\s*$|#|[ ]{,3}([-*_][ ]{2,}){3,}[ \t]*$\n?|&gt;|[ ]{0,3}[*+-]|[ ]{0,3}[0-9]+\.)</string>
+					<string>(^|\G)(?!\s*$|#|[ ]{0,3}([-*_][ ]{2,}){3,}[ \t]*$\n?|&gt;|[ ]{0,3}[*+-]|[ ]{0,3}[0-9]+\.)</string>
 				</dict>
 				<key>lists</key>
 				<dict>
@@ -356,7 +356,7 @@
 						</dict>
 					</array>
 					<key>while</key>
-					<string>(^|\G)(?!\s*$|#|[ ]{,3}([-*_][ ]{2,}){3,}[ \t]*$\n?|\s*\[.+?\]:|&gt;)</string>
+					<string>(^|\G)(?!\s*$|#|[ ]{0,3}([-*_][ ]{2,}){3,}[ \t]*$\n?|\s*\[.+?\]:|&gt;)</string>
 				</dict>
 				<key>raw_block</key>
 				<dict>
@@ -370,7 +370,7 @@
 				<key>separator</key>
 				<dict>
 					<key>match</key>
-					<string>(^|\G)[ ]{,3}([-*_])([ ]{,2}\2){2,}[ \t]*$\n?</string>
+					<string>(^|\G)[ ]{0,3}([-*_])([ ]{0,2}\2){2,}[ \t]*$\n?</string>
 					<key>name</key>
 					<string>meta.separator.markdown</string>
 				</dict>
