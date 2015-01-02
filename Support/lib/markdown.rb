@@ -128,11 +128,11 @@ module Markdown
 		end
 
 
-		attr_accessor :line, :indent, :numbered
+		attr_accessor :line, :indent, :numbered, :unordered_list_mark
 		attr_reader :entries
 
 
-		@@sublistregex = /^\s+([0-9]+\.|\*)\s/
+		@@sublistregex = /^\s+([0-9]+\.|\*|\-)\s/
 
 		# This should never be called unless you know what you are doing.  It is used
 		# internally to create sublists.  Generally you will want to call List.parse(str)
@@ -141,6 +141,7 @@ module Markdown
 			@line = line
 			@indent = indent
 			@numbered = numbered
+			@unordered_list_mark = '*'
 			@entries = []
 			entries.each() do |e|
 				@entries << e
@@ -311,8 +312,9 @@ module Markdown
 			list = List.new()
 			list.indent = str[/^(\s*)/, 1].to_s()
 			list.numbered = /^\s*([0-9])/.match(str.to_a[0])
+			list.unordered_list_mark = '-' if /^\s*-/.match(str.to_a[0])
 			list.line = line
-			itemregex = /^(#{Regexp.escape(list.indent)}#{if list.numbered then "[0-9]+\\." else "\\*" end})(\s.*)/
+			itemregex = /^(#{Regexp.escape(list.indent)}#{if list.numbered then "[0-9]+\\." else "\\#{list.unordered_list_mark}" end})(\s.*)/
 
 			entry = []
 			linenumber = -1
@@ -360,7 +362,7 @@ module Markdown
 				if @numbered
 					str << "#{i+1}."
 				else
-					str << "*"
+					str << @unordered_list_mark
 				end
 
 				str << @entries[i].map { |e| e.to_s() }.join()
