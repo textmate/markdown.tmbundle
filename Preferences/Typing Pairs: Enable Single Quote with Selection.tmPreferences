@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Typing Pairs: Enable Single Quote with Selection</string>
+	<string>Typing Pairs: Enable Single Quotes with Selection</string>
 	<key>scope</key>
 	<string>text.html.markdown &amp; dyn.selection</string>
 	<key>settings</key>
@@ -41,6 +41,10 @@
 			<array>
 				<string>‘</string>
 				<string>’</string>
+			</array>
+			<array>
+				<string>`</string>
+				<string>`</string>
 			</array>
 		</array>
 	</dict>
