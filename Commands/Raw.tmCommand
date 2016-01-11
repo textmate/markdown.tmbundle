@@ -6,9 +6,8 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby18 -wKU
-require "#{ENV['TM_SUPPORT_PATH']}/lib/escape"
-require "#{ENV['TM_SUPPORT_PATH']}/lib/exit_codes"
-
+$: &lt;&lt; ENV['TM_SUPPORT_PATH'] + '/lib'
+require 'escape'
 def esc(str)
   e_sn(str).gsub(/\}/, '\\}') # escaping inside a placeholder
 end
@@ -21,7 +20,7 @@ elsif s =~ /^`(.*)`$/ then
 elsif ENV.has_key? 'TM_SELECTED_TEXT'
   print "${1:\\`#{esc s}\\`}"
 else
-  TextMate.exit_replace_text("\`#{s}\`")
+  print "\\`#{e_sn s}\\`"
 end
 </string>
 	<key>fallbackInput</key>
