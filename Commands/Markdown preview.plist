@@ -5,58 +5,73 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>. "$TM_SUPPORT_PATH/lib/webpreview.sh"
-html_header "Markdown Preview" "${TM_FILENAME:-}"
+	<string>#!/usr/bin/env ruby18 -wKU
+require "uri"
+require "#{ENV["TM_SUPPORT_PATH"]}/lib/tm/htmloutput"
+require "#{ENV["TM_SUPPORT_PATH"]}/lib/tm/markdown"
 
-if [[ -f "$TM_FILEPATH" ]]; then
-  echo "&lt;base href='file://${TM_FILEPATH// /%20}'&gt;"
-fi
+TextMate::HTMLOutput.show(:title =&gt; "Markdown Preview", :sub_title =&gt; ENV["TM_FILENAME"]) do |io|
+  if File.exists?(ENV["TM_FILEPATH"])
+    io &lt;&lt; "&lt;base href='file://#{URI.escape ENV["TM_FILEPATH"]}'&gt;\n"
+  end
 
-# Convert to html then make one of the html tags above caret
-# into a link that we scroll down to
-${TM_MARKDOWN:-Markdown.pl}|${TM_SMARTYPANTS:-SmartyPants.pl}|ruby18 -e '
-lines = STDIN.read.split("\n")
-n = [ENV["TM_LINE_NUMBER"].to_i, lines.length].min - 7
+  # Convert to html then make one of the html tags above caret
+  # into a link that we scroll down to
+  html = TextMate::Markdown.to_html($stdin.read)
 
-while n &gt; 0 &amp;&amp; !lines[n].match(/&lt;(h\d|p|ul|li|blockquote|pre|div|img|code|table|tr)&gt;/i)
-  n -= 1
+  lines = html.split("\n")
+  n = [ENV["TM_LINE_NUMBER"].to_i, lines.length].min - 7
+
+  while n &gt; 0 &amp;&amp; !lines[n].match(/&lt;(h\d|p|ul|li|blockquote|pre|div|img|code|table|tr)&gt;/i)
+    n -= 1
+  end
+
+  if n &gt; 0 &amp;&amp; m = lines[n].match(/&lt;(h\d|p|ul|li|blockquote|pre|div|img|code|table|tr)&gt;(.*)$/i)
+    lines[n] = "&lt;#{m[1]} id=\"scroll_to_here\" &gt;#{m[2]}"
+  end
+
+  io &lt;&lt; lines.join("\n")
+  if ENV["TM_MARKDOWN_MATHJAX"].to_i &gt; 0
+      io &lt;&lt; %{
+        &lt;script type="text/x-mathjax-config"&gt;
+          MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+              inlineMath: [ ["$","$"], ["\\\\(","\\\\)"] ],
+              displayMath: [ ["$$","$$"], ["\\\\[","\\\\]"] ],
+              processEscapes: false
+            },
+            "HTML-CSS": { availableFonts: ["TeX"] }
+          });
+        &lt;/script&gt;
+        &lt;script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
+        &lt;/script&gt;
+      }
+  end
+  io &lt;&lt; "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
 end
 
-if n &gt; 0 &amp;&amp; m = lines[n].match(/&lt;(h\d|p|ul|li|blockquote|pre|div|img|code|table|tr)&gt;(.*)$/i)
-  lines[n] = "&lt;#{m[1]} id=\"scroll_to_here\" &gt;#{m[2]}"
-end
-
-puts lines.join("\n")
-if ENV["TM_MARKDOWN_MATHJAX"].to_i &gt; 0
-    puts "&lt;script type=\"text/x-mathjax-config\"&gt;
-      MathJax.Hub.Config({
-        extensions: [\"tex2jax.js\"],
-        jax: [\"input/TeX\", \"output/HTML-CSS\"],
-        tex2jax: {
-          inlineMath: [ [\"$\",\"$\"], [\"\\\\(\",\"\\\\)\"] ],
-          displayMath: [ [\"$$\",\"$$\"], [\"\\\\[\",\"\\\\]\"] ],
-          processEscapes: false
-        },
-        \"HTML-CSS\": { availableFonts: [\"TeX\"] }
-      });
-    &lt;/script&gt;
-    &lt;script type=\"text/javascript\"    src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\"&gt;
-    &lt;/script&gt;"
-end
-puts "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
-'
-html_footer</string>
+</string>
 	<key>input</key>
 	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>^~@p</string>
 	<key>name</key>
 	<string>Preview</string>
-	<key>output</key>
-	<string>showAsHTML</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
 	<key>scope</key>
 	<string>text.html.markdown</string>
 	<key>uuid</key>
 	<string>B52DEA16-8480-11D9-BE59-000D93B3A10E</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>
