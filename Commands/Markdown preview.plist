@@ -45,7 +45,7 @@ TextMate::HTMLOutput.show(:title =&gt; "Markdown Preview", :sub_title =&gt; ENV[
             "HTML-CSS": { availableFonts: ["TeX"] }
           });
         &lt;/script&gt;
-        &lt;script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
+        &lt;script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
         &lt;/script&gt;
       }
   end
