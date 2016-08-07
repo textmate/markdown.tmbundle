@@ -11,7 +11,7 @@ require "#{ENV["TM_SUPPORT_PATH"]}/lib/tm/htmloutput"
 require "#{ENV["TM_SUPPORT_PATH"]}/lib/tm/markdown"
 
 TextMate::HTMLOutput.show(:title =&gt; "Markdown Preview", :sub_title =&gt; ENV["TM_FILENAME"]) do |io|
-  if File.exists?(ENV["TM_FILEPATH"])
+  if ENV["TM_FILEPATH"] &amp;&amp; File.exists?(ENV["TM_FILEPATH"])
     io &lt;&lt; "&lt;base href='file://#{URI.escape ENV["TM_FILEPATH"]}'&gt;\n"
   end
 
