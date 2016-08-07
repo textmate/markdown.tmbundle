@@ -41,24 +41,6 @@ TextMate::HTMLOutput.show(:title =&gt; "Markdown Preview", :sub_title =&gt; ENV[
   end
 
   io &lt;&lt; lines.join("\n")
-  if ENV["TM_MARKDOWN_MATHJAX"].to_i &gt; 0
-      io &lt;&lt; %{
-        &lt;script type="text/x-mathjax-config"&gt;
-          MathJax.Hub.Config({
-            extensions: ["tex2jax.js"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-            tex2jax: {
-              inlineMath: [ ["$","$"], ["\\\\(","\\\\)"] ],
-              displayMath: [ ["$$","$$"], ["\\\\[","\\\\]"] ],
-              processEscapes: false
-            },
-            "HTML-CSS": { availableFonts: ["TeX"] }
-          });
-        &lt;/script&gt;
-        &lt;script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
-        &lt;/script&gt;
-      }
-  end
   io &lt;&lt; "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
 end
 
