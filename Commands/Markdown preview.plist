@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>autoRefresh</key>
+	<array>
+		<string>DocumentChanged</string>
+	</array>
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
@@ -41,9 +45,8 @@ TextMate::HTMLOutput.show(:title =&gt; "Markdown Preview", :sub_title =&gt; ENV[
   end
 
   io &lt;&lt; lines.join("\n")
-  io &lt;&lt; "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
+  io &lt;&lt; "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;" unless ENV.key?('TM_REFRESH')
 end
-
 </string>
 	<key>input</key>
 	<string>document</string>
@@ -52,7 +55,7 @@ end
 	<key>keyEquivalent</key>
 	<string>^~@p</string>
 	<key>name</key>
-	<string>Preview</string>
+	<string>Show Preview</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
