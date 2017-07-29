@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby -w
+class Order
+  HX = 6
+
+  def initialize
+    @hh = [0] * HX  # html H1~H6
+  end
+
+  def getl level
+    level -= 1 # ruby array begin 0
+    return '' if level &gt; @hh.size
+
+    @hh[level] += 1
+    (level+1).upto(@hh.size-1) do |i|
+      @hh[i] = 0
+    end
+
+    xx = []
+    @hh[0] = 1 if @hh[0] == 0
+    0.upto(level) do |i|
+      xx &lt;&lt; @hh[i]
+    end
+
+    xx.join('.') + '. '
+  end
+
+end
+
+
+data = $stdin.read
+order = Order.new
+
+data2 = data.gsub(/^(\#{1,#{Order::HX}})([^#\n]+)/) do |x|
+  hx, title = $1, $2.lstrip
+
+  ordstr = order.getl(hx.size)
+  title.sub! /^[\d.]+\s+/, ''
+  "#{hx} #{ordstr}#{title}"
+end
+
+puts data2
+
+</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>Add Numbers</string>
+	<key>outputCaret</key>
+	<string>interpolateByChar</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceDocument</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
+	<key>uuid</key>
+	<string>778293E7-28C3-4272-A51C-2925F669C851</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

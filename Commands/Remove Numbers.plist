@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby -w
+class Order
+  HX = 6
+
+  def initialize
+    @hh = [0] * HX  # html H1~H6
+  end
+
+end
+
+
+data = $stdin.read
+order = Order.new
+
+data2 = data.gsub(/^(\#{1,#{Order::HX}})([^#\n]+)/) do |x|
+  hx, title = $1, $2.lstrip
+
+  title.sub! /^[\d.]+\s+/, ''
+  "#{hx} #{title}"
+end
+
+puts data2
+
+</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>Remove Numbers</string>
+	<key>outputCaret</key>
+	<string>interpolateByChar</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceDocument</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
+	<key>uuid</key>
+	<string>778293E7-28C3-4272-A51C-2925F669C852</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
