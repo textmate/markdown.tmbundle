@@ -40,8 +40,8 @@ TextMate::HTMLOutput.show(:title =&gt; "Markdown Preview", :sub_title =&gt; ENV[
     n -= 1
   end
 
-  if n &gt; 0 &amp;&amp; m = lines[n].match(/&lt;(h\d|p|ul|li|blockquote|pre|div|img|code|table|tr)&gt;(.*)$/i)
-    lines[n] = "&lt;#{m[1]} id=\"scroll_to_here\" &gt;#{m[2]}"
+  if n &gt; 0 &amp;&amp; m = lines[n].match(/^(.*)&lt;(h\d|p|ul|li|blockquote|pre|div|img|code|table|tr)&gt;(.*)$/i)
+    lines[n] = "#{m[1]}&lt;#{m[2]} id=\"scroll_to_here\" &gt;#{m[3]}"
   end
 
   io &lt;&lt; lines.join("\n")
