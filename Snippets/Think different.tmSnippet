@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string># [Think different][]
+
+# Here’s to the crazy ones.
+
+1. The misfits
+2. The rebels
+3. The troublemakers
+
+The round pegs in the square holes. The ones who see things differently. The're not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them, glorify or vilify them. About the only thing you can't do is ignore them. Because they change things.
+
+***They push the human race forward***.
+
+And while some may see them as the crazy ones, we see genius. Because the people who are crazy enough to think they can change the world, are the ones who do.
+
+[Think different]: https://web.archive.org/web/20010228171255/http://www.apple.com/thinkdifferent/
+</string>
+	<key>name</key>
+	<string>Think Different</string>
+	<key>scope</key>
+	<string>L:dyn.caret.begin.document</string>
+	<key>tabTrigger</key>
+	<string>md</string>
+	<key>uuid</key>
+	<string>17F9D43B-EAFF-4003-8645-CA8BC4326A79</string>
+</dict>
+</plist>

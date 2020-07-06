@@ -10,6 +10,10 @@
 	<string>&lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt; allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML. This bundle provides preview functionality, syntax highlighting, and several useful commands.</string>
 	<key>mainMenu</key>
 	<dict>
+		<key>excludedItems</key>
+		<array>
+			<string>17F9D43B-EAFF-4003-8645-CA8BC4326A79</string>
+		</array>
 		<key>items</key>
 		<array>
 			<string>B52DEA16-8480-11D9-BE59-000D93B3A10E</string>
