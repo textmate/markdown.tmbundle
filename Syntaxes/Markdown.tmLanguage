@@ -9,6 +9,8 @@
 		<string>markdown</string>
 		<string>markdn</string>
 	</array>
+	<key>firstLineMatch</key>
+	<string>^# \[Think different\]\[\]</string>
 	<key>keyEquivalent</key>
 	<string>^~M</string>
 	<key>name</key>
